@@ -26,6 +26,7 @@
     "@swimlane/ngx-charts": "^9.0.0",
     "angular-l10n": "^5.1.0",
     "core-js": "^2.5.4",
+    "ng-dynamic-component": "^3.0.0",
     "rxjs": "~6.2.0",
     "zone.js": "~0.8.26"
   },

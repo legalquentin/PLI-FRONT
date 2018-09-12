@@ -24,10 +24,14 @@ import { CbDashboardComponent } from './cb-dashboard/cb-dashboard.component';
 import { CbMenuLeftComponent } from './cb-menu-left/cb-menu-left.component';
 import { CbMenuTopComponent } from './cb-menu-top/cb-menu-top.component';
 import { CbConnectionComponent } from './cb-connection/cb-connection.component';
-import { CbWidget1Component } from './cb-dashboard/cb-widgets/cb-widget-1/cb-widget-1.component';
-import { CbKpi1Component } from './cb-dashboard/cb-kpis/cb-kpi-1/cb-kpi-1.component';
 import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
+// WIDGETS
+import { CbWidgetContainerComponent } from './cb-dashboard/cb-widgets/cb-widget-container/cb-widget-container.component';
+import { CbWidgetTableComponent } from './cb-dashboard/cb-widgets/cb-widget-table/cb-widget-table.component';
+import { CbWidgetLineChartComponent } from './cb-dashboard/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
+// KPIS
+import { CbKpi1Component } from './cb-dashboard/cb-kpis/cb-kpi-1/cb-kpi-1.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -61,10 +65,12 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbMenuLeftComponent,
     CbMenuTopComponent,
     CbConnectionComponent,
-    CbWidget1Component,
     CbKpi1Component,
     CbCryptobotComponent,
-    CbSettingsComponent
+    CbSettingsComponent,
+    CbWidgetContainerComponent,
+    CbWidgetTableComponent,
+    CbWidgetLineChartComponent
   ],
   imports: [
     BrowserModule,

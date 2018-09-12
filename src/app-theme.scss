@@ -1,0 +1,62 @@
+@import '~@angular/material/theming';
+// always include only once per project
+@include mat-core();
+$app-green-primary: mat-palette($mat-green);
+// Create the theme object (a Sass map containing all of the palettes).
+$app-green-theme: mat-light-theme($app-green-primary, mat-palette($mat-orange));
+@include angular-material-theme($app-green-theme);
+
+@mixin mat-form-field-theme() {
+    .mat-form-field {
+        .mat-form-field-ripple,
+        .mat-form-field-underline {
+            background-color: #ffffff;
+        }
+        .mat-form-field-label,
+        .mat-form-field-label,
+        .mat-input-placeholder,
+        .mat-form-field-placeholder,
+        .mat-empty,
+        .mat-form-field-empty {
+            color: #ffffff;
+        }
+    }
+    .genericWhiteFormField.mat-form-field {
+        .mat-form-field-ripple,
+        .mat-form-field-underline {
+            background-color: #ffffff;
+        }
+        .mat-form-field-label,
+        .mat-form-field-label,
+        .mat-input-placeholder,
+        .mat-form-field-placeholder,
+        .mat-empty,
+        .mat-form-field-empty {
+            color: #ffffff;
+        }
+    }
+}
+
+@mixin mat-input-theme() {
+    .mat-input-element {
+        caret-color: #ffffff;
+        color: #ffffff;
+    }
+}
+
+@mixin mat-button-theme() {
+  .mat-raised-button {
+    color: white;
+    background-color: #27ae60;
+    border-radius: 0px !important;
+    text-transform: uppercase;
+    font-weight: 400;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    font-size: 0.875rem;
+  }
+}
+
+@include mat-form-field-theme();
+@include mat-input-theme();
+@include mat-button-theme();

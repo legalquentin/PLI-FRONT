@@ -1,0 +1,9 @@
+<app-cb-menu-top></app-cb-menu-top>
+<mat-sidenav-container class="container">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav" color="primary" disableClose>
+    <app-cb-menu-left></app-cb-menu-left>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

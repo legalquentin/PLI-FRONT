@@ -1,0 +1,13 @@
+.sidenav {
+  color: white;
+  background-color: #2e2e38;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column
+}
+.container {
+  height: calc(100vh - 64px);
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

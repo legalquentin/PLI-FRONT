@@ -1,0 +1,85 @@
+.connection {}
+
+h2 {
+    font-weight: 350;
+    color: white;
+    font-size: 2.625rem;
+    margin-bottom: 20px;
+}
+
+.left-connection {
+    background-color: #1e272e;
+    height: 100vh;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.description-header {
+    color: rgb(189, 189, 189);
+    opacity: 1;
+    font-weight: 300;
+    margin: 0 !important;
+    font-size: 1.5rem;
+    line-height: 1.4;
+}
+
+.description-para {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #666;
+}
+
+.change-btn {
+    min-width: 200px;
+    margin-top: 30px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 35px !important;
+    padding-right: 35px !important;
+}
+
+.right-connection {
+    padding-left: 40px;
+    background-color: #27ae60;
+    height: 100vh;
+}
+
+.lang-selector {
+    background-color: white;
+}
+
+.mat-nav-list {
+    margin-right: 10px;
+}
+
+.mat-list-item {
+    height: 30px;
+    margin-left: 3px;
+    color: white;
+    float: right;
+}
+
+.mat-list-item:hover {
+    background-color: white;
+    color: #27ae60;
+    float: right;
+}
+
+.form-wrapper {
+    padding: 40px;
+}
+
+.form-header {
+    font-weight: 300;
+    color: white;
+    font-size: 1.5rem;
+    line-height: 1.4;
+    margin: 0 0 20px 0;
+}
+
+.form-btn {
+    background-color: white;
+    color: #27ae60;
+}

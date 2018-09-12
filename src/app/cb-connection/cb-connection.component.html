@@ -1,0 +1,59 @@
+<div class="connection" fxLayout="row">
+  <div class="left-connection" fxFlex="59%;" fxLayout="column">
+    <div class="left-header" fxFlex="20%">
+    </div>
+    <div class="left-content" fxFlex="65%">
+      <h2>CryptoBo4rd</h2>
+      <div>
+        <h2 class="description-header">{{'CONNECTION.TITLE' | translate: lang}}</h2>
+        <p class="description-para">{{'CONNECTION.DESCRIPTION' | translate: lang}}</p>
+      </div>
+      <button mat-raised-button class="change-btn" (click)="changeForm()">
+        <span [@fade]="anim.login.state" [@fade]="anim.language.state">
+          {{changeButton}}
+        </span>
+      </button>
+    </div>
+    <div class="left-footer" fxFlex="15%">
+    </div>
+  </div>
+  <div class="right-connection" fxFlex="41%;" fxLayout="column">
+    <div class="right-header" fxFlex="25%">
+      <mat-nav-list>
+        <a mat-list-item href="#">EN</a>
+        <a mat-list-item href="#">FR</a>
+      </mat-nav-list>
+    </div>
+    <div class="right-content" fxFlex="60%">
+      <div class="form-wrapper" [@fade]="anim.language.state" [@fade]="anim.login.state">
+        <form *ngIf="register" fxLayout="column">
+          <h2 class="form-header">{{ 'CONNECTION.REGISTER.TITLE' | translate:lang }}</h2>
+          <mat-form-field>
+            <input matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang">
+          </mat-form-field>
+          <button mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' | translate:lang
+            }}
+          </button>
+        </form>
+        <!-- LOGIN FORM -->
+        <form *ngIf="!register" [@fade]="anim.language.state" fxLayout="column">
+          <h2 class="form-header">{{ 'CONNECTION.LOGIN.TITLE' | translate:lang }}</h2>
+          <mat-form-field>
+            <input matInput [placeholder]="'CONNECTION.LOGIN.MAIL' | translate:lang">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
+          </mat-form-field>
+          <button mat-raised-button class="form-btn" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' | translate:lang }}</button>
+        </form>
+      </div>
+    </div>
+    <div class="right-footer" fxFlex="15%"></div>
+  </div>
+</div>

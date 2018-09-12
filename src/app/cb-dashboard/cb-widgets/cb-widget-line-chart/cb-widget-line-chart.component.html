@@ -1,0 +1,7 @@
+<div class="widget-wrapper">
+  <p style="margin: 0px;">{{this.widget.name}}</p>
+  <ngx-charts-line-chart *ngIf="lineChart" [scheme]="colorScheme" [results]="data" [gradient]="gradient" [xAxis]="showXAxis"
+    [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [yAxisLabel]="yAxisLabel"
+    [animations]="animations" [autoScale]="autoScale" (select)="onSelect($event)" [yAxisTickFormatting]="yFormat">
+  </ngx-charts-line-chart>
+</div>

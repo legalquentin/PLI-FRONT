@@ -1,0 +1,24 @@
+<mat-toolbar class="top-nav" color="primary">
+  <div class="left-nav">
+    <span>Cryptobo4rd</span>
+  </div>
+  <div class="middle-nav" fxFlex>
+  </div>
+  <div fxLayout="row">
+    <!-- <mat-nav-list class="lang-select" *ngIf="selectLang">
+      <a mat-list-item [ngClass]="{'current-lang': lang === 'en'}" (click)="selectLocale('en', 'en_US', 'USD')">EN</a>
+      <a mat-list-item [ngClass]="{'current-lang': lang === 'fr'}" (click)="selectLocale('fr', 'fr_FR', 'EUR')">FR</a>
+    </mat-nav-list> (click)="selectLocale('fr', 'fr_FR', 'EUR')" -->
+    <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select">
+      <mat-button-toggle value="en">
+          EN
+      </mat-button-toggle>
+      <mat-button-toggle value="fr">
+          FR
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+    <button mat-icon-button (click)="logout()">
+      <mat-icon aria-label="Log out">power_settings_new</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>

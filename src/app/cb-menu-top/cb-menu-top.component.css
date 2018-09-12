@@ -1,0 +1,38 @@
+.top-nav {
+  color: white;
+  background-color: #2e2e38;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+mat-button-toggle-group {
+  display: flex;
+  align-items: center;
+}
+
+mat-button-toggle {
+  font-size: 14px;
+  color: white;
+}
+
+.lang {
+  cursor: pointer;
+}
+
+.mat-button-toggle-label-content {
+  background-color: #2e2e38;
+  color: white !important;
+}
+
+.current-lang:hover {
+  background-color: rgb(202, 202, 202);
+}
+
+button {
+  background-color: #2e2e38;
+  color: white;
+}
+

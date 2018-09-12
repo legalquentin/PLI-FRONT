@@ -1,0 +1,11 @@
+.mat-nav-list .mat-list-item {
+  color: white !important;
+}
+
+.mat-nav-list .mat-list-item:hover {
+  border-right: 2px solid rgb(4, 136, 4);
+}
+
+mat-icon {
+  margin-right: 5px;
+}
