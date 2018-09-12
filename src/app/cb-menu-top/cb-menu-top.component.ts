@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { doAnimation } from '../cb-shared/animations';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-cb-menu-top',

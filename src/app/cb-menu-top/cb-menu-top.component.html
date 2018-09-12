@@ -4,12 +4,12 @@
   </div>
   <div class="middle-nav" fxFlex>
   </div>
-  <div fxLayout="row">
+  <div fxLayout="row" class="right-nav">
     <!-- <mat-nav-list class="lang-select" *ngIf="selectLang">
       <a mat-list-item [ngClass]="{'current-lang': lang === 'en'}" (click)="selectLocale('en', 'en_US', 'USD')">EN</a>
       <a mat-list-item [ngClass]="{'current-lang': lang === 'fr'}" (click)="selectLocale('fr', 'fr_FR', 'EUR')">FR</a>
     </mat-nav-list> (click)="selectLocale('fr', 'fr_FR', 'EUR')" -->
-    <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select">
+    <mat-button-toggle-group *ngIf="selectLang" #group="matButtonToggleGroup" class="lang-select" [value]="lang">
       <mat-button-toggle value="en">
           EN
       </mat-button-toggle>
@@ -17,6 +17,9 @@
           FR
       </mat-button-toggle>
     </mat-button-toggle-group>
+    <button mat-icon-button (click)="selectLang = !selectLang">
+        <mat-icon aria-label="Translate">translate</mat-icon>
+      </button>
     <button mat-icon-button (click)="logout()">
       <mat-icon aria-label="Log out">power_settings_new</mat-icon>
     </button>
