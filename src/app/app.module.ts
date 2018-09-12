@@ -26,6 +26,8 @@ import { CbMenuTopComponent } from './cb-menu-top/cb-menu-top.component';
 import { CbConnectionComponent } from './cb-connection/cb-connection.component';
 import { CbWidget1Component } from './cb-dashboard/cb-widgets/cb-widget-1/cb-widget-1.component';
 import { CbKpi1Component } from './cb-dashboard/cb-kpis/cb-kpi-1/cb-kpi-1.component';
+import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
+import { CbSettingsComponent } from './cb-settings/cb-settings.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -60,7 +62,9 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbMenuTopComponent,
     CbConnectionComponent,
     CbWidget1Component,
-    CbKpi1Component
+    CbKpi1Component,
+    CbCryptobotComponent,
+    CbSettingsComponent
   ],
   imports: [
     BrowserModule,
