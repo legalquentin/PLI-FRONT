@@ -20,8 +20,8 @@
   <div class="right-connection" fxFlex="41%;" fxLayout="column">
     <div class="right-header" fxFlex="25%">
       <mat-nav-list>
-        <a mat-list-item href="#">EN</a>
-        <a mat-list-item href="#">FR</a>
+        <a mat-list-item href="#" (click)="selectLocale('en', 'en_US', 'USD')">EN</a>
+        <a mat-list-item href="#" (click)="selectLocale('fr', 'fr_FR', 'EUR')">FR</a>
       </mat-nav-list>
     </div>
     <div class="right-content" fxFlex="60%">
