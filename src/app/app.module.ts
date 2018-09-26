@@ -26,12 +26,12 @@ import { CbMenuTopComponent } from './cb-menu-top/cb-menu-top.component';
 import { CbConnectionComponent } from './cb-connection/cb-connection.component';
 import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
-// WIDGETS
-import { CbWidgetContainerComponent } from './cb-dashboard/cb-widgets/cb-widget-container/cb-widget-container.component';
-import { CbWidgetTableComponent } from './cb-dashboard/cb-widgets/cb-widget-table/cb-widget-table.component';
-import { CbWidgetLineChartComponent } from './cb-dashboard/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
 // KPIS
-import { CbKpi1Component } from './cb-dashboard/cb-kpis/cb-kpi-1/cb-kpi-1.component';
+import { CbKpi1Component } from './cb-shared/cb-kpis/cb-kpi-1/cb-kpi-1.component';
+// WIDGETS
+import { CbWidgetContainerComponent } from './cb-shared/cb-widgets/cb-widget-container/cb-widget-container.component';
+import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/cb-widget-table.component';
+import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
 
 const l10nConfig: L10nConfig = {
   locale: {

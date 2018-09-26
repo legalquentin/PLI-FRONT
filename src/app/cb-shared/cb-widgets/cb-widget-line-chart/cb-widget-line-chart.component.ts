@@ -16,7 +16,7 @@ export class CbWidgetLineChartComponent implements OnInit {
 
   public data = [];
   public lineChart = true;
-  // view: any[] = [300, 270];
+  public view: any[] = [485, 280];
 
   public showXAxis = true;
   public showYAxis = true;
@@ -45,8 +45,78 @@ export class CbWidgetLineChartComponent implements OnInit {
 
   ngOnInit() {
     this.colorScheme.domain = this.widget.colors;
-    this.recoverData();
-    this.loop();
+    if ('view' in this.widget) {
+      this.view = this.widget.view;
+    } if ('key' in this.widget) {
+      this.recoverData();
+      this.loop();
+    } else {
+      this.data = [
+        {
+          name: this.widget.values[0],
+          series: [
+            {
+              name: '08/12',
+              value: 7
+            },
+            {
+              name: '09/12',
+              value: 10
+            },
+            {
+              name: '10/12',
+              value: 42
+            },
+            {
+              name: '11/12',
+              value: 19
+            }
+          ]
+        },
+        {
+          name: this.widget.values[1],
+          series: [
+            {
+              name: '08/12',
+              value: 10
+            },
+            {
+              name: '09/12',
+              value: 11
+            },
+            {
+              name: '10/12',
+              value: 13
+            },
+            {
+              name: '11/12',
+              value: 24
+            }
+          ]
+        },
+        {
+          name: this.widget.values[2],
+          series: [
+            {
+              name: '08/12',
+              value: 5
+            },
+            {
+              name: '09/12',
+              value: 3
+            },
+            {
+              name: '10/12',
+              value: 6
+            },
+            {
+              name: '11/12',
+              value: 19
+            }
+          ]
+        },
+      ];
+    }
   }
 
   loop() {

@@ -17,10 +17,19 @@ export class CbDashboardComponent implements OnInit {
     colors: ['#5AA454']
   };
   public configWidget2 = {
-    name: '100 Latest trades BTC-USDT',
-    key: 'BTCUSDT',
-    value: 'BTC',
-    colors: ['#C7B42C']
+    columns: ['test', 'again', 'hello', 'world'],
+    data: [
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'qqq', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'BTCdqs', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'BddddddTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'BTzfsdC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'qd', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'BdsqdsqTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'BTdC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' }
+    ]
   };
   public configKpi1 = {
     data: {

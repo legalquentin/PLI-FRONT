@@ -1,12 +1,17 @@
 <div class="cryptobot-wrapper" fxLayout="column">
   <div class="cryptobot-top">
-    <div class="tile" fxFlex>
-      <p>top</p>
+    <div class="tile" fxFlex fxLayout="row">
+      <div>
+        <app-cb-widget-line-chart [widget]="globalsLines"></app-cb-widget-line-chart>
+      </div>
+      <div>
+        <app-cb-widget-table [widget]="configBotLatest"></app-cb-widget-table>
+      </div>
     </div>
   </div>
   <div class="cryptobot-bottom" fxLayout="row">
     <div class="tile" fxFlex>
-      <p>bot-left</p>
+      <app-cb-widget-table [widget]="configBotLatest"></app-cb-widget-table>
     </div>
     <div class="tile" fxFlex>
       <p>bot-right</p>
