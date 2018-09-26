@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class CbMenuLeftComponent implements OnInit {
   @Language() lang: string;
 
+  public currentUrl: string;
+
   constructor(
     private router: Router,
     private translation: TranslationService,
@@ -17,11 +19,13 @@ export class CbMenuLeftComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.currentUrl = this.router.url.toUpperCase();
   }
 
   navigate(dest: string) {
     const destination = '/cryptobo4rd/' + dest;
-    if (destination.toUpperCase() !== this.router.url.toUpperCase()) {
+    if (destination.toUpperCase() !== this.currentUrl) {
+      this.currentUrl = destination.toUpperCase();
       this.router.navigate([destination]);
     }
   }

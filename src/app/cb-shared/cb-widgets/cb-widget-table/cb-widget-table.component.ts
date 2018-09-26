@@ -27,7 +27,7 @@ export class CbWidgetTableComponent implements OnInit {
     // this.dataSource.paginator = this.paginator;
     this.dataSource = new MatTableDataSource(this.widget.data);
     this.dataSource.paginator = this.paginator;
-    this.dataSource.paginator.length = 5;
-    this.dataSource.paginator.pageSize = 5;
+    this.dataSource.paginator.length = 4;
+    this.dataSource.paginator.pageSize = 4;
   }
 }

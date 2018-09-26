@@ -7,7 +7,11 @@
 }
 
 .mat-nav-list .mat-list-item:hover {
-  border-right: 2px solid rgb(4, 136, 4);
+  border-right: 3px solid rgb(12, 165, 12);
+}
+
+.active {
+  border-right: 3px solid rgb(12, 165, 12);
 }
 
 mat-icon {

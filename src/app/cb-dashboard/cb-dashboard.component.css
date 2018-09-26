@@ -14,11 +14,11 @@ h3 {
 .kpi {
   min-width: 0;
   flex: 1;
-  height: 220px;
+  height: 200px;
   background-color: rgba(238, 238, 238, 0) !important;
 }
 
 .widget {
   padding: 10px;
-  height: 330px;
+  height: 340px;
 }

@@ -1,5 +1,5 @@
 <mat-nav-list fxFlex="grow">
-  <a mat-list-item (click)="navigate('dashboard')"><mat-icon>view_quilt</mat-icon>Dashboard</a>
-  <a mat-list-item (click)="navigate('cryptobot')"><mat-icon>router</mat-icon>Cryptobot</a>
-  <a mat-list-item (click)="navigate('settings')"><mat-icon>settings</mat-icon>Settings</a>
+  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/DASHBOARD') ? 'active' : 'not'" (click)="navigate('dashboard')"><mat-icon>view_quilt</mat-icon>Dashboard</a>
+  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/CRYPTOBOT') ? 'active' : 'not'" (click)="navigate('cryptobot')"><mat-icon>router</mat-icon>Cryptobot</a>
+  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')"><mat-icon>settings</mat-icon>Settings</a>
 </mat-nav-list>
