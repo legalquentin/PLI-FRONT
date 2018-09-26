@@ -2,8 +2,8 @@
   "CONNECTION.TITLE": "The greatest crytocurrency management app !",
   "CONNECTION.DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "CONNECTION.REGISTER.TITLE": "Register",
-  "CONNECTION.REGISTER.USERNAME": "Username",
   "CONNECTION.REGISTER.MAIL": "Email",
+  "CONNECTION.REGISTER.USERNAME": "Username",
   "CONNECTION.REGISTER.PASSWORD": "Password",
   "CONNECTION.REGISTER.REPEAT_PASSWORD": "Repeat Password",
   "CONNECTION.REGISTER.BUTTON": "Register",
@@ -12,6 +12,9 @@
   "CONNECTION.LOGIN.MAIL": "Email",
   "CONNECTION.LOGIN.PASSWORD": "Password",
   "CONNECTION.LOGIN.BUTTON": "Login",
+  "CONNECTION.ERROR.PAIR_INVALID": "The username or password you entered is incorrect",
+  "CONNECTION.ERROR.EMAIL_INCORRECT": "Mail address format in not valid",
+  "CONNECTION.ERROR.EMPTY_FIELD": "You must fill all of the fields",
 
   "MENU_LEFT.TITLE": "",
 

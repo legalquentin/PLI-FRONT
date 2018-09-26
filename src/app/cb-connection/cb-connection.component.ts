@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { fadeAnimation, doAnimation } from '../cb-shared/animations';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
+import { CbStorageService } from '../cb-services/cb-storage.service';
 
 @Component({
   selector: 'app-cb-connection',
@@ -21,10 +22,12 @@ export class CbConnectionComponent implements OnInit {
   public changeButton: string;
   public anim = {
     language: {
-      state: 'inactive'
+      state: 'inactive',
+      flag: false
     },
     login: {
-      state: 'inactive'
+      state: 'inactive',
+      flag: false
     }
   };
 
@@ -46,7 +49,8 @@ export class CbConnectionComponent implements OnInit {
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
-    private _CbApiService: CbApiService
+    private _CbApiService: CbApiService,
+    private _CbStorageService: CbStorageService
   ) { }
 
   ngOnInit() {
@@ -55,7 +59,15 @@ export class CbConnectionComponent implements OnInit {
   }
 
   selectLocale(language: string, country: string, currency: string): void {
-    doAnimation(300, this.anim.language, () => {
+    if (this.anim.language.flag === true) {
+      this.locale.setCurrentLanguage(language);
+      this.locale.setDefaultLocale(language, country);
+      this.locale.setCurrentCurrency(currency);
+      return;
+    }
+    this.anim.language.flag = true;
+    doAnimation(400, this.anim.language, () => {
+      this.anim.language.flag = false;
       this.locale.setCurrentLanguage(language);
       this.locale.setDefaultLocale(language, country);
       this.locale.setCurrentCurrency(currency);
@@ -63,7 +75,12 @@ export class CbConnectionComponent implements OnInit {
   }
 
   changeForm() {
+    if (this.anim.login.flag === true) {
+      return;
+    }
+    this.anim.login.flag = true;
     doAnimation(400, this.anim.login, () => {
+      this.anim.login.flag = false;
       this.register = !this.register;
       this.changeButton = this.translation.translate(
         (this.register) ? 'CONNECTION.LOGIN.BUTTON' : 'CONNECTION.REGISTER.BUTTON'
@@ -77,13 +94,19 @@ export class CbConnectionComponent implements OnInit {
       email: this.REGISTER.MAIL,
       password: this.REGISTER.PASSWORD
     };
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD).subscribe(result => {
-      console.log('RESPONSE', result.status);
-      this.router.navigate(['cryptobo4rd/dashboard']);
-    }, err => {
-      console.log('ERROR', err);
-      this.displayError(err.error.message);
-    });
+    if (PAYLOAD.login === '' || PAYLOAD.email === '' || PAYLOAD.password === '') {
+      this.displayError('EMPTY_FIELD');
+    } else {
+      this._CbApiService.genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD).subscribe(result => {
+        console.log('RESPONSE', result);
+        this._CbStorageService.createSession(result.data, () => {
+          this.router.navigate(['cryptobo4rd/dashboard']);
+        });
+      }, err => {
+        console.log('ERROR', err);
+        this.displayError(err.error.message);
+      });
+    }
   }
 
   doLogin() {
@@ -91,9 +114,11 @@ export class CbConnectionComponent implements OnInit {
       login: this.LOGIN.IDENTIFIER,
       password: this.LOGIN.PASSWORD,
     };
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.REQUEST_LOGIN, PAYLOAD).subscribe(result => {
-      console.log('SUCCESS', result.status);
-      this.router.navigate(['cryptobo4rd/dashboard']);
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.LOGIN, PAYLOAD).subscribe(result => {
+      console.log('SUCCESS', result);
+      this._CbStorageService.createSession(result.data, () => {
+        this.router.navigate(['cryptobo4rd/dashboard']);
+      });
     }, err => {
       console.log('ERROR', err);
       this.displayError(err.error.message);
@@ -101,9 +126,9 @@ export class CbConnectionComponent implements OnInit {
   }
 
   displayError(message) {
-    this.ERROR_MESSAGE = message;
+    this.ERROR_MESSAGE = this.translation.translate('CONNECTION.ERROR.' + message);
     setTimeout(() => {
       this.ERROR_MESSAGE = '';
-    }, 1000);
+    }, 2000);
   }
 }

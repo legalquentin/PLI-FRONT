@@ -14,16 +14,22 @@ export class CbStorageService {
 
   loadSession(): void {
     this.session = JSON.parse(sessionStorage.getItem(CbConstants.SESSION_KEY));
+    console.log('Session loaded', this.session);
   }
 
-  createSession(sessionObject: any) {
-    localStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(sessionObject));
+  createSession(sessionObject: any, callback) {
+    sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(sessionObject));
     this.loadSession();
+    callback();
   }
 
   clearSession() {
     sessionStorage.removeItem(CbConstants.SESSION_KEY);
     this.session = null;
+  }
+
+  isAuthenticated(): boolean {
+    return (this.session !== null);
   }
 
   getUserEmail(): string {
@@ -52,8 +58,8 @@ export class CbStorageService {
 
   getSessionToken() {
     let sessionToken = '';
-    if (this.session && this.session['SESSION_TOKEN']) {
-      sessionToken = this.session['SESSION_TOKEN'];
+    if (this.session && this.session['token']) {
+      sessionToken = this.session['token'];
     }
     return sessionToken;
   }

@@ -33,6 +33,7 @@ import { CbWidgetContainerComponent } from './cb-shared/cb-widgets/cb-widget-con
 import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/cb-widget-table.component';
 import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
 import { FormsModule } from '@angular/forms';
+import { CbAuthgardService } from './cb-services/cb-authgard.service';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -90,7 +91,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
       useFactory: initL10n,
       deps: [L10nLoader],
       multi: true
-    }
+    },
+    CbAuthgardService
   ],
   bootstrap: [AppComponent]
 })

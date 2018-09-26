@@ -4,7 +4,7 @@
     </div>
     <div class="left-content" fxFlex="65%">
       <h2>CryptoBo4rd</h2>
-      <div>
+      <div [@fade]="anim.language.state">
         <h2 class="description-header">{{'CONNECTION.TITLE' | translate: lang}}</h2>
         <p class="description-para">{{'CONNECTION.DESCRIPTION' | translate: lang}}</p>
       </div>
@@ -19,45 +19,52 @@
   </div>
   <div class="right-connection" fxFlex="41%;" fxLayout="column">
     <div class="right-header" fxFlex="25%">
-      <mat-nav-list>
-        <a mat-list-item href="#" (click)="selectLocale('en', 'en_US', 'USD')">EN</a>
-        <a mat-list-item href="#" (click)="selectLocale('fr', 'fr_FR', 'EUR')">FR</a>
-      </mat-nav-list>
+      <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
+        <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
+          EN
+        </mat-button-toggle>
+        <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
+          FR
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
     <div class="right-content" fxFlex="60%">
       <div class="form-wrapper" [@fade]="anim.language.state" [@fade]="anim.login.state">
-        <div *ngIf="register" fxLayout="column">
+        <form *ngIf="register" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.REGISTER.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" [(ngModel)]="REGISTER.LOGIN">
+            <input matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" name="mail" [(ngModel)]="REGISTER.MAIL">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" [(ngModel)]="REGISTER.MAIL">
+            <input matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" name="username" [(ngModel)]="REGISTER.LOGIN">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang" [(ngModel)]="REGISTER.PASSWORD">
+            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang" name="password" [(ngModel)]="REGISTER.PASSWORD">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang"  [(ngModel)]="REGISTER.REPEAT_PASSWORD">
+            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang"
+            name="repeat-password" [(ngModel)]="REGISTER.REPEAT_PASSWORD">
           </mat-form-field>
-          <button mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' | translate:lang
+          <button mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' |
+            translate:lang
             }}
           </button>
-        </div>
+        </form>
         <!-- LOGIN FORM -->
-        <div *ngIf="!register" [@fade]="anim.language.state" fxLayout="column">
+        <form *ngIf="!register" [@fade]="anim.language.state" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.LOGIN.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [(ngModel)]="LOGIN.IDENTIFIER" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">
+            <input matInput [(ngModel)]="LOGIN.IDENTIFIER" name="username" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [(ngModel)]="LOGIN.PASSWORD" [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
+            <input matInput type="password" [(ngModel)]="LOGIN.PASSWORD" name="password" [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
           </mat-form-field>
-          <button mat-raised-button class="form-btn" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' | translate:lang }}</button>
+          <button mat-raised-button class="form-btn" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' | translate:lang
+            }}</button>
+          </form>
+        <div *ngIf="ERROR_MESSAGE !== ''" class="errorMsg">
+          {{ ERROR_MESSAGE }}
         </div>
-      </div>
-      <div *ngIf="ERROR_MESSAGE !== ''" class="errorMsg">
-        {{ ERROR_MESSAGE }}
       </div>
     </div>
     <div class="right-footer" fxFlex="15%"></div>

@@ -20,9 +20,9 @@ export function fadeAnimation(duration: number) {
 }
 
 export function doAnimation(duration, obj, callback) {
-  obj.state = obj.state === 'active' ? 'inactive' : 'active';
+  obj.state = 'active';
   setTimeout(() => {
-    obj.state = obj.state === 'active' ? 'inactive' : 'active';
+    obj.state = 'inactive';
     callback();
-  }, duration );
+  }, duration);
 }

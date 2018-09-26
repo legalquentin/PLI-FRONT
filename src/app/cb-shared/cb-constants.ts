@@ -9,12 +9,16 @@ export class CbConstants {
       PATH: '/register',
       METHOD: 'POST'
     },
-    REQUEST_LOGIN: {
+    LOGIN: {
       PATH: '/auth',
       METHOD: 'POST'
     },
-    REQUEST_LIST_USERS: {
+    LIST_USERS: {
       PATH: '/users',
+      METHOD: 'GET'
+    },
+    LIST_CONFIGURATIONS: {
+      PATH: '/configuration',
       METHOD: 'GET'
     }
   };

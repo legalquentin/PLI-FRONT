@@ -10,7 +10,9 @@ import { CbAuthgardService } from './cb-services/cb-authgard.service';
 
 const routes: Routes = [
   { path: '', component: CbConnectionComponent},
-  { path: 'cryptobo4rd', canActivate: [CbAuthgardService], component: CbCryptobo4rdComponent, data: { page: 'cryptobo4rd' },
+  {
+    path: 'cryptobo4rd', canActivate: [CbAuthgardService], canActivateChild: [CbAuthgardService],
+    component: CbCryptobo4rdComponent, data: { page: 'cryptobo4rd' },
     children: [
       { path: 'dashboard', component: CbDashboardComponent, data: { page: 'dashboard' }},
       { path: 'cryptobot', component: CbCryptobotComponent, data: { page: 'cryptobot' }},

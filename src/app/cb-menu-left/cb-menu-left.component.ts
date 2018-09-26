@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
+import { CbApiService } from '../cb-services/cb-api.service';
+import { CbConstants } from '../cb-shared/cb-constants';
 
 @Component({
   selector: 'app-cb-menu-left',
@@ -15,11 +17,17 @@ export class CbMenuLeftComponent implements OnInit {
   constructor(
     private router: Router,
     private translation: TranslationService,
-    private locale: LocaleService
+    private locale: LocaleService,
+    private _CbApiService: CbApiService
   ) {}
 
   ngOnInit() {
     this.currentUrl = this.router.url.toUpperCase();
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
+      console.log(result);
+    }, error => {
+      console.error(error);
+    });
   }
 
   navigate(dest: string) {

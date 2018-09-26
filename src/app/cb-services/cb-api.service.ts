@@ -7,6 +7,7 @@ import {
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CbConstants } from '../cb-shared/cb-constants';
+import { CbStorageService } from './cb-storage.service';
 
 interface RequestDefinition {
   PATH: string;
@@ -21,12 +22,16 @@ export class CbApiService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-      // 'Authorization': 'my-auth-token'
-    })
+      // 'Content-Type': 'application/json',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkX2F0IjoxNTM3OTk2MTkzOTU3LCJ1c2VyX3R5cGUiOiJSRUdVTEFSIiwidXNlcl9pZCI6MzIsImlhdCI6MTUzNzk5NjE5M30.X8lXKmHloK2FP0jUMc8kZeBiVycR5xcT1FK3vhV36M4'
+    }),
+    supports_credentials: true
   };
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private _CbStorageService: CbStorageService
+  ) {
     this.setUpDefaultConfig();
   }
 
@@ -86,8 +91,12 @@ export class CbApiService {
   }
 
   private GET(_ENDPOINT: string): Observable<any> {
-    return this.http
-      .get<any>(this.config.apiUrl + _ENDPOINT, this.httpOptions);
+    // const headers = this.httpOptions;
+    // if (this._CbStorageService.isAuthenticated()) {
+    //   headers.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+      this.httpOptions['withCredentials'] = true;
+    // }
+    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, this.httpOptions);
       // .pipe(catchError(this.handleError));
   }
 
