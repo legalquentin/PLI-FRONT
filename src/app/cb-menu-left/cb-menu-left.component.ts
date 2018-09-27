@@ -14,6 +14,13 @@ export class CbMenuLeftComponent implements OnInit {
 
   public currentUrl: string;
   public users = [];
+  public avatars = [
+    'https://www.w3schools.com/howto/img_avatar.png',
+    'https://www.w3schools.com/howto/img_avatar2.png',
+    'https://www.w3schools.com/w3images/avatar2.png',
+    'https://www.w3schools.com/w3images/avatar6.png',
+    'https://www.w3schools.com/w3images/avatar5.png'
+  ];
 
   constructor(
     private router: Router,
@@ -37,5 +44,9 @@ export class CbMenuLeftComponent implements OnInit {
       this.currentUrl = destination.toUpperCase();
       this.router.navigate([destination]);
     }
+  }
+
+  getAvatar() {
+    return this.avatars[Math.floor((Math.random() * this.avatars.length))];
   }
 }
