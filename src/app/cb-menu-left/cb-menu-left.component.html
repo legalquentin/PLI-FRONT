@@ -1,16 +1,27 @@
-<mat-nav-list fxFlex="grow">
-  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/DASHBOARD') ? 'active' : 'not'" (click)="navigate('dashboard')"><mat-icon>view_quilt</mat-icon>Dashboard</a>
-  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/CRYPTOBOT') ? 'active' : 'not'" (click)="navigate('cryptobot')"><mat-icon>router</mat-icon>Cryptobot</a>
-  <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')"><mat-icon>settings</mat-icon>Settings</a>
-</mat-nav-list>
+<div fxLayout="column">
+  <mat-nav-list fxFlex="grow">
+    <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/DASHBOARD') ? 'active' : 'not'" (click)="navigate('dashboard')">
+      <mat-icon>view_quilt</mat-icon>Dashboard
+    </a>
+    <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/CRYPTOBOT') ? 'active' : 'not'" (click)="navigate('cryptobot')">
+      <mat-icon>router</mat-icon>Cryptobot
+    </a>
+    <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')">
+      <mat-icon>settings</mat-icon>Settings
+    </a>
+  </mat-nav-list>
 
-<mat-list>
-  <mat-list-item *ngFor="let user of users">
-    <img matListAvatar src="https://www.w3schools.com/howto/img_avatar.png" alt="...">
-    <h3 matLine> {{user.id}} </h3>
-    <p matLine>
-      <span> {{user.name}} </span>
-      <span class="demo-2"> -- {{user.lastname}} </span>
-    </p>
-  </mat-list-item>
-</mat-list>
+  <div style="margin-top: 160px; color: white !important; padding:15px;">
+    <p>Cryptobo4rd users [{{ users.length }}]</p>
+    <mat-list style="height:250px; overflow-y: scroll;">
+      <mat-list-item *ngFor="let user of users" style="color: white !important; height: 60px;">
+        <img matListAvatar src="https://www.w3schools.com/howto/img_avatar.png" width="25px" alt="...">
+        <h3 matLine> {{user.id}} </h3>
+        <p matLine>
+          <span> {{user.firstname}} </span>
+          <span class="demo-2"> -- {{user.name}} </span>
+        </p>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>
