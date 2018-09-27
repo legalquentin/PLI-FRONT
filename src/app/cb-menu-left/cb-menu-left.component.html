@@ -3,3 +3,14 @@
   <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/CRYPTOBOT') ? 'active' : 'not'" (click)="navigate('cryptobot')"><mat-icon>router</mat-icon>Cryptobot</a>
   <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')"><mat-icon>settings</mat-icon>Settings</a>
 </mat-nav-list>
+
+<mat-list>
+  <mat-list-item *ngFor="let user of users">
+    <img matListAvatar src="https://www.w3schools.com/howto/img_avatar.png" alt="...">
+    <h3 matLine> {{user.id}} </h3>
+    <p matLine>
+      <span> {{user.name}} </span>
+      <span class="demo-2"> -- {{user.lastname}} </span>
+    </p>
+  </mat-list-item>
+</mat-list>
