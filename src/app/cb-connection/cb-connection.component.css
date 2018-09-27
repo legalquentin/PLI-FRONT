@@ -8,8 +8,9 @@ h2 {
 }
 
 .left-connection {
-    background-color: #1e272e;
-    height: 100vh;
+  /* background-color: #1e272e; */
+  background-color: #3d607a;
+  height: 100vh;
     padding: 40px;
     display: flex;
     flex-direction: column;
@@ -42,7 +43,7 @@ h2 {
 
 .right-connection {
     padding-left: 40px;
-    background-color: #27ae60;
+    background-color: #343435;
     height: 100vh;
 }
 
