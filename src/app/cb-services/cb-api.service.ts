@@ -22,8 +22,8 @@ export class CbApiService {
 
   private httpOptions = {
     headers: new HttpHeaders({
-      // 'Content-Type': 'application/json',
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkX2F0IjoxNTM3OTk2MTkzOTU3LCJ1c2VyX3R5cGUiOiJSRUdVTEFSIiwidXNlcl9pZCI6MzIsImlhdCI6MTUzNzk5NjE5M30.X8lXKmHloK2FP0jUMc8kZeBiVycR5xcT1FK3vhV36M4'
+      'Content-Type': 'application/json'
+      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkX2F0IjoxNTM3OTk2MTkzOTU3LCJ1c2VyX3R5cGUiOiJSRUdVTEFSIiwidXNlcl9pZCI6MzIsImlhdCI6MTUzNzk5NjE5M30.X8lXKmHloK2FP0jUMc8kZeBiVycR5xcT1FK3vhV36M4'
     }),
     supports_credentials: true
   };
@@ -91,12 +91,12 @@ export class CbApiService {
   }
 
   private GET(_ENDPOINT: string): Observable<any> {
-    // const headers = this.httpOptions;
-    // if (this._CbStorageService.isAuthenticated()) {
-    //   headers.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
-      this.httpOptions['withCredentials'] = true;
-    // }
-    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, this.httpOptions);
+    const headers = this.httpOptions;
+    if (this._CbStorageService.isAuthenticated()) {
+      headers.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+      headers['withCredentials'] = true;
+    }
+    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, headers);
       // .pipe(catchError(this.handleError));
   }
 
