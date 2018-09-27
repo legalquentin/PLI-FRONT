@@ -13,6 +13,7 @@ export class CbMenuLeftComponent implements OnInit {
   @Language() lang: string;
 
   public currentUrl: string;
+  public users = [];
 
   constructor(
     private router: Router,
@@ -24,7 +25,7 @@ export class CbMenuLeftComponent implements OnInit {
   ngOnInit() {
     this.currentUrl = this.router.url.toUpperCase();
     this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
-      console.log(result);
+      this.users = result.data;
     }, error => {
       console.error(error);
     });
