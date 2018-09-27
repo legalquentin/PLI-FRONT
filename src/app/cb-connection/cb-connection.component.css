@@ -9,7 +9,7 @@ h2 {
 
 .left-connection {
   /* background-color: #1e272e; */
-  background-color: #3d607a;
+  background-color: #3d7097;
   height: 100vh;
     padding: 40px;
     display: flex;
@@ -18,7 +18,7 @@ h2 {
 }
 
 .description-header {
-    color: rgb(189, 189, 189);
+    color: rgb(231, 231, 231);
     opacity: 1;
     font-weight: 300;
     margin: 0 !important;
@@ -29,7 +29,7 @@ h2 {
 .description-para {
     font-size: 0.875rem;
     line-height: 1.5;
-    color: #666;
+    color: rgb(197, 197, 197);
 }
 
 .change-btn {
@@ -43,7 +43,7 @@ h2 {
 
 .right-connection {
     padding-left: 40px;
-    background-color: #3b3b3d;
+    background-color: #4e4e55;
     height: 100vh;
 }
 
