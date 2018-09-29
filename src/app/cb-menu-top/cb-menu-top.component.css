@@ -57,3 +57,8 @@ button {
   color: white;
 }
 
+.exchangeSelector {
+  margin-left: 140px;
+  font-size: small;
+  height: 40px;
+}

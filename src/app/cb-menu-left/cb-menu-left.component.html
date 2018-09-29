@@ -1,21 +1,21 @@
 <div fxLayout="column">
   <mat-nav-list fxFlex="grow">
     <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/DASHBOARD') ? 'active' : 'not'" (click)="navigate('dashboard')">
-      <mat-icon>view_quilt</mat-icon>Dashboard
+      <mat-icon>view_quilt</mat-icon>{{ 'MENU_LEFT.DASHBOARD' | translate: lang }}
     </a>
     <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/CRYPTOBOT') ? 'active' : 'not'" (click)="navigate('cryptobot')">
-      <mat-icon>router</mat-icon>Cryptobot
+      <mat-icon>router</mat-icon>{{ 'MENU_LEFT.CRYPTOBOT' | translate: lang }}
     </a>
     <a mat-list-item [ngClass]="(currentUrl === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')">
-      <mat-icon>settings</mat-icon>Settings
+      <mat-icon>settings</mat-icon>{{ 'MENU_LEFT.SETTINGS' | translate: lang }}
     </a>
   </mat-nav-list>
 
   <div style="margin-top: 160px; color: white !important; padding:15px;">
-    <p>Cryptobo4rd users [{{ users.length }}]</p>
+    <p>Online users [{{ users.length }}]</p>
     <mat-list style="height:250px; overflow-y: scroll;">
       <mat-list-item *ngFor="let user of users" style="color: white !important; height: 60px;">
-        <img matListAvatar [src]="getAvatar()" width="25px" alt="...">
+        <img matListAvatar [src]="user.avatar" width="25px" alt="...">
         <h3 matLine> {{user.id}} </h3>
         <p matLine>
           <span> {{user.firstname}} </span>

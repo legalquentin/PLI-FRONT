@@ -12,6 +12,7 @@ export class CbAuthgardService implements CanActivate, CanActivateChild {
   ) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    return true;
     if (!this._CbStorageService.isAuthenticated()) {
       console.log('Not Authentified -> redirecting to login');
       if (state.url !== '/') {

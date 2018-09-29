@@ -3,11 +3,15 @@ import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
+import { fadeAnimation } from '../cb-shared/animations';
 
 @Component({
   selector: 'app-cb-menu-left',
   templateUrl: './cb-menu-left.component.html',
-  styleUrls: ['./cb-menu-left.component.css']
+  styleUrls: ['./cb-menu-left.component.css'],
+  animations: [
+    fadeAnimation(300)
+  ]
 })
 export class CbMenuLeftComponent implements OnInit {
   @Language() lang: string;
@@ -27,16 +31,21 @@ export class CbMenuLeftComponent implements OnInit {
     private translation: TranslationService,
     private locale: LocaleService,
     private _CbApiService: CbApiService
-  ) {}
+  ) {
+    this.locale.languageCodeChanged.subscribe(this.rand());
+  }
 
   ngOnInit() {
     this.currentUrl = this.router.url.toUpperCase();
-    // this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
-    //   console.log('LIST_USERS', result);
-    //   this.users = result.data;
-    // }, error => {
-    //   console.error('LIST_USERS', error);
-    // });
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
+      console.log('LIST_USERS', result);
+      this.users = result.data;
+      for (const user of this.users) {
+        user.avatar = this.avatars[this.getRandom()];
+      }
+    }, error => {
+      console.error('LIST_USERS', error);
+    });
     // this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_CONFIGURATIONS).subscribe(result => {
     //   console.log('LIST_CONFIGURATIONS', result);
     // }, error => {
@@ -47,11 +56,11 @@ export class CbMenuLeftComponent implements OnInit {
     // }, error => {
     //   console.error('LIST_PROVIDERS', error);
     // });
-    this._CbApiService.account().subscribe(r => {
-      console.log(r);
-    }, err => {
-      console.log(err);
-    });
+    // this._CbApiService.account().subscribe(r => {
+    //   console.log(r);
+    // }, err => {
+    //   console.log(err);
+    // });
   }
 
   navigate(dest: string) {
@@ -62,7 +71,11 @@ export class CbMenuLeftComponent implements OnInit {
     }
   }
 
-  getAvatar() {
-    return this.avatars[Math.floor((Math.random() * this.avatars.length))];
+  rand() {
+    console.log('random');
+  }
+
+  getRandom() {
+    return Math.floor((Math.random() * this.avatars.length));
   }
 }

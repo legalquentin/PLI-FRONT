@@ -1,8 +1,22 @@
 <mat-toolbar class="top-nav" color="primary">
   <div class="left-nav">
-    <span>Cryptobo4rd</span>
+    <span>{{ 'APP_NAME'| translate: lang }}</span>
   </div>
   <div class="middle-nav" fxFlex>
+    <mat-form-field class="exchangeSelector"  [@fade]="anim.language.state">
+      <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="exchanges.length === 0" [(value)]="selectedExchange"
+      matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}" [matTooltipDisabled]="exchanges.length !== 0">
+        <mat-option *ngFor="let exchange of exchanges" [value]="exchange.key">
+          {{ exchange.label }}
+        </mat-option>
+        <mat-option *ngIf="exchanges.length > 1" [value]="selectGlobal">
+          {{ 'MENU_TOP.SELECTOR.SELECT_ALL' | translate: lang }}
+        </mat-option>
+        <mat-option *ngIf="exchanges.length === 0" [value]="selectNone">
+          {{ 'MENU_TOP.SELECTOR.NOT_SET' | translate: lang }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div fxLayout="row" class="right-nav">
     <!-- <mat-nav-list class="lang-select" *ngIf="selectLang">
@@ -14,10 +28,10 @@
         <mat-icon>translate</mat-icon>
       </mat-button-toggle>
       <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
-          EN
+        EN
       </mat-button-toggle>
       <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
-          FR
+        FR
       </mat-button-toggle>
     </mat-button-toggle-group>
     <button mat-icon-button (click)="logout()">

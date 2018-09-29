@@ -1,4 +1,6 @@
 {
+  "APP_NAME": "Cryptobo4rd",
+
   "CONNECTION.TITLE": "The greatest crytocurrency management app !",
   "CONNECTION.DESCRIPTION": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   "CONNECTION.REGISTER.TITLE": "Register",
@@ -16,11 +18,13 @@
   "CONNECTION.ERROR.EMAIL_INCORRECT": "Mail address format in not valid",
   "CONNECTION.ERROR.EMPTY_FIELD": "You must fill all of the fields",
 
-  "MENU_LEFT.TITLE": "",
+  "MENU_LEFT.DASHBOARD": "Dashboard",
+  "MENU_LEFT.CRYPTOBOT": "CryptoBot",
+  "MENU_LEFT.SETTINGS": "Settings",
 
   "MENU_TOP.TITLE": "",
-
-  "DASHBOARD.TITLE": "",
-
-  "CRYPTOBOT.TITLE": ""
+  "MENU_TOP.SELECTOR.PLACEHOLDER": "Exchange Selector",
+  "MENU_TOP.SELECTOR.NOT_SET": "No existing profile",
+  "MENU_TOP.SELECTOR.TOOLTIP": "Add a new api key in 'Settings'",
+  "MENU_TOP.SELECTOR.SELECT_ALL": "Global"
 }
