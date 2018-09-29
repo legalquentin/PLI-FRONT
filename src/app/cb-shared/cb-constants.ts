@@ -20,6 +20,10 @@ export class CbConstants {
     LIST_CONFIGURATIONS: {
       PATH: '/configuration',
       METHOD: 'GET'
+    },
+    LIST_PROVIDERS: {
+      PATH: '/provider',
+      METHOD: 'GET'
     }
   };
 }

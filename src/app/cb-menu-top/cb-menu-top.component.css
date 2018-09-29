@@ -26,7 +26,6 @@ mat-button-toggle-group {
   background-color: rgb(238, 238, 238);
 }
 
-
 mat-button-toggle {
   display: flex;
   align-items: center;
@@ -43,6 +42,10 @@ mat-button-toggle {
 .mat-button-toggle-label-content {
   background-color: #2e2e38;
   color: white !important;
+}
+
+/deep/ .mat-button-toggle-label-content {
+  padding: 10px !important;
 }
 
 .current-lang:hover {

@@ -14,11 +14,16 @@ export class CbAuthgardService implements CanActivate, CanActivateChild {
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (!this._CbStorageService.isAuthenticated()) {
       console.log('Not Authentified -> redirecting to login');
-      this.router.navigate(['']);
-      return false;
+      if (state.url !== '/') {
+        this.router.navigate(['']);
+        return false;
+      }
+      return true;
     } else {
       console.log('Authentified -> proceed');
-      // this.router.navigate(['/cryptobo4rd/dashboard']);
+      if (state.url === '/') {
+        this.router.navigate(['/cryptobo4rd/']);
+      }
       return true;
     }
   }

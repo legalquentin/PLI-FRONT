@@ -138,6 +138,7 @@ export class CbWidgetLineChartComponent implements OnInit {
   }
 
   recoverData() {
+    /*
     this.cbApiService.trades(this.widget.key, 100).subscribe(result => {
       const tmp = [{
         name: this.widget.value,
@@ -153,6 +154,6 @@ export class CbWidgetLineChartComponent implements OnInit {
       this.animations = false;
     }, error => {
       console.log(error);
-    });
+    });*/
   }
 }

@@ -3,6 +3,7 @@ import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { doAnimation } from '../cb-shared/animations';
 import { FormGroup } from '@angular/forms';
+import { CbStorageService } from '../cb-services/cb-storage.service';
 
 @Component({
   selector: 'app-cb-menu-top',
@@ -21,7 +22,8 @@ export class CbMenuTopComponent implements OnInit {
     constructor(
     private router: Router,
     private translation: TranslationService,
-    private locale: LocaleService
+    private locale: LocaleService,
+    private _CbStorageService: CbStorageService
   ) {
     this.selectLang = false;
   }
@@ -39,6 +41,7 @@ export class CbMenuTopComponent implements OnInit {
   }
 
   logout() {
+    this._CbStorageService.clearSession();
     this.router.navigate(['/']);
   }
 }

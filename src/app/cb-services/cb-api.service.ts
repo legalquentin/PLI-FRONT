@@ -21,12 +21,7 @@ export class CbApiService {
   private config: any;
 
   private httpOptions = {
-    headers: new HttpHeaders({
-      'Accept': 'application/json',
-      // tslint:disable-next-line:max-line-length
-      // 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjcmVhdGVkX2F0IjoxNTM4MDU5Nzc3ODU5LCJ1c2VyX3R5cGUiOiJSRUdVTEFSIiwidXNlcl9pZCI6NSwiaWF0IjoxNTM4MDU5Nzc3fQ.EQCpr8SEu_dW5OdRZwoGb8sqe1xL6xZa9Jk0p6Fjors'
-    }),
-    supports_credentials: true
+    headers: new HttpHeaders({})
   };
 
   constructor(
@@ -58,13 +53,10 @@ export class CbApiService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  trades(currency: string, limit: number) {
+  account() {
     const pathEndPoint =
-      'https://api.binance.com/api/v1/trades?symbol=' +
-      currency +
-      '&limit=' +
-      limit;
-    return this.http.get<any>(pathEndPoint).pipe(catchError(this.handleError));
+      'https://api.binance.com/api/v3/account';
+    return this.http.get<any>(pathEndPoint, this.httpOptions).pipe(catchError(this.handleError));
   }
 
   // login(payload: object) {
@@ -92,18 +84,23 @@ export class CbApiService {
   }
 
   private GET(_ENDPOINT: string): Observable<any> {
-    const headers = this.httpOptions;
+    const options = this.httpOptions;
     if (this._CbStorageService.isAuthenticated()) {
-      headers.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
       // headers['withCredentials'] = true;
     }
-    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, this.httpOptions);
+    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, options);
       // .pipe(catchError(this.handleError));
   }
 
   private POST(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
+    const options = this.httpOptions;
+    if (this._CbStorageService.isAuthenticated()) {
+      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+      // headers['withCredentials'] = true;
+    }
     return this.http
-      .post<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, this.httpOptions);
+      .post<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, options);
       // .pipe(catchError(this.handleError));
   }
 }

@@ -24,10 +24,26 @@ export class CbMenuLeftComponent implements OnInit {
 
   ngOnInit() {
     this.currentUrl = this.router.url.toUpperCase();
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
-      this.users = result.data;
-    }, error => {
-      console.error(error);
+    // this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
+    //   console.log('LIST_USERS', result);
+    //   this.users = result.data;
+    // }, error => {
+    //   console.error('LIST_USERS', error);
+    // });
+    // this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_CONFIGURATIONS).subscribe(result => {
+    //   console.log('LIST_CONFIGURATIONS', result);
+    // }, error => {
+    //   console.error('LIST_CONFIGURATIONS', error);
+    // });
+    // this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS).subscribe(result => {
+    //   console.log('LIST_PROVIDERS', result);
+    // }, error => {
+    //   console.error('LIST_PROVIDERS', error);
+    // });
+    this._CbApiService.account().subscribe(r => {
+      console.log(r);
+    }, err => {
+      console.log(err);
     });
   }
 
