@@ -5,6 +5,7 @@ import { fadeAnimation, doAnimation } from '../cb-shared/animations';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from '../cb-services/cb-storage.service';
+import { CbEventService } from '../cb-services/cb-event.service';
 
 @Component({
   selector: 'app-cb-connection',
@@ -21,14 +22,8 @@ export class CbConnectionComponent implements OnInit {
   public register: boolean;
   public changeButton: string;
   public anim = {
-    language: {
-      state: 'inactive',
-      flag: false
-    },
-    login: {
-      state: 'inactive',
-      flag: false
-    }
+    language: false,
+    login: false
   };
 
   public REGISTER = {
@@ -50,7 +45,8 @@ export class CbConnectionComponent implements OnInit {
     private translation: TranslationService,
     private locale: LocaleService,
     private _CbApiService: CbApiService,
-    private _CbStorageService: CbStorageService
+    private _CbStorageService: CbStorageService,
+    public _CbEventService: CbEventService
   ) { }
 
   ngOnInit() {
@@ -59,15 +55,16 @@ export class CbConnectionComponent implements OnInit {
   }
 
   selectLocale(language: string, country: string, currency: string): void {
-    if (this.anim.language.flag === true) {
+    if (this.anim.language === true) {
       this.locale.setCurrentLanguage(language);
       this.locale.setDefaultLocale(language, country);
       this.locale.setCurrentCurrency(currency);
       return;
     }
-    this.anim.language.flag = true;
-    doAnimation(400, this.anim.language, () => {
-      this.anim.language.flag = false;
+    this.anim.language = true;
+    this._CbEventService.broadcast('language');
+    doAnimation(400, this._CbEventService.ANIMATIONS.language, () => {
+      this.anim.language = false;
       this.locale.setCurrentLanguage(language);
       this.locale.setDefaultLocale(language, country);
       this.locale.setCurrentCurrency(currency);
@@ -75,12 +72,13 @@ export class CbConnectionComponent implements OnInit {
   }
 
   changeForm() {
-    if (this.anim.login.flag === true) {
+    if (this.anim.login === true) {
       return;
     }
-    this.anim.login.flag = true;
-    doAnimation(400, this.anim.login, () => {
-      this.anim.login.flag = false;
+    this.anim.login = true;
+    this._CbEventService.broadcast('login');
+    doAnimation(400, this._CbEventService.ANIMATIONS.login, () => {
+      this.anim.login = false;
       this.register = !this.register;
       this.changeButton = this.translation.translate(
         (this.register) ? 'CONNECTION.LOGIN.BUTTON' : 'CONNECTION.REGISTER.BUTTON'

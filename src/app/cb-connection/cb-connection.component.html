@@ -4,12 +4,12 @@
     </div>
     <div class="left-content" fxFlex="65%">
       <h2>CryptoBo4rd</h2>
-      <div [@fade]="anim.language.state">
+      <div [@fade]="_CbEventService.ANIMATIONS.language.state">
         <h2 class="description-header">{{'CONNECTION.TITLE' | translate: lang}}</h2>
         <p class="description-para">{{'CONNECTION.DESCRIPTION' | translate: lang}}</p>
       </div>
       <button mat-raised-button class="change-btn" (click)="changeForm()">
-        <span [@fade]="anim.login.state" [@fade]="anim.language.state">
+        <span [@fade]="_CbEventService.ANIMATIONS.login.state" [@fade]="_CbEventService.ANIMATIONS.language.state">
           {{changeButton}}
         </span>
       </button>
@@ -29,7 +29,7 @@
       </mat-button-toggle-group>
     </div>
     <div class="right-content" fxFlex="60%">
-      <div class="form-wrapper" [@fade]="anim.language.state" [@fade]="anim.login.state">
+      <div class="form-wrapper" [@fade]="_CbEventService.ANIMATIONS.language.state" [@fade]="_CbEventService.ANIMATIONS.login.state">
         <form *ngIf="register" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.REGISTER.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
@@ -51,7 +51,7 @@
           </button>
         </form>
         <!-- LOGIN FORM -->
-        <form *ngIf="!register" [@fade]="anim.language.state" fxLayout="column">
+        <form *ngIf="!register" [@fade]="_CbEventService.ANIMATIONS.language.state" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.LOGIN.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
             <input matInput [(ngModel)]="LOGIN.IDENTIFIER" name="username" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">

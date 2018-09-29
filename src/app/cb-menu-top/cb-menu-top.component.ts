@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { doAnimation, fadeAnimation } from '../cb-shared/animations';
 import { FormGroup } from '@angular/forms';
 import { CbStorageService } from '../cb-services/cb-storage.service';
+import { CbEventService } from '../cb-services/cb-event.service';
 
 @Component({
   selector: 'app-cb-menu-top',
@@ -22,17 +23,12 @@ export class CbMenuTopComponent implements OnInit {
   public selectGlobal = 0;
   public selectNone = -1;
 
-  public anim = {
-    language: {
-      state: 'inactive'
-    }
-  };
-
   constructor(
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
-    private _CbStorageService: CbStorageService
+    private _CbStorageService: CbStorageService,
+    public _CbEventService: CbEventService
   ) {
     this.selectLang = false;
     this.selectedExchange = this.selectNone;
@@ -43,7 +39,8 @@ export class CbMenuTopComponent implements OnInit {
   }
 
   selectLocale(language: string, country: string, currency: string) {
-    doAnimation(300, this.anim.language, () => {
+    this._CbEventService.broadcast('language');
+    doAnimation(300, this._CbEventService.ANIMATIONS.language, () => {
       this.locale.setCurrentLanguage(language);
       this.locale.setDefaultLocale(language, country);
       this.locale.setCurrentCurrency(currency);

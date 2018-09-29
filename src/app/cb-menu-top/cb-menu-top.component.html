@@ -3,7 +3,7 @@
     <span>{{ 'APP_NAME'| translate: lang }}</span>
   </div>
   <div class="middle-nav" fxFlex>
-    <mat-form-field class="exchangeSelector"  [@fade]="anim.language.state">
+    <mat-form-field class="exchangeSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
       <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="exchanges.length === 0" [(value)]="selectedExchange"
       matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}" [matTooltipDisabled]="exchanges.length !== 0">
         <mat-option *ngFor="let exchange of exchanges" [value]="exchange.key">

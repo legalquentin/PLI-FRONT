@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { fadeAnimation } from '../cb-shared/animations';
+import { CbEventService } from '../cb-services/cb-event.service';
 
 @Component({
   selector: 'app-cb-menu-left',
@@ -30,10 +31,9 @@ export class CbMenuLeftComponent implements OnInit {
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
-    private _CbApiService: CbApiService
-  ) {
-    this.locale.languageCodeChanged.subscribe(this.rand());
-  }
+    private _CbApiService: CbApiService,
+    public _CbEventService: CbEventService
+    ) {}
 
   ngOnInit() {
     this.currentUrl = this.router.url.toUpperCase();

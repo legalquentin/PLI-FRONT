@@ -20,7 +20,6 @@ export function fadeAnimation(duration: number) {
 }
 
 export function doAnimation(duration, obj, callback) {
-  obj.state = 'active';
   setTimeout(() => {
     obj.state = 'inactive';
     callback();
