@@ -1,0 +1,40 @@
+<div class="account-wrapper" fxLayout="column">
+  <div class="account-top">
+    <div class="tile" fxFlex fxLayout="row">
+      <div class="left">
+        <img width="260px" height="260px" src="/src/assets/images/img_avatar.png">
+      </div>
+      <div class="right" fxLayout="column">
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'ACCOUNT.INPUT.MAIL' | translate: lang" name="mail">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'ACCOUNT.INPUT.LOGIN' | translate: lang" name="login">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'DAte JOINED'" name="registered">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'ACCOUNT.INPUT.FIRSTNAME' | translate: lang" name="firstname">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'ACCOUNT.INPUT.LASTNAME' | translate: lang" name="lastname">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'account visibility'" name="access">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+          <input matInput [placeholder]="'block incoming messages'" name="block">
+        </mat-form-field>
+        <mat-form-field class="genericBlackFormField">
+            <input matInput [placeholder]="'status message'" name="biography">
+          </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div class="account-bottom" fxLayout="row">
+    <div class="tile" fxFlex>
+      <p>bot</p>
+    </div>
+  </div>
+</div>
