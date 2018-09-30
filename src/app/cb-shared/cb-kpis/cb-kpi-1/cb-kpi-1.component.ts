@@ -25,7 +25,7 @@ export class CbKpi1Component implements OnInit {
   public animations = true;
 
   public view = [260, 230];
-  public cardColor = '#2e2e38';
+  public cardColor = '#212227';
   public bandColor = '#5AA454';
 
   // line, area

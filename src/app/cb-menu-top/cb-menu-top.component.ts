@@ -51,4 +51,8 @@ export class CbMenuTopComponent implements OnInit {
     this._CbStorageService.clearSession();
     this.router.navigate(['/']);
   }
+
+  account() {
+    this.router.navigate(['/cryptobo4rd/account']);
+  }
 }

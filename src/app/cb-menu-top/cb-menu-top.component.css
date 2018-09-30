@@ -1,64 +1,89 @@
 .top-nav {
-  color: white;
-  background-color: #2e2e38;
-  top: 0;
-  left: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
+    color: white;
+    background-color: #212227;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    padding-right: 0px;
+}
+
+.middle-left-nav {
+    display: flex;
+    align-items: center;
+}
+
+.middle-right-nav {
+    display: flex;
+    align-items: center;
 }
 
 .right-nav {
-  display: flex;
-  align-items: center;
+    background-color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 100%;
 }
 
 mat-button-toggle-group {
-  border-radius: 0px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  margin-right: 20px;
+    border-radius: 0px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
 }
 
 .mat-button-toggle-checked {
-  color: #2e2e38 !important;
-  background-color: rgb(238, 238, 238);
+    color: #212227 !important;
+    background-color: rgb(238, 238, 238);
 }
 
 mat-button-toggle {
-  display: flex;
-  align-items: center;
-  height: 30px;
-  font-size: 14px;
-  color: rgb(238, 238, 238);
-  background-color: #2e2e38;
+    display: flex;
+    align-items: center;
+    height: 30px;
+    font-size: 14px;
+    color: rgb(238, 238, 238);
+    background-color: #212227;
 }
 
 .lang {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .mat-button-toggle-label-content {
-  background-color: #2e2e38;
-  color: white !important;
+    background-color: #212227;
+    color: white !important;
 }
 
 /deep/ .mat-button-toggle-label-content {
-  padding: 10px !important;
+    padding: 10px !important;
 }
 
 .current-lang:hover {
-  background-color: rgb(202, 202, 202);
+    background-color: rgb(202, 202, 202);
 }
 
-button {
-  background-color: #2e2e38;
+/* button {
+  background-color: #212227;
   color: white;
-}
+} */
 
 .exchangeSelector {
-  margin-left: 140px;
-  font-size: small;
-  height: 40px;
+    margin-left: 140px;
+    font-size: small;
+    height: 40px;
+}
+
+.languageGroup {
+    border-radius: 0px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-right: 20px;
+    box-shadow: none;
 }

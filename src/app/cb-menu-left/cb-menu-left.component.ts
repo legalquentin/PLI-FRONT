@@ -28,7 +28,7 @@ export class CbMenuLeftComponent implements OnInit {
   ];
 
   constructor(
-    private router: Router,
+    public router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
     private _CbApiService: CbApiService,
@@ -36,7 +36,6 @@ export class CbMenuLeftComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this.currentUrl = this.router.url.toUpperCase();
     this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
       console.log('LIST_USERS', result);
       this.users = result.data;
@@ -65,8 +64,7 @@ export class CbMenuLeftComponent implements OnInit {
 
   navigate(dest: string) {
     const destination = '/cryptobo4rd/' + dest;
-    if (destination.toUpperCase() !== this.currentUrl) {
-      this.currentUrl = destination.toUpperCase();
+    if (destination.toUpperCase() !== this.router.url.toUpperCase()) {
       this.router.navigate([destination]);
     }
   }

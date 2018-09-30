@@ -2,10 +2,11 @@
   <div class="left-nav">
     <span>{{ 'APP_NAME'| translate: lang }}</span>
   </div>
-  <div class="middle-nav" fxFlex>
-    <mat-form-field class="exchangeSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
-      <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="exchanges.length === 0" [(value)]="selectedExchange"
-      matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}" [matTooltipDisabled]="exchanges.length !== 0">
+  <div class="middle-left-nav" fxFlex>
+    <mat-form-field class="genericWhiteFormField exchangeSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
+      <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="exchanges.length === 0"
+        [(value)]="selectedExchange" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}"
+        [matTooltipDisabled]="exchanges.length !== 0">
         <mat-option *ngFor="let exchange of exchanges" [value]="exchange.key">
           {{ exchange.label }}
         </mat-option>
@@ -18,12 +19,8 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div fxLayout="row" class="right-nav">
-    <!-- <mat-nav-list class="lang-select" *ngIf="selectLang">
-      <a mat-list-item [ngClass]="{'current-lang': lang === 'en'}" (click)="selectLocale('en', 'en_US', 'USD')">EN</a>
-      <a mat-list-item [ngClass]="{'current-lang': lang === 'fr'}" (click)="selectLocale('fr', 'fr_FR', 'EUR')">FR</a>
-    </mat-nav-list> (click)="selectLocale('fr', 'fr_FR', 'EUR')" -->
-    <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
+  <div fxLayout="row" class="middle-right-nav">
+    <!-- <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
       <mat-button-toggle value="lang" disabled>
         <mat-icon>translate</mat-icon>
       </mat-button-toggle>
@@ -33,9 +30,31 @@
       <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
         FR
       </mat-button-toggle>
-    </mat-button-toggle-group>
-    <button mat-icon-button (click)="logout()">
-      <mat-icon aria-label="Log out">power_settings_new</mat-icon>
+    </mat-button-toggle-group> -->
+  </div>
+  <div class="right-nav">
+    <img src="/src/assets/images/img_avatar.png" style="max-width:37px;max-height: 37px;">
+    <button mat-button [matMenuTriggerFor]="menu">
+      Quentin Le Gal
     </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="account()">
+        <mat-icon>person</mat-icon>
+        <span>Account</span>
+      </button>
+      <!-- <mat-button-toggle-group mat-menu-item class="languageGroup">
+        <mat-icon>translate</mat-icon>
+        <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
+          EN
+        </mat-button-toggle>
+        <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
+          FR
+        </mat-button-toggle>
+      </mat-button-toggle-group> -->
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>power_settings_new</mat-icon>
+        <span>Log out</span>
+      </button>
+    </mat-menu>
   </div>
 </mat-toolbar>

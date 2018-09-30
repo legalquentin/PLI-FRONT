@@ -34,6 +34,7 @@ import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/c
 import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
 import { FormsModule } from '@angular/forms';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
+import { CbAccountComponent } from './cb-account/cb-account.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -72,7 +73,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbSettingsComponent,
     CbWidgetContainerComponent,
     CbWidgetTableComponent,
-    CbWidgetLineChartComponent
+    CbWidgetLineChartComponent,
+    CbAccountComponent
   ],
   imports: [
     BrowserModule,

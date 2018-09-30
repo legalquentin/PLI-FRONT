@@ -7,6 +7,7 @@ import { CbConnectionComponent } from './cb-connection/cb-connection.component';
 import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
+import { CbAccountComponent } from './cb-account/cb-account.component';
 
 const routes: Routes = [
   { path: '', component: CbConnectionComponent, canActivate: [CbAuthgardService]},
@@ -17,6 +18,7 @@ const routes: Routes = [
       { path: 'dashboard', component: CbDashboardComponent, data: { page: 'dashboard' }},
       { path: 'cryptobot', component: CbCryptobotComponent, data: { page: 'cryptobot' }},
       { path: 'settings', component: CbSettingsComponent, data: { page: 'settings' }},
+      { path: 'account', component: CbAccountComponent, data: { page: 'account' }},
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full'},
     ]
   },
