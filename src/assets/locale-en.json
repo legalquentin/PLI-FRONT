@@ -26,5 +26,11 @@
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Exchange Selector",
   "MENU_TOP.SELECTOR.NOT_SET": "No existing profile",
   "MENU_TOP.SELECTOR.TOOLTIP": "Add a new api key in 'Settings'",
-  "MENU_TOP.SELECTOR.SELECT_ALL": "Global"
+  "MENU_TOP.SELECTOR.SELECT_ALL": "Global",
+
+  "ACCOUNT.INPUT.LOGIN": "Login",
+  "ACCOUNT.INPUT.MAIL": "Email",
+  "ACCOUNT.INPUT.FIRSTNAME": "Firstname",
+  "ACCOUNT.INPUT.LASTNAME": "Lastname",
+  "ACCOUNT.INPUT": ""
 }
