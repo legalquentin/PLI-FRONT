@@ -1,34 +1,64 @@
 <div class="account-wrapper" fxLayout="column">
   <div class="account-top">
-    <div class="tile" fxFlex fxLayout="row">
-      <div class="left">
-        <img width="260px" height="260px" src="/src/assets/images/img_avatar.png">
-      </div>
-      <div class="right" fxLayout="column">
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'ACCOUNT.INPUT.MAIL' | translate: lang" name="mail">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'ACCOUNT.INPUT.LOGIN' | translate: lang" name="login">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'DAte JOINED'" name="registered">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'ACCOUNT.INPUT.FIRSTNAME' | translate: lang" name="firstname">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'ACCOUNT.INPUT.LASTNAME' | translate: lang" name="lastname">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'account visibility'" name="access">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-          <input matInput [placeholder]="'block incoming messages'" name="block">
-        </mat-form-field>
-        <mat-form-field class="genericBlackFormField">
-            <input matInput [placeholder]="'status message'" name="biography">
+    <div class="tile" fxFlex fxLayout="column">
+      <div fxLayout="row">
+        <div class="left">
+          <img width="260px" height="260px" src="/src/assets/images/img_avatar.png">
+        </div>
+        <div class="right" fxLayout="column" fxFlex>
+          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'" matTooltip="{{'ACCOUNT.INPUT.MAIL_DISABLED_TOOLTIP' | translate: lang}}">
+            <input matInput [(ngModel)]="ACCOUNT.EMAIL" name="mail" [placeholder]="'ACCOUNT.INPUT.MAIL' | translate: lang" disabled>
           </mat-form-field>
+          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'" matTooltip="{{'ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP' | translate: lang}}">
+            <input matInput [placeholder]="'ACCOUNT.INPUT.LOGIN' | translate: lang" [(ngModel)]="ACCOUNT.LOGIN" name="login" disabled>
+          </mat-form-field>
+          <mat-form-field class="genericBlackFormField">
+            <input matInput [placeholder]="'ACCOUNT.INPUT.FIRSTNAME' | translate: lang" [(ngModel)]="ACCOUNT.FIRSTNAME"
+              name="firstname">
+          </mat-form-field>
+          <mat-form-field class="genericBlackFormField">
+            <input matInput [placeholder]="'ACCOUNT.INPUT.LASTNAME' | translate: lang" [(ngModel)]="ACCOUNT.LASTNAME"
+              name="lastname">
+          </mat-form-field>
+        </div>
+        <div class="right" fxLayout="column" fxFlex>
+          <mat-button-toggle-group #group="matButtonToggleGroup" class="btn-group" [(ngModel)]="ACCOUNT.PUBLIC">
+            <mat-button-toggle [value]="-1" disabled>
+              Visibility
+              <!-- <mat-icon>translate</mat-icon> -->
+            </mat-button-toggle>
+            <mat-button-toggle [value]="0" (click)="setAccountVisibility(0)">
+              Public
+            </mat-button-toggle>
+            <mat-button-toggle [value]="1" (click)="setAccountVisibility(1)">
+              Trusted
+            </mat-button-toggle>
+            <mat-button-toggle [value]="2" (click)="setAccountVisibility(2)">
+              Private
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-button-toggle-group #group="matButtonToggleGroup" class="btn-group" [(ngModel)]="ACCOUNT.BLOCK">
+              <mat-button-toggle value="-1" disabled>
+                Block messages
+                <!-- <mat-icon>translate</mat-icon> -->
+              </mat-button-toggle>
+              <mat-button-toggle [value]="false" (click)="setAccountBlock(false)">
+                <!-- (click)="setAccountBlock(true)" -->
+                No
+              </mat-button-toggle>
+              <mat-button-toggle [value]="true">
+                <!-- (click)="setAccountBlock(false)" -->
+                Yes
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+          <mat-form-field class="genericBlackFormField">
+            <textarea matInput [placeholder]="'status message'" rows="7" name="biography" [(ngModel)]="ACCOUNT.DESCRIPTION"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex class="account-top-footer">
+        <button mat-flat-button (click)="save()">Save</button>
+        <button id="cancel" mat-flat-button (click)="cancel()">Cancel</button>
       </div>
     </div>
   </div>

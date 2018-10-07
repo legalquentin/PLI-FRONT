@@ -1,6 +1,6 @@
 .sidenav {
   color: white;
-  background-color: #212227;
+  background-color: var(--back-color);
   min-width: 225px;
   display: flex;
   flex-direction: column

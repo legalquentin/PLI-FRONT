@@ -1,0 +1,63 @@
+.tile {
+  margin: 10px;
+  margin-right: 15px;
+  background-color: rgb(238, 238, 238);
+  /* padding: top right bottom left; */
+  padding: 0 20px 20px 20px;
+}
+
+.settings-exchanges-header > h3,
+.settings-application-header > h3 {
+  color: var(--primary-color);
+  font-weight: lighter;
+}
+
+.right {
+  margin-left: 30px;
+}
+
+.mat-form-field {
+  width: 200px;
+}
+
+input {
+  caret-color: black;
+}
+
+
+mat-button-toggle-group {
+  border-radius: 0px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  width: fit-content;
+  margin-bottom: 10px;
+}
+
+.mat-button-toggle-checked {
+  color: rgb(238, 238, 238) !important;
+  background-color: var(--primary-color);
+}
+
+mat-button-toggle {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-size: 14px;
+  color: rgb(238, 238, 238);
+  background-color: var(--back-color);
+}
+
+.lang {
+  cursor: pointer;
+}
+
+.mat-button-toggle-label-content {
+  background-color: var(--back-color);
+  color: white !important;
+}
+
+/deep/ .mat-button-toggle-label-content {
+  padding: 10px !important;
+}

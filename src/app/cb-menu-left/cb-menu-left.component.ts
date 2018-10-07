@@ -18,7 +18,7 @@ export class CbMenuLeftComponent implements OnInit {
   @Language() lang: string;
 
   public currentUrl: string;
-  public users = [];
+  public USERS = [];
   public avatars = [
     'https://www.w3schools.com/howto/img_avatar.png',
     'https://www.w3schools.com/howto/img_avatar2.png',
@@ -38,8 +38,8 @@ export class CbMenuLeftComponent implements OnInit {
   ngOnInit() {
     this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_USERS).subscribe(result => {
       console.log('LIST_USERS', result);
-      this.users = result.data;
-      for (const user of this.users) {
+      this.USERS = result;
+      for (const user of this.USERS) {
         user.avatar = this.avatars[this.getRandom()];
       }
     }, error => {

@@ -1,6 +1,6 @@
 .top-nav {
     color: white;
-    background-color: #212227;
+    background-color: var(--back-color);
     top: 0;
     left: 0;
     right: 0;
@@ -28,47 +28,12 @@
     height: 100%;
 }
 
-mat-button-toggle-group {
-    border-radius: 0px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-}
-
-.mat-button-toggle-checked {
-    color: #212227 !important;
-    background-color: rgb(238, 238, 238);
-}
-
-mat-button-toggle {
-    display: flex;
-    align-items: center;
-    height: 30px;
-    font-size: 14px;
-    color: rgb(238, 238, 238);
-    background-color: #212227;
-}
-
-.lang {
-    cursor: pointer;
-}
-
-.mat-button-toggle-label-content {
-    background-color: #212227;
-    color: white !important;
-}
-
-/deep/ .mat-button-toggle-label-content {
-    padding: 10px !important;
-}
-
 .current-lang:hover {
     background-color: rgb(202, 202, 202);
 }
 
 /* button {
-  background-color: #212227;
+  background-color: var(--back-color);
   color: white;
 } */
 

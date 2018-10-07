@@ -1,3 +1,59 @@
-<p>
-  cb-settings works!
-</p>
+<div class="settings-wrapper" fxLayout="column">
+  <div class="settings-top">
+    <div class="tile" fxFlex fxLayout="column">
+      <div class="settings-exchanges-header">
+        <h3>Exchanges settings</h3>
+      </div>
+      <div class="settings-exchanges-content">
+        <mat-list>
+          <h3 mat-subheader>Folders</h3>
+          <mat-list-item *ngFor="let account of EXCHANGES.ACCOUNTS">
+            <img [src]="account.logo" width="25px" [alt]="account.label">
+            <h4 mat-line>test</h4>
+            <p mat-line>{{account.access}}</p>
+            <mat-divider></mat-divider>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </div>
+    <div class="tile" fxFlex fxLayout="column">
+      <div class="settings-application-header">
+        <h3>Application settings</h3>
+      </div>
+      <div class="settings-application-content">
+        <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
+          <mat-button-toggle value="lang" disabled>
+            Language
+            <!-- <mat-icon>translate</mat-icon> -->
+          </mat-button-toggle>
+          <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
+            EN
+          </mat-button-toggle>
+          <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
+            FR
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+        <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="false">
+          <mat-button-toggle value="lang" disabled>
+            Remember me
+            <!-- <mat-icon>translate</mat-icon> -->
+          </mat-button-toggle>
+          <mat-button-toggle [value]="true" >
+            Yes
+          </mat-button-toggle>
+          <mat-button-toggle [value]="false" >
+            No
+          </mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+  </div>
+  <div class="settings-top">
+    <div class="tile" fxFlex fxLayout="row">
+      <h3>bot</h3>
+    </div>
+    <div class="tile" fxFlex fxLayout="row">
+      <h3>bot</h3>
+    </div>
+  </div>
+</div>

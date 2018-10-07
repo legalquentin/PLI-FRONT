@@ -16,3 +16,67 @@
 input {
   caret-color: black;
 }
+
+textarea {
+  caret-color: black;
+}
+
+.genericBlackFormField {
+  width: 100%;
+}
+
+mat-button-toggle-group {
+  border-radius: 0px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  width: fit-content;
+  margin-bottom: 14px;
+}
+
+.mat-button-toggle-checked {
+  color: white;
+  background-color: var(--primary-color);
+}
+
+mat-button-toggle {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-size: 14px;
+  color: rgb(238, 238, 238);
+  background-color: var(--back-color);
+}
+
+mat-button-toggle .disabled {
+  color: red;
+}
+
+.lang {
+  cursor: pointer;
+}
+
+.mat-button-toggle-label-content {
+  background-color: var(--back-color);
+  color: white !important;
+}
+
+/deep/ .mat-button-toggle-label-content {
+  padding: 10px !important;
+}
+
+.account-top-footer {
+  align-content: flex-end;
+}
+
+.mat-flat-button {
+  float: right;
+  margin-left: 5px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+button#cancel {
+  background-color: var(--back-color);
+}

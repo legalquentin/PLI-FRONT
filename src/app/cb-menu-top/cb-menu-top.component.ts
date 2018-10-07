@@ -38,15 +38,6 @@ export class CbMenuTopComponent implements OnInit {
     console.log(this.lang);
   }
 
-  selectLocale(language: string, country: string, currency: string) {
-    this._CbEventService.broadcast('language');
-    doAnimation(300, this._CbEventService.ANIMATIONS.language, () => {
-      this.locale.setCurrentLanguage(language);
-      this.locale.setDefaultLocale(language, country);
-      this.locale.setCurrentCurrency(currency);
-    });
-  }
-
   logout() {
     this._CbStorageService.clearSession();
     this.router.navigate(['/']);

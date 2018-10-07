@@ -27,5 +27,14 @@
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Selecteur de compte",
   "MENU_TOP.SELECTOR.NOT_SET": "Aucun profil existant",
   "MENU_TOP.SELECTOR.TOOLTIP": "Ajoutez une nouvelle clée d'api dans 'Paramètres'",
-  "MENU_TOP.SELECTOR.SELECT_ALL": "Globale"
+  "MENU_TOP.SELECTOR.SELECT_ALL": "Globale",
+
+  "ACCOUNT.INPUT.LOGIN": "Pseudo",
+  "ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP": "Contactez un administrateur pour changer ce paramètre",
+  "ACCOUNT.INPUT.MAIL": "Addresse mail",
+  "ACCOUNT.INPUT.MAIL_DISABLED_TOOLTIP": "Contactez un administrateur pour changer ce paramètre",
+  "ACCOUNT.INPUT.FIRSTNAME": "Prenom",
+  "ACCOUNT.INPUT.LASTNAME": "Nom de famille",
+  "ACCOUNT.INPUT": "",
+  "ACCOUNT.ERROR": "nothing"
 }

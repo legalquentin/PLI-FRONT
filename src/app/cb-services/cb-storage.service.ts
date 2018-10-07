@@ -23,43 +23,79 @@ export class CbStorageService {
     callback();
   }
 
-  clearSession() {
+  updateSessionData(userObject: any): void {
+    sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(userObject));
+  }
+
+  clearSession(): void {
     sessionStorage.removeItem(CbConstants.SESSION_KEY);
     this.session = null;
   }
 
   isAuthenticated(): boolean {
-    return (this.session !== null);
+    return (this.getSessionToken() !== '');
   }
 
   getUserEmail(): string {
     let email = '';
-    if (this.session && this.session['USER'] && this.session['USER']['EMAIL']) {
-      email = this.session['USER']['EMAIL'];
+    if (this.session && this.session['USER'] && this.session['USER']['email']) {
+      email = this.session['USER']['email'];
     }
     return email;
   }
 
-  getUserFirstName() {
+  getUserFirstName(): string {
     let userFirstName = '';
-    if (this.session && this.session['USER'] && this.session['USER']['FIRSTNAME']) {
-      userFirstName = this.session['USER']['FIRSTNAME'];
+    if (this.session && this.session['USER'] && this.session['USER']['firstname']) {
+      userFirstName = this.session['USER']['firstname'];
     }
     return userFirstName;
   }
 
-  getUserLastName() {
+  getUserLastName(): string {
     let userLastName = '';
-    if (this.session && this.session['USER'] && this.session['USER']['LASTNAME']) {
-      userLastName = this.session['USER']['LASTNAME'];
+    if (this.session && this.session['USER'] && this.session['USER']['lastname']) {
+      userLastName = this.session['USER']['lastname'];
     }
     return userLastName;
   }
 
-  getSessionToken() {
+  getUserLogin(): string {
+    let userLastName = '';
+    if (this.session && this.session['USER'] && this.session['USER']['login']) {
+      userLastName = this.session['USER']['login'];
+    }
+    return userLastName;
+  }
+
+  getUserVisibility(): number {
+    let userVisibility = 0;
+    if (this.session && this.session['USER'] && this.session['USER']['public']) {
+      userVisibility = this.session['USER']['public'];
+    }
+    return userVisibility;
+  }
+
+  getUserBlock(): boolean {
+    let userBlock = false;
+    if (this.session && this.session['USER'] && this.session['USER']['blockMessages']) {
+      userBlock = this.session['USER']['blockMessages'];
+    }
+    return userBlock;
+  }
+
+  getUserStatusMessage(): string {
+    let statusMessage = '';
+    if (this.session && this.session['USER'] && this.session['USER']['statusMessage']) {
+      statusMessage = this.session['USER']['statusMessage'];
+    }
+    return statusMessage;
+  }
+
+  getSessionToken(): string {
     let sessionToken = '';
-    if (this.session && this.session['token']) {
-      sessionToken = this.session['token'];
+    if (this.session && this.session['SESSION_TOKEN']) {
+      sessionToken = this.session['SESSION_TOKEN'];
     }
     return sessionToken;
   }

@@ -40,6 +40,11 @@ export class CbConnectionComponent implements OnInit {
 
   public ERROR_MESSAGE = '';
 
+  private USER_OBJECT = {
+    USER: {},
+    SESSION_TOKEN: ''
+  };
+
   constructor(
     private router: Router,
     private translation: TranslationService,
@@ -96,9 +101,25 @@ export class CbConnectionComponent implements OnInit {
       this.displayError('EMPTY_FIELD');
     } else {
       this._CbApiService.genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD).subscribe(result => {
-        console.log('RESPONSE', result);
-        this._CbStorageService.createSession(result.data, () => {
-          this.router.navigate(['cryptobo4rd/dashboard']);
+        console.log('REGISTER_SUCCESS', result);
+        this.USER_OBJECT.SESSION_TOKEN = result.data.token;
+        this._CbStorageService.createSession(this.USER_OBJECT, () => {
+          this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_PROFILE).subscribe(res => {
+            if (res.data) {
+              console.log('PROFILE_SUCCESS', res);
+              this.USER_OBJECT.USER = res.data;
+              this._CbStorageService.updateSessionData(this.USER_OBJECT);
+              this.router.navigate(['cryptobo4rd/dashboard']);
+            } else {
+              console.log('PROFILE_ERROR', res);
+              this.displayError('invalid response');
+              this._CbStorageService.clearSession();
+            }
+          }, err => {
+            console.log('PROFILE_ERROR', err);
+            this.displayError(err.error.message);
+            this._CbStorageService.clearSession();
+          });
         });
       }, err => {
         console.log('ERROR', err);
@@ -113,12 +134,28 @@ export class CbConnectionComponent implements OnInit {
       password: this.LOGIN.PASSWORD,
     };
     this._CbApiService.genericRequest(CbConstants.REQUESTS.LOGIN, PAYLOAD).subscribe(result => {
-      console.log('SUCCESS', result);
-      this._CbStorageService.createSession(result.data, () => {
-        this.router.navigate(['cryptobo4rd/dashboard']);
+      console.log('LOGIN_SUCCESS', result);
+      this.USER_OBJECT.SESSION_TOKEN = result.data.token;
+      this._CbStorageService.createSession(this.USER_OBJECT, () => {
+        this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_PROFILE).subscribe(res => {
+          if (res.data) {
+            console.log('PROFILE_SUCCESS', res);
+            this.USER_OBJECT.USER = res.data;
+            this._CbStorageService.updateSessionData(this.USER_OBJECT);
+            this.router.navigate(['cryptobo4rd/dashboard']);
+          } else {
+            console.log('PROFILE_ERROR', res);
+            this.displayError('invalid response');
+            this._CbStorageService.clearSession();
+          }
+        }, err => {
+          console.log('PROFILE_ERROR', err);
+          this.displayError(err.error.message);
+          this._CbStorageService.clearSession();
+        });
       });
     }, err => {
-      console.log('ERROR', err);
+      console.log('LOGIN_ERROR', err);
       this.displayError(err.error.message);
     });
   }

@@ -11,7 +11,7 @@ import {
   StorageStrategy,
   ProviderType
 } from 'angular-l10n';
-
+// import CryptowatchEmbed from 'cryptowatch-embed';
 // APP
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,8 @@ import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-lin
 import { FormsModule } from '@angular/forms';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
 import { CbAccountComponent } from './cb-account/cb-account.component';
+import { CbDataTableComponent } from './cb-data-table/cb-data-table.component';
+import { CbCryptowatchComponent } from './cb-shared/cb-cryptowatch/cb-cryptowatch.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -74,7 +76,9 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbWidgetContainerComponent,
     CbWidgetTableComponent,
     CbWidgetLineChartComponent,
-    CbAccountComponent
+    CbAccountComponent,
+    CbDataTableComponent,
+    CbCryptowatchComponent
   ],
   imports: [
     BrowserModule,

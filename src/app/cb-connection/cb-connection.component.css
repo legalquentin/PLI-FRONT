@@ -8,7 +8,7 @@ h2 {
 }
 
 .left-connection {
-    background-color: #212227;
+    background-color: var(--back-color);
     height: 100vh;
     padding: 40px;
     display: flex;
@@ -126,7 +126,7 @@ mat-button-toggle-group {
 }
 
 .mat-button-toggle-checked {
-  color: #212227 !important;
+  color: var(--back-color) !important;
   background-color: rgb(238, 238, 238);
 }
 
@@ -136,5 +136,5 @@ mat-button-toggle {
   height: 30px;
   font-size: 14px;
   color: rgb(238, 238, 238);
-  background-color: #212227;
+  background-color: var(--back-color);
 }

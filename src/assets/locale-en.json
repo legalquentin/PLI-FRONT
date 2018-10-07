@@ -29,8 +29,11 @@
   "MENU_TOP.SELECTOR.SELECT_ALL": "Global",
 
   "ACCOUNT.INPUT.LOGIN": "Login",
-  "ACCOUNT.INPUT.MAIL": "Email",
+  "ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP": "Contact an admin to change this setting",
+  "ACCOUNT.INPUT.MAIL": "Email Address",
+  "ACCOUNT.INPUT.MAIL_DISABLED_TOOLTIP": "Contact an admin to change this setting",
   "ACCOUNT.INPUT.FIRSTNAME": "Firstname",
   "ACCOUNT.INPUT.LASTNAME": "Lastname",
-  "ACCOUNT.INPUT": ""
+  "ACCOUNT.INPUT": "",
+  "ACCOUNT.ERROR": "nothing"
 }

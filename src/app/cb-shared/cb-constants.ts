@@ -1,7 +1,7 @@
 export class CbConstants {
   public static API_ENDPOINT = 'http://51.38.237.214:80';
   public static API_KEY = '1234567890987654321';
-  public static SESSION_KEY = 'session';
+  public static SESSION_KEY = 'CRYPTOBO4RD_SESSION';
 
   // API METHODS DEFINITIONS
   public static REQUESTS = {
@@ -12,6 +12,14 @@ export class CbConstants {
     LOGIN: {
       PATH: '/auth',
       METHOD: 'POST'
+    },
+    GET_PROFILE: {
+      PATH: '/profil',
+      METHOD: 'GET'
+    },
+    UPDATE_PROFILE: {
+      PATH: '/profil',
+      METHOD: 'PUT'
     },
     LIST_USERS: {
       PATH: '/users',

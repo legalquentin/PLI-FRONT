@@ -12,9 +12,9 @@
   </mat-nav-list>
 
   <div style="margin-top: 160px; color: white !important; padding:15px;">
-    <p>Online users [{{ users.length }}]</p>
+    <p>Online users [{{ USERS.length }}]</p>
     <mat-list style="height:250px; overflow-y: scroll;">
-      <mat-list-item *ngFor="let user of users" style="color: white !important; height: 60px;">
+      <mat-list-item *ngFor="let user of USERS" style="color: white !important; height: 60px;">
         <img matListAvatar [src]="user.avatar" width="25px" alt="...">
         <h3 matLine> {{user.id}} </h3>
         <p matLine>
