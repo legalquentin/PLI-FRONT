@@ -5,6 +5,7 @@ export class CbConstants {
 
   // API METHODS DEFINITIONS
   public static REQUESTS = {
+    // AUTH
     REGISTER: {
       PATH: '/register',
       METHOD: 'POST'
@@ -13,6 +14,7 @@ export class CbConstants {
       PATH: '/auth',
       METHOD: 'POST'
     },
+    // USER(S)
     GET_PROFILE: {
       PATH: '/profil',
       METHOD: 'GET'
@@ -25,10 +27,12 @@ export class CbConstants {
       PATH: '/users',
       METHOD: 'GET'
     },
+    // CONFIGURATIONS
     LIST_CONFIGURATIONS: {
       PATH: '/configuration',
       METHOD: 'GET'
     },
+    // PROVIERS
     LIST_PROVIDERS: {
       PATH: '/provider',
       METHOD: 'GET'
