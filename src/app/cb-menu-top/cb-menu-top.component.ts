@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
-import { doAnimation, fadeAnimation } from '../cb-shared/animations';
 import { FormGroup } from '@angular/forms';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
+import { fadeAnimation } from '../cb-shared/cb-animations';
 
 @Component({
   selector: 'app-cb-menu-top',

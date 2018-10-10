@@ -1,7 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import {
@@ -37,6 +36,7 @@ import { CbAuthgardService } from './cb-services/cb-authgard.service';
 import { CbAccountComponent } from './cb-account/cb-account.component';
 import { CbDataTableComponent } from './cb-data-table/cb-data-table.component';
 import { CbCryptowatchComponent } from './cb-shared/cb-cryptowatch/cb-cryptowatch.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const l10nConfig: L10nConfig = {
   locale: {

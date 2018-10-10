@@ -18,7 +18,9 @@ interface RequestDefinition {
   providedIn: 'root'
 })
 export class CbApiService {
-  private config: any;
+  private config = {
+    apiUrl: CbConstants.API_ENDPOINT
+  };
 
   private httpOptions = {
     headers: new HttpHeaders({})
@@ -27,17 +29,17 @@ export class CbApiService {
   constructor(
     private http: HttpClient,
     private _CbStorageService: CbStorageService
-  ) {
-    this.setUpDefaultConfig();
+  ) { }
+
+  private getOptions() {
+    const options = this.httpOptions;
+    if (this._CbStorageService.isAuthenticated()) {
+      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+    }
+    return options;
   }
 
-  setUpDefaultConfig() {
-    this.config = {
-      apiUrl: CbConstants.API_ENDPOINT
-    };
-  }
-
-  handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -53,23 +55,7 @@ export class CbApiService {
     return throwError('Something bad happened; please try again later.');
   }
 
-  account() {
-    const pathEndPoint =
-      'https://api.binance.com/api/v3/account';
-    return this.http.get<any>(pathEndPoint, this.httpOptions).pipe(catchError(this.handleError));
-  }
-
-  // login(payload: object) {
-  //   const pathEndPoint = 'login/';
-  //   return (this.http
-  //     .post<any>(this.config.apiUrl + pathEndPoint, payload, this.httpOptions)
-  //     .pipe(
-  //       catchError(this.handleError)
-  //     )
-  //   );
-  // }
-
-  genericRequest(
+  public genericRequest(
     _REQUEST: RequestDefinition,
     _PAYLOAD?: any,
     _OPTIONS?: any
@@ -80,27 +66,23 @@ export class CbApiService {
         return this.GET(_REQUEST.PATH);
       case 'POST':
         return this.POST(_REQUEST.PATH, _PAYLOAD);
+      case 'PUT':
+        return this.PUT(_REQUEST.PATH, _PAYLOAD);
     }
   }
 
   private GET(_ENDPOINT: string): Observable<any> {
-    const options = this.httpOptions;
-    if (this._CbStorageService.isAuthenticated()) {
-      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
-      // headers['withCredentials'] = true;
-    }
-    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, options);
-      // .pipe(catchError(this.handleError));
+    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, this.getOptions());
   }
 
   private POST(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
-    const options = this.httpOptions;
-    if (this._CbStorageService.isAuthenticated()) {
-      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
-      // headers['withCredentials'] = true;
-    }
     return this.http
-      .post<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, options);
-      // .pipe(catchError(this.handleError));
+      .post<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, this.getOptions());
+  }
+
+  private PUT(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
+    return this.http
+      .put<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, this.getOptions());
+    // .pipe(catchError(this.handleError));
   }
 }

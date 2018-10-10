@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { TranslationService, LocaleService, Language } from 'angular-l10n';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbEventService } from '../cb-services/cb-event.service';
-import { doAnimation } from '../cb-shared/animations';
+import { doAnimation } from '../cb-shared/cb-animations';
 
 @Component({
   selector: 'app-cb-settings',

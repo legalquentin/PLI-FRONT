@@ -3,8 +3,8 @@ import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
-import { fadeAnimation } from '../cb-shared/animations';
 import { CbEventService } from '../cb-services/cb-event.service';
+import { fadeAnimation } from '../cb-shared/cb-animations';
 
 @Component({
   selector: 'app-cb-menu-left',

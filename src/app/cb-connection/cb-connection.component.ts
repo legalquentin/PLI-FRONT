@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
-import { fadeAnimation, doAnimation } from '../cb-shared/animations';
+import { fadeAnimation, doAnimation } from '../cb-shared/cb-animations';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from '../cb-services/cb-storage.service';

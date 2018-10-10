@@ -3,6 +3,8 @@ export class CbConstants {
   public static API_KEY = '1234567890987654321';
   public static SESSION_KEY = 'CRYPTOBO4RD_SESSION';
 
+  // "start": "ng serve --aot --host 0.0.0.0 --ssl true --ssl-key ssl/server.key --ssl-cert ssl/server.crt",
+
   // API METHODS DEFINITIONS
   public static REQUESTS = {
     // AUTH
