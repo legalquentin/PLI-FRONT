@@ -8,6 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from './cb-storage.service';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 interface RequestDefinition {
   PATH: string;
@@ -87,6 +88,12 @@ export class CbApiService {
   }
 
   private POST(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
+    if ('URL_PARAM' in _PAYLOAD) {
+      for (const param of _PAYLOAD.URL_PARAM) {
+        _ENDPOINT += '/' + param;
+      }
+      delete _PAYLOAD['URL_PARAM'];
+    }
     return this.http.post<any>(
       this.config.apiUrl + _ENDPOINT,
       _PAYLOAD,

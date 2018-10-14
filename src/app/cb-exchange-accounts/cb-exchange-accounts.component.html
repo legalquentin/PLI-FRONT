@@ -15,10 +15,10 @@
             </mat-expansion-panel-header>
             <div fxLayout="column">
               <mat-form-field class="genericBlackFormField">
-                <input matInput placeholder="Public key" value="">
+                <input matInput [(ngModel)]="publicKey" placeholder="Public key" value="">
               </mat-form-field>
               <mat-form-field class="genericBlackFormField">
-                <input matInput type="password" placeholder="Private key" value="">
+                <input matInput [(ngModel)]="privateKey" type="password" placeholder="Private key" value="">
               </mat-form-field>
             </div>
             <mat-action-row>

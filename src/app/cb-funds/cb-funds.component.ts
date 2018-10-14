@@ -23,7 +23,7 @@ export class CbFundsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES, ['KRAKEN']).subscribe(result => {
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES, ['BINANCE']).subscribe(result => {
       this.FUNDS = JSON.stringify(result);
       console.log('GET_CURRENCIES SUCCESS', result);
     }, error => {

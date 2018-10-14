@@ -18,7 +18,7 @@
   </mat-nav-list>
 
   <div style="margin-top: 260px; color: white !important; padding:15px;">
-    <p>Users [{{ USERS.length }}]</p>
+    <mat-icon style="font-size: 30px;" matTooltip="{{ USERS.length }} Utilisateurs">group</mat-icon> {{ USERS.length }}
     <!-- <mat-list style="height:250px; overflow-y: scroll;">
       <mat-list-item *ngFor="let user of USERS" style="color: white !important; height: 60px;">
         <img matListAvatar [src]="user.avatar" width="25px" alt="...">

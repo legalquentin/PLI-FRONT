@@ -12,11 +12,16 @@ export class CbExchangeAccountsComponent implements OnInit {
   @Language() lang: string;
 
   public EXCHANGES: Array<any>;
+  public publicKey: string;
+  public privateKey: string;
+
   constructor(
     private translate: TranslationService,
     private _CbApiService: CbApiService
   ) {
     this.loadExchanges();
+    this.publicKey = '';
+    this.privateKey = '';
   }
 
   ngOnInit() {
@@ -31,6 +36,15 @@ export class CbExchangeAccountsComponent implements OnInit {
   }
 
   createAccount(exchange: string) {
-    console.log('CREATING ACCOUNT ON ' + exchange);
+    const payload = {
+      URL_PARAM: [exchange],
+      value: this.publicKey,
+      sign: this.privateKey
+    };
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.ADD_PROVIDERS, payload).subscribe(result => {
+      console.log('ADD_PROVIDERS on ' + exchange + ' SUCCESS', result);
+    }, error => {
+      console.error('Failed to ADD_PROVIDERS', error);
+    });
   }
 }
