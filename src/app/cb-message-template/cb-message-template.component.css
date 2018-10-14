@@ -1,0 +1,23 @@
+.message {
+  padding: 0px !important;
+}
+
+.header {
+  background-color: var(--primary-color);
+  padding-left: 10px;
+  color: white;
+}
+
+.body {
+  padding: 20px;
+}
+
+.footer {
+  padding: 10px;
+}
+
+::ng-deep a {
+  color: var(--primary-color);
+
+  text-decoration: none !important;
+}

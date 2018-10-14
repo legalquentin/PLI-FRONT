@@ -8,6 +8,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from './cb-storage.service';
+import { PARAMETERS } from '@angular/core/src/util/decorators';
 
 interface RequestDefinition {
   PATH: string;
@@ -29,12 +30,15 @@ export class CbApiService {
   constructor(
     private http: HttpClient,
     private _CbStorageService: CbStorageService
-  ) { }
+  ) {}
 
   private getOptions() {
     const options = this.httpOptions;
     if (this._CbStorageService.isAuthenticated()) {
-      options.headers = this.httpOptions.headers.set('Authorization', 'Bearer ' + this._CbStorageService.getSessionToken());
+      options.headers = this.httpOptions.headers.set(
+        'Authorization',
+        'Bearer ' + this._CbStorageService.getSessionToken()
+      );
     }
     return options;
   }
@@ -63,7 +67,7 @@ export class CbApiService {
     console.log(_REQUEST);
     switch (_REQUEST.METHOD) {
       case 'GET':
-        return this.GET(_REQUEST.PATH);
+        return this.GET(_REQUEST.PATH, _PAYLOAD);
       case 'POST':
         return this.POST(_REQUEST.PATH, _PAYLOAD);
       case 'PUT':
@@ -71,18 +75,38 @@ export class CbApiService {
     }
   }
 
-  private GET(_ENDPOINT: string): Observable<any> {
-    return this.http.get<any>(this.config.apiUrl + _ENDPOINT, this.getOptions());
+  private GET(_ENDPOINT: string, _PARAMETERS?: Array<any>): Observable<any> {
+    if (_PARAMETERS) {
+      for (const param of _PARAMETERS) {
+        _ENDPOINT += '/' + param;
+      }
+    }
+    return this.http.get<any>(
+      this.config.apiUrl + _ENDPOINT,
+      this.getOptions()
+    );
   }
 
   private POST(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
-    return this.http
-      .post<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, this.getOptions());
+    if ('URL_PARAM' in _PAYLOAD) {
+      for (const param of _PAYLOAD.URL_PARAM) {
+        _ENDPOINT += '/' + param;
+      }
+      delete _PAYLOAD['URL_PARAM'];
+    }
+    return this.http.post<any>(
+      this.config.apiUrl + _ENDPOINT,
+      _PAYLOAD,
+      this.getOptions()
+    );
   }
 
   private PUT(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
-    return this.http
-      .put<any>(this.config.apiUrl + _ENDPOINT, _PAYLOAD, this.getOptions());
+    return this.http.put<any>(
+      this.config.apiUrl + _ENDPOINT,
+      _PAYLOAD,
+      this.getOptions()
+    );
     // .pipe(catchError(this.handleError));
   }
 }

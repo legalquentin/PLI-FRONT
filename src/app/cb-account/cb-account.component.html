@@ -6,11 +6,15 @@
           <img width="260px" height="260px" src="/src/assets/images/img_avatar.png">
         </div>
         <div class="right" fxLayout="column" fxFlex>
-          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'" matTooltip="{{'ACCOUNT.INPUT.MAIL_DISABLED_TOOLTIP' | translate: lang}}">
-            <input matInput [(ngModel)]="ACCOUNT.EMAIL" name="mail" [placeholder]="'ACCOUNT.INPUT.MAIL' | translate: lang" disabled>
+          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'"
+            matTooltip="{{'ACCOUNT.INPUT.MAIL_DISABLED_TOOLTIP' | translate: lang}}">
+            <input matInput [(ngModel)]="ACCOUNT.EMAIL" name="mail" [placeholder]="'ACCOUNT.INPUT.MAIL' | translate: lang"
+              disabled>
           </mat-form-field>
-          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'" matTooltip="{{'ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP' | translate: lang}}">
-            <input matInput [placeholder]="'ACCOUNT.INPUT.LOGIN' | translate: lang" [(ngModel)]="ACCOUNT.LOGIN" name="login" disabled>
+          <mat-form-field class="genericBlackFormField" [matTooltipDisabled]="false" [matTooltipPosition]="'left'"
+            matTooltip="{{'ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP' | translate: lang}}">
+            <input matInput [placeholder]="'ACCOUNT.INPUT.LOGIN' | translate: lang" [(ngModel)]="ACCOUNT.LOGIN" name="login"
+              disabled>
           </mat-form-field>
           <mat-form-field class="genericBlackFormField">
             <input matInput [placeholder]="'ACCOUNT.INPUT.FIRSTNAME' | translate: lang" [(ngModel)]="ACCOUNT.FIRSTNAME"
@@ -38,19 +42,19 @@
             </mat-button-toggle>
           </mat-button-toggle-group>
           <mat-button-toggle-group #group="matButtonToggleGroup" class="btn-group" [(ngModel)]="ACCOUNT.BLOCK">
-              <mat-button-toggle value="-1" disabled>
-                Block messages
-                <!-- <mat-icon>translate</mat-icon> -->
-              </mat-button-toggle>
-              <mat-button-toggle [value]="false" (click)="setAccountBlock(false)">
-                <!-- (click)="setAccountBlock(true)" -->
-                No
-              </mat-button-toggle>
-              <mat-button-toggle [value]="true">
-                <!-- (click)="setAccountBlock(false)" -->
-                Yes
-              </mat-button-toggle>
-            </mat-button-toggle-group>
+            <mat-button-toggle value="-1" disabled>
+              Block messages
+              <!-- <mat-icon>translate</mat-icon> -->
+            </mat-button-toggle>
+            <mat-button-toggle [value]="false" (click)="setAccountBlock(false)">
+              <!-- (click)="setAccountBlock(true)" -->
+              No
+            </mat-button-toggle>
+            <mat-button-toggle [value]="true">
+              <!-- (click)="setAccountBlock(false)" -->
+              Yes
+            </mat-button-toggle>
+          </mat-button-toggle-group>
           <mat-form-field class="genericBlackFormField">
             <textarea matInput [placeholder]="'status message'" rows="7" name="biography" [(ngModel)]="ACCOUNT.DESCRIPTION"></textarea>
           </mat-form-field>
@@ -63,8 +67,16 @@
     </div>
   </div>
   <div class="account-bottom" fxLayout="row">
-    <div class="tile" fxFlex>
-      <p>bot</p>
+    <div class="tile" fxFlex fxLayout="row">
+      <!-- <div fxFlex>
+        <mat-accordion style="overflow-y:scroll" *ngFor="let exchange of EXCHANGES">
+
+        </mat-accordion>
+      </div>
+      -->
+      <div fxFlex>
+        <p>- WIP -</p>
+      </div>
     </div>
   </div>
 </div>

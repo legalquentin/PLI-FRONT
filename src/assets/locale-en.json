@@ -20,13 +20,21 @@
 
   "MENU_LEFT.DASHBOARD": "Dashboard",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",
+  "MENU_LEFT.FUNDS": "Funds",
   "MENU_LEFT.SETTINGS": "Settings",
+  "MENU_LEFT.TRANSACTION": "Transaction",
 
   "MENU_TOP.TITLE": "",
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Exchange Selector",
   "MENU_TOP.SELECTOR.NOT_SET": "No existing profile",
-  "MENU_TOP.SELECTOR.TOOLTIP": "Add a new api key in 'Settings'",
+  "MENU_TOP.SELECTOR.TOOLTIP": "Add a new api key in 'Accounts'",
   "MENU_TOP.SELECTOR.SELECT_ALL": "Global",
+  "MENU_TOP.RIGHT.ACCOUNT": "Profile",
+  "MENU_TOP.RIGHT.EXCHANGES": "Accounts",
+  "MENU_TOP.RIGHT.LOG_OUT": "Log out",
+
+  "MESSAGE.EMPTY.HEADER": "No account initialized yet",
+  "MESSAGE.EMPTY.BODY": "You can set your API keys in <a id=\"navigate\">'Accounts'</a>",
 
   "ACCOUNT.INPUT.LOGIN": "Login",
   "ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP": "Contact an admin to change this setting",
@@ -35,5 +43,7 @@
   "ACCOUNT.INPUT.FIRSTNAME": "Firstname",
   "ACCOUNT.INPUT.LASTNAME": "Lastname",
   "ACCOUNT.INPUT": "",
-  "ACCOUNT.ERROR": "nothing"
+  "ACCOUNT.ERROR": "nothing",
+
+  "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading"
 }

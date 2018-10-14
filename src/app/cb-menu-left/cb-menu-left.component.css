@@ -9,11 +9,13 @@
 }
 
 .mat-nav-list .mat-list-item:hover {
-  border-left: 3px solid rgb(12, 165, 12);
+  /* border-left: 3px solid rgb(12, 165, 12); */
+  background-color: var(--primary-color-light);
 }
 
 .active {
-  border-left: 3px solid rgb(12, 165, 12) !important;
+  /* border-left: 3px solid rgb(12, 165, 12) !important; */
+  background-color: var(--primary-color);
 }
 
 mat-icon {

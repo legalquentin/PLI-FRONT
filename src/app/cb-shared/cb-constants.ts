@@ -38,6 +38,15 @@ export class CbConstants {
     LIST_PROVIDERS: {
       PATH: '/provider',
       METHOD: 'GET'
+    },
+    ADD_PROVIDERS: {
+      PATH: '/provider',
+      METHOD: 'POST'
+    },
+    // EXCHANGES ACCOUNT
+    GET_CURRENCIES: {
+      PATH: '/account-currency',
+      METHOD: 'GET'
     }
   };
 }

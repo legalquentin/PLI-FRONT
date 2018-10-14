@@ -1,0 +1,35 @@
+<div class="accounts-wrapper">
+  <div class="accounts-top" fxLayout="column">
+    <div class="tile" fxFlex>
+      <h4 class="disclaimer">{{ 'EXCHANGES.DISCLAIMER' | translate: lang }}</h4>
+    </div>
+    <div class="tile" fxLayout="row">
+      <div>
+        <h3 class="title">Add an account</h3>
+        <mat-accordion>
+          <mat-expansion-panel *ngFor="let exchange of EXCHANGES">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{ exchange.name }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div fxLayout="column">
+              <mat-form-field class="genericBlackFormField">
+                <input matInput [(ngModel)]="publicKey" placeholder="Public key" value="">
+              </mat-form-field>
+              <mat-form-field class="genericBlackFormField">
+                <input matInput [(ngModel)]="privateKey" type="password" placeholder="Private key" value="">
+              </mat-form-field>
+            </div>
+            <mat-action-row>
+              <button mat-flat-button (click)="createAccount(exchange.name)">Save</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      <div>
+        <p>test</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -33,35 +33,39 @@
         <form *ngIf="register" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.REGISTER.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" name="mail" [(ngModel)]="REGISTER.MAIL">
+            <input [disabled]="loading" matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" name="mail" [(ngModel)]="REGISTER.MAIL">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" name="username" [(ngModel)]="REGISTER.LOGIN">
+            <input [disabled]="loading" matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" name="username" [(ngModel)]="REGISTER.LOGIN">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang" name="password" [(ngModel)]="REGISTER.PASSWORD">
+            <input [disabled]="loading" matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang" name="password"
+              [(ngModel)]="REGISTER.PASSWORD">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang"
-            name="repeat-password" [(ngModel)]="REGISTER.REPEAT_PASSWORD">
+            <input [disabled]="loading" matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang" name="repeat-password"
+              [(ngModel)]="REGISTER.REPEAT_PASSWORD">
           </mat-form-field>
-          <button mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' |
+          <button [disabled]="loading" mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' |
             translate:lang
             }}
           </button>
+          <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         </form>
         <!-- LOGIN FORM -->
-        <form *ngIf="!register" [@fade]="_CbEventService.ANIMATIONS.language.state" fxLayout="column">
+        <form id="login" method="post" *ngIf="!register" [@fade]="_CbEventService.ANIMATIONS.language.state" fxLayout="column">
           <h2 class="form-header">{{ 'CONNECTION.LOGIN.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [(ngModel)]="LOGIN.IDENTIFIER" name="username" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">
+            <input matInput [(ngModel)]="LOGIN.IDENTIFIER" [disabled]="loading" name="email" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [(ngModel)]="LOGIN.PASSWORD" name="password" [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
+            <input matInput type="password" [(ngModel)]="LOGIN.PASSWORD" [disabled]="loading" name="password" [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
           </mat-form-field>
-          <button mat-raised-button class="form-btn" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' | translate:lang
+          <button mat-raised-button type="submit" class="form-btn" [disabled]="loading" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' |
+            translate:lang
             }}</button>
-          </form>
+          <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+        </form>
         <div *ngIf="ERROR_MESSAGE !== ''" class="errorMsg">
           {{ ERROR_MESSAGE }}
         </div>

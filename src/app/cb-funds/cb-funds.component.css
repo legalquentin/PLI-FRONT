@@ -1,0 +1,11 @@
+.funds-wrapper {
+  margin: 10px;
+}
+
+.tile {
+  margin: 10px;
+  margin-right: 15px;
+  background-color: rgb(238, 238, 238);
+  /* padding: top right bottom left; */
+  padding: 0 20px 20px 20px;
+}
