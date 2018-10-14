@@ -15,9 +15,6 @@ import {
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppMaterialModule } from './app-material.module';
-// SERVICES
-
-// COMPONENTS
 import { CbCryptobo4rdComponent } from './cb-cryptobo4rd/cb-cryptobo4rd.component';
 import { CbDashboardComponent } from './cb-dashboard/cb-dashboard.component';
 import { CbMenuLeftComponent } from './cb-menu-left/cb-menu-left.component';
@@ -25,9 +22,7 @@ import { CbMenuTopComponent } from './cb-menu-top/cb-menu-top.component';
 import { CbConnectionComponent } from './cb-connection/cb-connection.component';
 import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
-// KPIS
 import { CbKpi1Component } from './cb-shared/cb-kpis/cb-kpi-1/cb-kpi-1.component';
-// WIDGETS
 import { CbWidgetContainerComponent } from './cb-shared/cb-widgets/cb-widget-container/cb-widget-container.component';
 import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/cb-widget-table.component';
 import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
@@ -37,6 +32,11 @@ import { CbAccountComponent } from './cb-account/cb-account.component';
 import { CbDataTableComponent } from './cb-data-table/cb-data-table.component';
 import { CbCryptowatchComponent } from './cb-shared/cb-cryptowatch/cb-cryptowatch.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CbFundsComponent } from './cb-funds/cb-funds.component';
+import { CbTransactionComponent } from './cb-transaction/cb-transaction.component';
+import { CbMessageTemplateComponent } from './cb-message-template/cb-message-template.component';
+import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
+import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -78,7 +78,12 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbWidgetLineChartComponent,
     CbAccountComponent,
     CbDataTableComponent,
-    CbCryptowatchComponent
+    CbCryptowatchComponent,
+    CbFundsComponent,
+    CbTransactionComponent,
+    CbMessageTemplateComponent,
+    CbSafeHtml,
+    CbExchangeAccountsComponent
   ],
   imports: [
     BrowserModule,

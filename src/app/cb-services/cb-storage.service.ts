@@ -23,8 +23,10 @@ export class CbStorageService {
     callback();
   }
 
-  updateSessionData(userObject: any): void {
+  updateSessionData(userObject: any, callback): void {
+    this.session = userObject;
     sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(userObject));
+    callback();
   }
 
   clearSession(): void {
@@ -34,6 +36,11 @@ export class CbStorageService {
 
   isAuthenticated(): boolean {
     return (this.getSessionToken() !== '');
+  }
+
+  updateSessionUserData(user) {
+    this.session['USER'] = Object.assign(this.session['USER'], user);
+    this.updateSessionData(this.session, () => {});
   }
 
   getUserEmail(): string {

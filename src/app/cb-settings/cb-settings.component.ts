@@ -4,6 +4,8 @@ import { TranslationService, LocaleService, Language } from 'angular-l10n';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbEventService } from '../cb-services/cb-event.service';
 import { doAnimation } from '../cb-shared/cb-animations';
+import { CbLocaleService } from '../cb-services/cb-locale.service';
+import { CbConstants } from '../cb-shared/cb-constants';
 
 @Component({
   selector: 'app-cb-settings',
@@ -44,21 +46,23 @@ export class CbSettingsComponent implements OnInit {
     private translation: TranslationService,
     private locale: LocaleService,
     private _CbApiService: CbApiService,
-    private _CbEventService: CbEventService
+    private _CbEventService: CbEventService,
+    private _CbLocaleService: CbLocaleService
   ) {}
 
   ngOnInit() {
   }
 
   loadExchangeSettings(): void {
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS).subscribe(result => {
+      this.EXCHANGES = result;
+      console.log('LIST_PROVIDERS SUCCESS', result);
+    }, error => {
+      console.log('LIST_PROVIDERS ERROR', error);
+    });
   }
 
   selectLocale(language: string, country: string, currency: string) {
-    this._CbEventService.broadcast('language');
-    doAnimation(300, this._CbEventService.ANIMATIONS.language, () => {
-      this.locale.setCurrentLanguage(language);
-      this.locale.setDefaultLocale(language, country);
-      this.locale.setCurrentCurrency(currency);
-    });
+    this._CbLocaleService.selectLocale(language, country, currency, true);
   }
 }

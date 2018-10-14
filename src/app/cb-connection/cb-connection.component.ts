@@ -6,6 +6,7 @@ import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
+import { CbLocaleService } from '../cb-services/cb-locale.service';
 
 @Component({
   selector: 'app-cb-connection',
@@ -21,6 +22,7 @@ export class CbConnectionComponent implements OnInit {
   public action = false;
   public register: boolean;
   public changeButton: string;
+  public loading = false;
   public anim = {
     language: false,
     login: false
@@ -51,6 +53,7 @@ export class CbConnectionComponent implements OnInit {
     private locale: LocaleService,
     private _CbApiService: CbApiService,
     private _CbStorageService: CbStorageService,
+    private _CbLocaleService: CbLocaleService,
     public _CbEventService: CbEventService
   ) { }
 
@@ -92,6 +95,7 @@ export class CbConnectionComponent implements OnInit {
   }
 
   doRegister() {
+    this.loading = true;
     const PAYLOAD = {
       login: this.REGISTER.LOGIN,
       email: this.REGISTER.MAIL,
@@ -99,6 +103,7 @@ export class CbConnectionComponent implements OnInit {
     };
     if (PAYLOAD.login === '' || PAYLOAD.email === '' || PAYLOAD.password === '') {
       this.displayError('EMPTY_FIELD');
+      this.loading = false;
     } else {
       this._CbApiService.genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD).subscribe(result => {
         console.log('REGISTER_SUCCESS', result);
@@ -108,27 +113,32 @@ export class CbConnectionComponent implements OnInit {
             if (res.data) {
               console.log('PROFILE_SUCCESS', res);
               this.USER_OBJECT.USER = res.data;
-              this._CbStorageService.updateSessionData(this.USER_OBJECT);
-              this.router.navigate(['cryptobo4rd/dashboard']);
+              this._CbStorageService.updateSessionData(this.USER_OBJECT, () => {
+                this.router.navigate(['cryptobo4rd/dashboard']);
+              });
             } else {
               console.log('PROFILE_ERROR', res);
+              this.loading = false;
               this.displayError('invalid response');
               this._CbStorageService.clearSession();
             }
           }, err => {
             console.log('PROFILE_ERROR', err);
+            this.loading = false;
             this.displayError(err.error.message);
             this._CbStorageService.clearSession();
           });
         });
       }, err => {
         console.log('ERROR', err);
+        this.loading = false;
         this.displayError(err.error.message);
       });
     }
   }
 
   doLogin() {
+    this.loading = true;
     const PAYLOAD = {
       login: this.LOGIN.IDENTIFIER,
       password: this.LOGIN.PASSWORD,
@@ -141,21 +151,25 @@ export class CbConnectionComponent implements OnInit {
           if (res.data) {
             console.log('PROFILE_SUCCESS', res);
             this.USER_OBJECT.USER = res.data;
-            this._CbStorageService.updateSessionData(this.USER_OBJECT);
-            this.router.navigate(['cryptobo4rd/dashboard']);
+            this._CbStorageService.updateSessionData(this.USER_OBJECT, () => {
+              this.router.navigate(['cryptobo4rd/dashboard']);
+            });
           } else {
             console.log('PROFILE_ERROR', res);
             this.displayError('invalid response');
+            this.loading = false;
             this._CbStorageService.clearSession();
           }
         }, err => {
           console.log('PROFILE_ERROR', err);
+          this.loading = false;
           this.displayError(err.error.message);
           this._CbStorageService.clearSession();
         });
       });
     }, err => {
       console.log('LOGIN_ERROR', err);
+      this.loading = false;
       this.displayError(err.error.message);
     });
   }

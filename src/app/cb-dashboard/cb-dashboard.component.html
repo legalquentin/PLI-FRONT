@@ -1,31 +1,3 @@
 <div class="wrapper">
-  <div fxLayout="column">
-    <div fxLayout="row">
-      <div class="tile kpi">
-        <!-- left -->
-        <app-cb-kpi-1 [kpi]="configKpi1"></app-cb-kpi-1>
-      </div>
-      <div class="tile kpi">
-        <!-- top left -->
-        <app-cb-kpi-1 [kpi]="configKpi2"></app-cb-kpi-1>
-      </div>
-      <div class="tile kpi">
-        <!-- top right -->
-        <app-cb-kpi-1 [kpi]="configKpi3"></app-cb-kpi-1>
-      </div>
-      <div class="tile kpi">
-        <!-- right -->
-        <app-cb-kpi-1 [kpi]="configKpi4"></app-cb-kpi-1>
-      </div>
-    </div>
-    <div fxLayout="row">
-      <div class="tile widget" fxFlex="grow">
-        <app-cb-cryptowatch [config]="{'exchange': 'bitfinex', 'currency':'btcusd'}" ></app-cb-cryptowatch>
-        <!-- <app-cb-widget-line-chart [widget]="configWidget1"></app-cb-widget-line-chart> -->
-      </div>
-      <div class="tile widget" fxFlex="grow">
-        <app-cb-widget-table [widget]="configWidget2"></app-cb-widget-table>
-      </div>
-    </div>
-  </div>
+  <app-cb-message-template *ngIf="!INIT" [MESSAGE]="EMPTY"></app-cb-message-template>
 </div>

@@ -38,6 +38,11 @@ export class CbConstants {
     LIST_PROVIDERS: {
       PATH: '/provider',
       METHOD: 'GET'
+    },
+    // EXCHANGES ACCOUNT
+    GET_CURRENCIES: {
+      PATH: '/account-currency',
+      METHOD: 'GET'
     }
   };
 }

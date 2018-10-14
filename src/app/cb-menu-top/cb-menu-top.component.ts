@@ -46,4 +46,8 @@ export class CbMenuTopComponent implements OnInit {
   account() {
     this.router.navigate(['/cryptobo4rd/account']);
   }
+
+  exchangeAccounts() {
+    this.router.navigate(['/cryptobo4rd/exchanges']);
+  }
 }

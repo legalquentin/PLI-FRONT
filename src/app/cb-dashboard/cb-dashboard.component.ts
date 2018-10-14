@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 
+declare var $: any;
+
 @Component({
   selector: 'app-cb-dashboard',
   templateUrl: './cb-dashboard.component.html',
@@ -60,11 +62,24 @@ export class CbDashboardComponent implements OnInit {
     bandColor: '#AAAAAA'
   };
 
+  public INIT = false;
+  public EMPTY = {
+    HEADER: '<h3>' + this.translation.translate('MESSAGE.EMPTY.HEADER') + '</h3>',
+    BODY: '<span>' + this.translation.translate('MESSAGE.EMPTY.BODY') + '<span>',
+    FOOTER: ''
+  };
   constructor(
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    $('#navigate').click(this.navigate('exchange'));
+  }
+
+  navigate(path: string) {
+    const destination = '/cryptobo4rd/' + path;
+    this.router.navigate([destination]);
+  }
 }

@@ -40,20 +40,15 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="account()">
         <mat-icon>person</mat-icon>
-        <span>Account</span>
+        <span>{{ 'MENU_TOP.RIGHT.ACCOUNT' | translate: lang }}</span>
       </button>
-      <!-- <mat-button-toggle-group mat-menu-item class="languageGroup">
-        <mat-icon>translate</mat-icon>
-        <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
-          EN
-        </mat-button-toggle>
-        <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
-          FR
-        </mat-button-toggle>
-      </mat-button-toggle-group> -->
+      <button mat-menu-item (click)="exchangeAccounts()">
+        <mat-icon>recent_actors</mat-icon>
+        <span>{{ 'MENU_TOP.RIGHT.EXCHANGES' | translate: lang }}</span>
+      </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>power_settings_new</mat-icon>
-        <span>Log out</span>
+        <span>{{ 'MENU_TOP.RIGHT.LOG_OUT' | translate: lang }}</span>
       </button>
     </mat-menu>
   </div>

@@ -8,6 +8,9 @@ import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
 import { CbAccountComponent } from './cb-account/cb-account.component';
+import { CbFundsComponent } from './cb-funds/cb-funds.component';
+import { CbTransactionComponent } from './cb-transaction/cb-transaction.component';
+import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 
 const routes: Routes = [
   { path: '', component: CbConnectionComponent, canActivate: [CbAuthgardService]},
@@ -17,8 +20,11 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: CbDashboardComponent, data: { page: 'dashboard' }},
       { path: 'cryptobot', component: CbCryptobotComponent, data: { page: 'cryptobot' }},
+      { path: 'funds', component: CbFundsComponent, data: { page: 'funds' }},
+      { path: 'transaction', component: CbTransactionComponent, data: { page: 'transaction' }},
       { path: 'settings', component: CbSettingsComponent, data: { page: 'settings' }},
       { path: 'account', component: CbAccountComponent, data: { page: 'account' }},
+      { path: 'exchanges', component: CbExchangeAccountsComponent, data: { page: 'exchanges' }},
       { path: '**', redirectTo: 'dashboard', pathMatch: 'full'},
     ]
   },

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Language, TranslationService } from 'angular-l10n';
+import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbApiService } from '../cb-services/cb-api.service';
@@ -26,15 +26,16 @@ export class CbAccountComponent implements OnInit {
   public ERROR_MESSAGE = '';
 
   constructor(
+    private localeService: LocaleService,
     private router: Router,
     private translationService: TranslationService,
     private _CbStorageService: CbStorageService,
     private _CbApiService: CbApiService
-  ) { }
-
-  ngOnInit() {
+  ) {
     this.buildAccount();
   }
+
+  ngOnInit() {}
 
   buildAccount(): void {
     this.ACCOUNT.EMAIL = this._CbStorageService.getUserEmail();
@@ -44,6 +45,7 @@ export class CbAccountComponent implements OnInit {
     this.ACCOUNT.BLOCK = this._CbStorageService.getUserBlock();
     this.ACCOUNT.PUBLIC = this._CbStorageService.getUserVisibility();
     this.ACCOUNT.DESCRIPTION = this._CbStorageService.getUserStatusMessage();
+    console.log('[this.ACCOUNT]', this.ACCOUNT);
   }
 
   setAccountVisibility(value: number): void {
@@ -61,9 +63,10 @@ export class CbAccountComponent implements OnInit {
   save(): void {
     this.validatePayload((err, payload) => {
       if (err !== null) {
-
+        console.error('invalid payload');
       } else {
         this._CbApiService.genericRequest(CbConstants.REQUESTS.UPDATE_PROFILE, payload).subscribe(result => {
+          this._CbStorageService.updateSessionUserData(payload);
           console.log('UPDATE_PROFILE SUCCESS', result);
         }, error => {
           console.log('UPDATE_PROFILE ERROR', error);
@@ -75,7 +78,25 @@ export class CbAccountComponent implements OnInit {
   validatePayload(callback) {
     try {
       const payload = {
-
+        // id: 0,
+        lastname: this.ACCOUNT.LASTNAME,
+        firstname: this.ACCOUNT.FIRSTNAME,
+        public: this.ACCOUNT.PUBLIC,
+        statusMessage: this.ACCOUNT.DESCRIPTION,
+        avatarUrl: '',
+        // online: 0,
+        blockMessages: this.ACCOUNT.BLOCK,
+        region: {
+          // id: 0,
+          keyLang: this.localeService.getCurrentLocale(),
+          devise: this.localeService.getCurrentCurrency(),
+          country: this.localeService.getCurrentCountry()
+        },
+        // settings: {
+        //   id: 0,
+        //   rememberMe: 0,
+        //   newsletter: 0
+        // }
       };
       callback(null, payload);
     } catch (e) {
