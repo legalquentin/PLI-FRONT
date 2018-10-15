@@ -3,17 +3,17 @@
     <span>{{ 'APP_NAME'| translate: lang }}</span>
   </div>
   <div class="middle-left-nav" fxFlex>
-    <mat-form-field class="genericWhiteFormField exchangeSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
-      <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="exchanges.length === 0"
-        [(value)]="selectedExchange" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}"
-        [matTooltipDisabled]="exchanges.length !== 0">
-        <mat-option *ngFor="let exchange of exchanges" [value]="exchange.key">
-          {{ exchange.label }}
+    <mat-form-field class="genericWhiteFormField accountSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
+      <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="ACCOUNTS.length === 0"
+        [value]="selectedAccount" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}"
+        [matTooltipDisabled]="ACCOUNTS.length !== 0">
+        <mat-option *ngFor="let account of ACCOUNTS" [value]="account">
+          {{ account.EXCHANGE }}
         </mat-option>
-        <mat-option *ngIf="exchanges.length > 1" [value]="selectGlobal">
+        <mat-option *ngIf="ACCOUNTS.length > 1" [value]="selectGlobal">
           {{ 'MENU_TOP.SELECTOR.SELECT_ALL' | translate: lang }}
         </mat-option>
-        <mat-option *ngIf="exchanges.length === 0" [value]="selectNone">
+        <mat-option *ngIf="ACCOUNTS.length === 0" [value]="selectNone">
           {{ 'MENU_TOP.SELECTOR.NOT_SET' | translate: lang }}
         </mat-option>
       </mat-select>

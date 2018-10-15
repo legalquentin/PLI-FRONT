@@ -43,6 +43,11 @@ export class CbStorageService {
     this.updateSessionData(this.session, () => {});
   }
 
+  updateSessionAccountsData(ACCOUNTS: any[]): any {
+    this.session['ACCOUNTS'] = ACCOUNTS;
+    this.updateSessionData(this.session, () => {});
+  }
+
   firstConnection(): any {
     if (this.session['FIRST']) {
       this.session['FIRST'] = false;
@@ -52,6 +57,8 @@ export class CbStorageService {
     }
     return false;
   }
+
+  // USER METHODS
 
   getUserEmail(): string {
     let email = '';
@@ -107,6 +114,16 @@ export class CbStorageService {
       statusMessage = this.session['USER']['statusMessage'];
     }
     return statusMessage;
+  }
+
+  // ACCOUNTS METHODS
+
+  getAccounts(): any[] {
+    let accounts = [];
+    if (this.session && this.session['ACCOUNTS']) {
+      accounts = this.session['ACCOUNTS'];
+    }
+    return accounts;
   }
 
   getSessionToken(): string {

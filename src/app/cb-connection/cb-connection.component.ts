@@ -19,12 +19,11 @@ interface REGISTER {
   selector: 'app-cb-connection',
   templateUrl: './cb-connection.component.html',
   styleUrls: ['./cb-connection.component.css'],
-  animations: [
-    fadeAnimation(300)
-  ]
+  animations: [fadeAnimation(300)]
 })
 export class CbConnectionComponent implements OnInit {
-  @Language() lang: string;
+  @Language()
+  lang: string;
 
   public action = false;
   public register: boolean;
@@ -35,7 +34,12 @@ export class CbConnectionComponent implements OnInit {
     login: false
   };
 
-  public REGISTER: REGISTER;
+  public REGISTER = {
+    LOGIN: '',
+    MAIL: '',
+    PASSWORD: '',
+    REPEAT_PASSWORD: ''
+  };
 
   public LOGIN = {
     IDENTIFIER: '',
@@ -47,7 +51,8 @@ export class CbConnectionComponent implements OnInit {
   private USER_OBJECT = {
     USER: {},
     SESSION_TOKEN: '',
-    FIRST: false
+    FIRST: false,
+    ACCOUNTS: []
   };
 
   constructor(
@@ -58,11 +63,13 @@ export class CbConnectionComponent implements OnInit {
     private _CbStorageService: CbStorageService,
     private _CbLocaleService: CbLocaleService,
     public _CbEventService: CbEventService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.register = false;
-    this.changeButton = this.translation.translate('CONNECTION.REGISTER.BUTTON');
+    this.changeButton = this.translation.translate(
+      'CONNECTION.REGISTER.BUTTON'
+    );
   }
 
   selectLocale(language: string, country: string, currency: string): void {
@@ -92,7 +99,7 @@ export class CbConnectionComponent implements OnInit {
       this.anim.login = false;
       this.register = !this.register;
       this.changeButton = this.translation.translate(
-        (this.register) ? 'CONNECTION.LOGIN.BUTTON' : 'CONNECTION.REGISTER.BUTTON'
+        this.register ? 'CONNECTION.LOGIN.BUTTON' : 'CONNECTION.REGISTER.BUTTON'
       );
     });
   }
@@ -104,40 +111,57 @@ export class CbConnectionComponent implements OnInit {
       email: this.REGISTER.MAIL,
       password: this.REGISTER.PASSWORD
     };
-    if (PAYLOAD.login === '' || PAYLOAD.email === '' || PAYLOAD.password === '') {
+    if (
+      PAYLOAD.login === '' ||
+      PAYLOAD.email === '' ||
+      PAYLOAD.password === ''
+    ) {
       this.displayError('EMPTY_FIELD');
       this.loading = false;
     } else {
-      this._CbApiService.genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD).subscribe(result => {
-        console.log('REGISTER_SUCCESS', result);
-        this.USER_OBJECT.SESSION_TOKEN = result.data.token;
-        this._CbStorageService.createSession(this.USER_OBJECT, () => {
-          this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_PROFILE).subscribe(res => {
-            if (res.data) {
-              console.log('PROFILE_SUCCESS', res);
-              this.USER_OBJECT.USER = res.data;
-              this.USER_OBJECT.FIRST = true;
-              this._CbStorageService.updateSessionData(this.USER_OBJECT, () => {
-                this.router.navigate(['cryptobo4rd/dashboard']);
-              });
-            } else {
-              console.log('PROFILE_ERROR', res);
-              this.loading = false;
-              this.displayError('invalid response');
-              this._CbStorageService.clearSession();
-            }
-          }, err => {
-            console.log('PROFILE_ERROR', err);
+      this._CbApiService
+        .genericRequest(CbConstants.REQUESTS.REGISTER, PAYLOAD)
+        .subscribe(
+          result => {
+            console.log('REGISTER_SUCCESS', result);
+            this.USER_OBJECT.SESSION_TOKEN = result.data.token;
+            this._CbStorageService.createSession(this.USER_OBJECT, () => {
+              this._CbApiService
+                .genericRequest(CbConstants.REQUESTS.GET_PROFILE)
+                .subscribe(
+                  res => {
+                    if (res.data) {
+                      console.log('PROFILE_SUCCESS', res);
+                      this.USER_OBJECT.USER = res.data;
+                      this.USER_OBJECT.FIRST = true;
+                      this._CbStorageService.updateSessionData(
+                        this.USER_OBJECT,
+                        () => {
+                          this.router.navigate(['cryptobo4rd/dashboard']);
+                        }
+                      );
+                    } else {
+                      console.log('PROFILE_ERROR', res);
+                      this.loading = false;
+                      this.displayError('invalid response');
+                      this._CbStorageService.clearSession();
+                    }
+                  },
+                  err => {
+                    console.log('PROFILE_ERROR', err);
+                    this.loading = false;
+                    this.displayError(err.error.message);
+                    this._CbStorageService.clearSession();
+                  }
+                );
+            });
+          },
+          err => {
+            console.log('ERROR', err);
             this.loading = false;
             this.displayError(err.error.message);
-            this._CbStorageService.clearSession();
-          });
-        });
-      }, err => {
-        console.log('ERROR', err);
-        this.loading = false;
-        this.displayError(err.error.message);
-      });
+          }
+        );
     }
   }
 
@@ -145,41 +169,76 @@ export class CbConnectionComponent implements OnInit {
     this.loading = true;
     const PAYLOAD = {
       login: this.LOGIN.IDENTIFIER,
-      password: this.LOGIN.PASSWORD,
+      password: this.LOGIN.PASSWORD
     };
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.LOGIN, PAYLOAD).subscribe(result => {
-      console.log('LOGIN_SUCCESS', result);
-      this.USER_OBJECT.SESSION_TOKEN = result.data.token;
-      this._CbStorageService.createSession(this.USER_OBJECT, () => {
-        this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_PROFILE).subscribe(res => {
-          if (res.data) {
-            console.log('PROFILE_SUCCESS', res);
-            this.USER_OBJECT.USER = res.data;
-            this._CbStorageService.updateSessionData(this.USER_OBJECT, () => {
-              this.router.navigate(['cryptobo4rd/dashboard']);
-            });
-          } else {
-            console.log('PROFILE_ERROR', res);
-            this.displayError('invalid response');
-            this.loading = false;
-            this._CbStorageService.clearSession();
-          }
-        }, err => {
-          console.log('PROFILE_ERROR', err);
+    this._CbApiService
+      .genericRequest(CbConstants.REQUESTS.LOGIN, PAYLOAD)
+      .subscribe(
+        result => {
+          console.log('LOGIN_SUCCESS', result);
+          this.USER_OBJECT.SESSION_TOKEN = result.data.token;
+          this._CbStorageService.createSession(this.USER_OBJECT, () => {
+            this._CbApiService
+              .genericRequest(CbConstants.REQUESTS.GET_PROFILE)
+              .subscribe(
+                res => {
+                  if (res.data) {
+                    console.log('PROFILE_SUCCESS', res);
+                    this.USER_OBJECT.USER = res.data;
+                    this._CbApiService
+                      .genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS)
+                      .subscribe(
+                        reslt => {
+                          console.log('LIST_PROVIDERS SUCCESS', reslt);
+                          const accounts = [];
+                          for (const exchange of reslt.data) {
+                            if (typeof exchange.value === 'string') {
+                              accounts.push({ EXCHANGE: exchange.name });
+                            }
+                          }
+                          this.USER_OBJECT.ACCOUNTS = accounts;
+                          this._CbStorageService.updateSessionData(
+                            this.USER_OBJECT,
+                            () => {
+                              this.router.navigate(['cryptobo4rd/dashboard']);
+                            }
+                          );
+                        },
+                        error => {
+                          console.error('Failed to LIST_PROVIDERS', error);
+                          this.displayError('invalid response');
+                          this.loading = false;
+                          this._CbStorageService.clearSession();
+                        }
+                      );
+                  } else {
+                    console.log('PROFILE_ERROR', res);
+                    this.displayError('invalid response');
+                    this.loading = false;
+                    this._CbStorageService.clearSession();
+                  }
+                },
+                err => {
+                  console.log('PROFILE_ERROR', err);
+                  this.loading = false;
+                  this.displayError(err.error.message);
+                  this._CbStorageService.clearSession();
+                }
+              );
+          });
+        },
+        err => {
+          console.log('LOGIN_ERROR', err);
           this.loading = false;
           this.displayError(err.error.message);
-          this._CbStorageService.clearSession();
-        });
-      });
-    }, err => {
-      console.log('LOGIN_ERROR', err);
-      this.loading = false;
-      this.displayError(err.error.message);
-    });
+        }
+      );
   }
 
   displayError(message) {
-    this.ERROR_MESSAGE = this.translation.translate('CONNECTION.ERROR.' + message);
+    this.ERROR_MESSAGE = this.translation.translate(
+      'CONNECTION.ERROR.' + message
+    );
     setTimeout(() => {
       this.ERROR_MESSAGE = '';
     }, 2000);

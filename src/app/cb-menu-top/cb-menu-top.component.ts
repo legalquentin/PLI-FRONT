@@ -18,8 +18,8 @@ export class CbMenuTopComponent implements OnInit {
   @Language() lang: string;
 
   public selectLang: boolean;
-  public exchanges = [];
-  public selectedExchange: any;
+  public ACCOUNTS = [];
+  public selectedAccount: any;
   public selectGlobal = 0;
   public selectNone = -1;
 
@@ -31,11 +31,12 @@ export class CbMenuTopComponent implements OnInit {
     public _CbEventService: CbEventService
   ) {
     this.selectLang = false;
-    this.selectedExchange = this.selectNone;
+    this.selectedAccount = this.selectNone;
   }
 
   ngOnInit() {
     console.log(this.lang);
+    this.getAccounts();
   }
 
   logout() {
@@ -49,5 +50,13 @@ export class CbMenuTopComponent implements OnInit {
 
   exchangeAccounts() {
     this.router.navigate(['/cryptobo4rd/exchanges']);
+  }
+
+  getAccounts() {
+    this.ACCOUNTS = this._CbStorageService.getAccounts();
+    console.log(this.ACCOUNTS);
+    if (this.ACCOUNTS.length === 1) {
+      this.selectedAccount = this.ACCOUNTS[0];
+    }
   }
 }
