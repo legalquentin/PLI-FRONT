@@ -7,7 +7,7 @@
       <div class="tile" fxFlex>
         <h3 class="title">{{ 'EXCHANGES.ADD.TITLE' | translate: lang }}</h3>
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let exchange of EXCHANGES">
+          <mat-expansion-panel *ngFor="let exchange of EXCHANGES" [expanded]="exchange.name === 'KRAKEN'">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 {{ exchange.name }}
