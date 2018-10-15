@@ -1,3 +1,22 @@
-<p>
-  cb-transaction works!
-</p>
+<div class="transaction-wrapper" fxLayout="column">
+  <div class="tile" fxFlex="grow">
+    <h3>- WIP -</h3>
+  </div>
+  <div class="tile" fxFlex="grow">
+    <form fxLayout="column">
+      <mat-form-field class="genericBlackFormField">
+        <input matInput [placeholder]="'Buy'" name="BUY">
+      </mat-form-field>
+      <mat-form-field class="genericBlackFormField">
+        <input matInput [placeholder]="'Sell'" name="SELL">
+      </mat-form-field>
+      <mat-form-field class="genericBlackFormField">
+        <input matInput [placeholder]="'Amount'" name="AMOUNT">
+      </mat-form-field>
+      <div>
+        <button class="cancel-button" mat-flat-button>Cancel</button>
+        <button class="save-button" mat-flat-button>Proceed</button>
+      </div>
+  </form>
+  </div>
+</div>

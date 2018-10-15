@@ -29,7 +29,7 @@
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Selecteur de compte",
   "MENU_TOP.SELECTOR.NOT_SET": "Aucun compte existant",
   "MENU_TOP.SELECTOR.TOOLTIP": "Ajoutez une nouvelle clée d'api dans 'Comptes'",
-  "MENU_TOP.SELECTOR.SELECT_ALL": "Globale",
+  "MENU_TOP.SELECTOR.SELECT_ALL": "GLOBALE",
   "MENU_TOP.RIGHT.ACCOUNT": "Profil",
   "MENU_TOP.RIGHT.EXCHANGES": "Comptes",
   "MENU_TOP.RIGHT.LOG_OUT": "Quitter",

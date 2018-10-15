@@ -46,8 +46,7 @@ export class CbExchangeAccountsComponent implements OnInit {
       this.ACCOUNTS.columns.push({KEY: 'DELETE', VIEW: this.iconButtonTemplate });
       for (const exchange of this.EXCHANGES) {
         if (typeof exchange.value === 'string') {
-          this.ACCOUNTS.data.push({EXCHANGE: exchange.name, SLIDER: true, DATE: '08/08/2018', DELETE: null});
-          this.ACCOUNTS.data.push({EXCHANGE: 'BITREX', SLIDER: false, DATE: '11/22/2017', DELETE: null});
+          this.ACCOUNTS.data.push({EXCHANGE: exchange.name, SLIDER: true, DATE: '15/10/2018', DELETE: null});
         }
       }
       this.LOADED = true;

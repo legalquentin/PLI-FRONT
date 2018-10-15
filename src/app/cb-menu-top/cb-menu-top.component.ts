@@ -57,6 +57,8 @@ export class CbMenuTopComponent implements OnInit {
     console.log(this.ACCOUNTS);
     if (this.ACCOUNTS.length === 1) {
       this.selectedAccount = this.ACCOUNTS[0];
+    } else if (this.ACCOUNTS.length > 1) {
+      this.selectedAccount = this.selectGlobal;
     }
   }
 }

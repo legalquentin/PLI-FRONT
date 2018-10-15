@@ -1,0 +1,27 @@
+.transaction-wrapper {
+  margin: 10px;
+}
+
+.tile {
+  margin: 10px;
+  margin-right: 15px;
+  background-color: rgb(238, 238, 238);
+  /* padding: top right bottom left; */
+  padding: 0 20px 20px 20px;
+}
+
+h3 {
+  margin-bottom: 0px;
+  color: var(--primary-color);
+  font-weight: lighter;
+}
+
+.cancel-button {
+  color: white;
+  background-color: var(--back-color);
+}
+
+.save-button {
+  color: white;
+  background-color: var(--primary-color);
+}

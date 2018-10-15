@@ -33,7 +33,7 @@ export class CbFundsComponent implements OnInit {
       this.PROVIDERS = JSON.stringify(result);
       console.log('LIST_PROVIDERS SUCCESS', result);
     }, error => {
-      console.log('LIST_PROVIDERS  ERROR', error);
+      console.log('LIST_PROVIDERS ERROR', error);
     });
   }
 
