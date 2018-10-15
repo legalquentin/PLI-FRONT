@@ -4,9 +4,11 @@ import { Router } from '@angular/router';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { MatDialog } from '@angular/material';
 import { CbKeysModalComponent } from '../cb-modals/cb-keys-modal/cb-keys-modal.component';
-
+import { CbApiService } from '../cb-services/cb-api.service';
+import { CbConstants } from '../cb-shared/cb-constants';
+// import { cryptowatch } from '../../../node_modules/cryptowatch-embed/src/main.js'
+import CryptowatchEmbed from 'cryptowatch-embed';
 declare var $: any;
-
 @Component({
   selector: 'app-cb-dashboard',
   templateUrl: './cb-dashboard.component.html',
@@ -15,6 +17,9 @@ declare var $: any;
 export class CbDashboardComponent implements OnInit {
   @Language() lang: string;
 
+  public chart: any;
+  public kpiData = [];
+  public ready = false;
   public configWidget1 = {
     name: '100 Latest trades ETH-USDT',
     key: 'ETHUSDT',
@@ -65,7 +70,8 @@ export class CbDashboardComponent implements OnInit {
     bandColor: '#AAAAAA'
   };
 
-  public INIT = false;
+  public ACCOUNT = [];
+  public NO_EXCHANGE = true;
   public EMPTY = {
     HEADER: '<h3>' + this.translation.translate('MESSAGE.EMPTY.HEADER') + '</h3>',
     BODY: '<span>' + this.translation.translate('MESSAGE.EMPTY.BODY') + '<span>',
@@ -76,12 +82,38 @@ export class CbDashboardComponent implements OnInit {
     private translation: TranslationService,
     private locale: LocaleService,
     private dialog: MatDialog,
-    private _CbStorageService: CbStorageService
+    private _CbStorageService: CbStorageService,
+    private _CbApiService: CbApiService
   ) {}
 
   ngOnInit() {
     $('#navigate').click(this.navigate('exchange'));
     this.firstConnection();
+    this.ACCOUNT = this._CbStorageService.getAccounts();
+    if (this.ACCOUNT.length > 0) {
+      this.NO_EXCHANGE = false;
+      this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES, ['BINANCE']).subscribe(result => {
+        // kpi
+        console.log('GET_CURRENCIES SUCCESS', result);
+        this.kpiData = result.data;
+        this.ready = true;
+        this.chart = new CryptowatchEmbed('bitfinex', 'btcusd', {
+          timePeriod: '1d',
+          width: 650,
+          presetColorScheme: 'delek'
+        });
+        this.chart.mount('#chart-container');
+        // const chart2 = new CryptowatchEmbed('bitfinex', 'btceth', {
+        //   timePeriod: '1d',
+        //   width: 650,
+        //   presetColorScheme: 'delek'
+        // });
+        // chart2.mount('#chart-container-2');
+
+      }, error => {
+        console.log('GET_CURRENCIES ERROR', error);
+      });
+    }
   }
 
   navigate(path: string) {
@@ -90,7 +122,7 @@ export class CbDashboardComponent implements OnInit {
   }
 
   firstConnection() {
-    if (!this._CbStorageService.firstConnection()) {
+    if (this._CbStorageService.firstConnection()) {
       setTimeout(() => {
         const dialogRef = this.dialog.open(CbKeysModalComponent, {
           width: '600px',

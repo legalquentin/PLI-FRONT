@@ -34,8 +34,12 @@ export class CbKpi1Component implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.bandColor = this.kpi.bandColor;
-    this.data[0] = this.kpi.data;
+    // this.bandColor = this.kpi.bandColor;
+    // this.data[0] = this.kpi.data;
+    this.data[0] = {
+      name: this.kpi.currency,
+      value: this.kpi.free
+    };
   }
 
   onSelect(event) {

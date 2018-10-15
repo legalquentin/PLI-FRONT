@@ -22,6 +22,7 @@ export class CbMenuTopComponent implements OnInit {
   public selectedAccount: any;
   public selectGlobal = 0;
   public selectNone = -1;
+  public userEmail = '';
 
   constructor(
     private router: Router,
@@ -37,6 +38,7 @@ export class CbMenuTopComponent implements OnInit {
   ngOnInit() {
     console.log(this.lang);
     this.getAccounts();
+    this.userEmail = this._CbStorageService.getUserEmail();
   }
 
   logout() {
