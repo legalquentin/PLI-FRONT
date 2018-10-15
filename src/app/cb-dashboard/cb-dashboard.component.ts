@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
+import { CbStorageService } from '../cb-services/cb-storage.service';
+import { MatDialog } from '@angular/material';
+import { CbKeysModalComponent } from '../cb-modals/cb-keys-modal/cb-keys-modal.component';
 
 declare var $: any;
 
@@ -71,15 +74,35 @@ export class CbDashboardComponent implements OnInit {
   constructor(
     private router: Router,
     private translation: TranslationService,
-    private locale: LocaleService
+    private locale: LocaleService,
+    private dialog: MatDialog,
+    private _CbStorageService: CbStorageService
   ) {}
 
   ngOnInit() {
     $('#navigate').click(this.navigate('exchange'));
+    this.firstConnection();
   }
 
   navigate(path: string) {
     const destination = '/cryptobo4rd/' + path;
     this.router.navigate([destination]);
+  }
+
+  firstConnection() {
+    if (!this._CbStorageService.firstConnection()) {
+      setTimeout(() => {
+        const dialogRef = this.dialog.open(CbKeysModalComponent, {
+          width: '600px',
+          height: '400px',
+          panelClass: 'keyDialogContainer',
+          disableClose: true,
+          data: {name: this._CbStorageService.getUserEmail()}
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed', result);
+        });
+      });
+    }
   }
 }

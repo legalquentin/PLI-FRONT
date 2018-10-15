@@ -9,7 +9,5 @@ export class CbCryptobo4rdComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

@@ -46,5 +46,16 @@
   "ACCOUNT.INPUT": "",
   "ACCOUNT.ERROR": "nothing",
 
-  "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading"
+  "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading",
+  "EXCHANGES.ADD.TITLE": "Ajouter un compte",
+  "EXCHANGES.EDIT.TITLE": "Vos comptes",
+
+  "GRID.HEADER.EXCHANGE": "Plateforme",
+  "GRID.HEADER.SLIDER": "Etat",
+  "GRID.HEADER.DELETE": "Supprimer",
+  "GRID.HEADER.DATE": "Date d'ajout",
+
+  "MODAL.KEYS.TITLE": "Bienvenue sur Cryptobo4rd !",
+  "MODAL.KEYS.GREETINGS": "Pour commencer à visualiser vos données et pouvoir effectuer des opérations, il vous faut rentrer au moins une clé d'API d'une plateforme d'exchange",
+  "MODAL.KEYS.GREETINGS_TUTORIAL": "# Court tutoriel sur comment proceder #"
 }

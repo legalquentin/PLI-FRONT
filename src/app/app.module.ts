@@ -37,6 +37,8 @@ import { CbTransactionComponent } from './cb-transaction/cb-transaction.componen
 import { CbMessageTemplateComponent } from './cb-message-template/cb-message-template.component';
 import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
+import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
+import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -83,7 +85,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbTransactionComponent,
     CbMessageTemplateComponent,
     CbSafeHtml,
-    CbExchangeAccountsComponent
+    CbExchangeAccountsComponent,
+    CbKeysModalComponent
   ],
   imports: [
     BrowserModule,
@@ -103,8 +106,15 @@ export function initL10n(l10nLoader: L10nLoader): Function {
       deps: [L10nLoader],
       multi: true
     },
+    {
+      provide: MAT_DIALOG_DEFAULT_OPTIONS,
+      useValue: {hasBackdrop: true}
+    },
     CbAuthgardService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    CbKeysModalComponent
+  ]
 })
 export class AppModule { }

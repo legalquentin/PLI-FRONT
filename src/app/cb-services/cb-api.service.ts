@@ -4,11 +4,13 @@ import {
   HttpHeaders,
   HttpErrorResponse
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from './cb-storage.service';
 import { PARAMETERS } from '@angular/core/src/util/decorators';
+import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material';
 
 interface RequestDefinition {
   PATH: string;
@@ -29,7 +31,9 @@ export class CbApiService {
 
   constructor(
     private http: HttpClient,
-    private _CbStorageService: CbStorageService
+    private router: Router,
+    private _CbStorageService: CbStorageService,
+    private dialogRef: MatDialog
   ) {}
 
   private getOptions() {
@@ -43,7 +47,7 @@ export class CbApiService {
     return options;
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError = (error: HttpErrorResponse): Observable<any> => {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -54,6 +58,12 @@ export class CbApiService {
         `Backend returned code ${error.status}, body was:`,
         error.error
       );
+      if (error.status === 403) {
+        this._CbStorageService.clearSession();
+        this.dialogRef.closeAll();
+        this.router.navigate(['/']);
+        return throwError(error.message);
+      }
     }
     // return an observable with a user-facing error message
     return throwError('Something bad happened; please try again later.');
@@ -84,7 +94,7 @@ export class CbApiService {
     return this.http.get<any>(
       this.config.apiUrl + _ENDPOINT,
       this.getOptions()
-    );
+    ).pipe(catchError(this.handleError));
   }
 
   private POST(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
@@ -98,7 +108,7 @@ export class CbApiService {
       this.config.apiUrl + _ENDPOINT,
       _PAYLOAD,
       this.getOptions()
-    );
+    ).pipe(catchError(this.handleError));
   }
 
   private PUT(_ENDPOINT: string, _PAYLOAD: any): Observable<any> {
@@ -106,7 +116,6 @@ export class CbApiService {
       this.config.apiUrl + _ENDPOINT,
       _PAYLOAD,
       this.getOptions()
-    );
-    // .pipe(catchError(this.handleError));
+    ).pipe(catchError(this.handleError));
   }
 }

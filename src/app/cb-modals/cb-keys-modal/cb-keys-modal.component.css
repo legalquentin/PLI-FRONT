@@ -1,0 +1,40 @@
+.header {
+  padding-left: 15px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.header>h3 {
+  font-weight: lighter !important;
+}
+
+.body {
+  padding: 15px;
+  /* font-weight: lighter !important; */
+}
+
+.body>h4 {
+  font-weight: lighter !important;
+}
+
+.footer {
+}
+
+.cancel-button {
+  margin: 10px;
+  margin-right: 2px;
+  float: right;
+  font-weight: lighter;
+  background-color: var(--back-color);
+  color: white;
+}
+
+.validate-button {
+  margin: 10px;
+  margin-left: 2px;
+  float: right;
+  font-weight: lighter;
+  background-color: var(--primary-color);
+  color: white;
+}
+

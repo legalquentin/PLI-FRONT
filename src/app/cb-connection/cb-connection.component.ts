@@ -8,6 +8,13 @@ import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
 import { CbLocaleService } from '../cb-services/cb-locale.service';
 
+interface REGISTER {
+  LOGIN: string;
+  MAIL: string;
+  PASSWORD: string;
+  REPEAT_PASSWORD: string;
+}
+
 @Component({
   selector: 'app-cb-connection',
   templateUrl: './cb-connection.component.html',
@@ -28,12 +35,7 @@ export class CbConnectionComponent implements OnInit {
     login: false
   };
 
-  public REGISTER = {
-    LOGIN: '',
-    MAIL: '',
-    PASSWORD: '',
-    REPEAT_PASSWORD: ''
-  };
+  public REGISTER: REGISTER;
 
   public LOGIN = {
     IDENTIFIER: '',
@@ -44,7 +46,8 @@ export class CbConnectionComponent implements OnInit {
 
   private USER_OBJECT = {
     USER: {},
-    SESSION_TOKEN: ''
+    SESSION_TOKEN: '',
+    FIRST: false
   };
 
   constructor(
@@ -113,6 +116,7 @@ export class CbConnectionComponent implements OnInit {
             if (res.data) {
               console.log('PROFILE_SUCCESS', res);
               this.USER_OBJECT.USER = res.data;
+              this.USER_OBJECT.FIRST = true;
               this._CbStorageService.updateSessionData(this.USER_OBJECT, () => {
                 this.router.navigate(['cryptobo4rd/dashboard']);
               });

@@ -70,6 +70,15 @@ $app-green-theme: mat-light-theme($app-green-primary, mat-palette($mat-orange));
     }
 }
 
+@mixin mat-dialog() {
+  .keyDialogContainer {
+    .mat-dialog-container {
+      padding: 0px !important;
+    }
+  }
+}
+
 @include mat-form-field-theme();
 @include mat-input-theme();
 @include mat-button-theme();
+@include mat-dialog();

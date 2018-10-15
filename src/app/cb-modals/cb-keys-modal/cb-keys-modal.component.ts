@@ -1,0 +1,43 @@
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { Language, TranslationService } from 'angular-l10n';
+
+export interface DialogData {
+  username: string;
+}
+
+@Component({
+  selector: 'app-cb-keys-modal',
+  templateUrl: './cb-keys-modal.component.html',
+  styleUrls: ['./cb-keys-modal.component.css']
+})
+export class CbKeysModalComponent implements OnInit {
+  @Language() lang: string;
+
+  public publicKey: string;
+  public privateKey: string;
+
+  constructor(
+    private translate: TranslationService,
+    public dialogRef: MatDialogRef<CbKeysModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData
+  ) {}
+
+  ngOnInit(): void {}
+
+  onCancel(event: Event): void {
+    event.preventDefault();
+    this.dialogRef.close(false);
+  }
+
+  close() {
+    this.dialogRef.close(false);
+  }
+
+  save() {
+    this.dialogRef.close({
+      pub: this.publicKey,
+      priv: this.privateKey
+    });
+  }
+}

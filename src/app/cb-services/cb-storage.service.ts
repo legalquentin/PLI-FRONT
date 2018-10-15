@@ -43,6 +43,16 @@ export class CbStorageService {
     this.updateSessionData(this.session, () => {});
   }
 
+  firstConnection(): any {
+    if (this.session['FIRST']) {
+      this.session['FIRST'] = false;
+      this.updateSessionData(this.session, () => {
+        return true;
+      });
+    }
+    return false;
+  }
+
   getUserEmail(): string {
     let email = '';
     if (this.session && this.session['USER'] && this.session['USER']['email']) {
