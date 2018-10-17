@@ -22,9 +22,9 @@ export class CbStorageService {
     this.loadSession();
   }
 
-  updateSessionData(userObject: any): void {
-    this.session = userObject;
-    sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(userObject));
+  updateSessionData(sessionObject: any): void {
+    this.session = sessionObject;
+    sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(sessionObject));
   }
 
   clearSession(): void {

@@ -19,10 +19,13 @@
             <div fxLayout="column">
               <form>
                 <mat-form-field class="genericBlackFormField">
-                  <input matInput [(ngModel)]="publicKey" placeholder="Public key" name="public" autocomplete="new-password">
+                  <input matInput [(ngModel)]="accountName" [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang" name="public" autocomplete="new-password">
                 </mat-form-field>
                 <mat-form-field class="genericBlackFormField">
-                  <input matInput [(ngModel)]="privateKey" type="password" name="private" placeholder="Private key"
+                  <input matInput [(ngModel)]="publicKey" [placeholder]="'EXCHANGES.ADD.INPUT_PUBLIC' | translate: lang" name="public" autocomplete="new-password">
+                </mat-form-field>
+                <mat-form-field class="genericBlackFormField">
+                  <input matInput [(ngModel)]="privateKey" [placeholder]="'EXCHANGES.ADD.INPUT_PRIVATE' | translate: lang" type="password" name="private"
                     autocomplete="new-password">
                 </mat-form-field>
               </form>
@@ -35,7 +38,8 @@
       </div>
       <div class="tile" fxFlex>
         <h3 class="title">{{ 'EXCHANGES.EDIT.TITLE' | translate: lang }}</h3>
-        <app-cb-data-table *ngIf="LOADED" [CONFIG]="ACCOUNTS"></app-cb-data-table>
+        <app-cb-data-table *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
+        <mat-card *ngIf="LOADED && ACCOUNTS.data.length === 0">{{ 'EXCHANGES.EDIT.NO_ACCOUNTS' | translate: lang }}</mat-card>
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@
 
 <!-- Cell generic text Template -->
 <ng-template #textTemplate let-row="row" let-col="col">
-  <div class="defaultCell" (click)="echo(row)">
+  <div class="defaultCell">
     {{ row[col] }}
   </div>
 </ng-template>
@@ -53,7 +57,7 @@
 <!-- Cell generic button Template -->
 <ng-template #buttonTemplate let-row="row" let-col="col">
   <div class="defaultCell">
-    <button mat-flat-button (click)="echo(row)">{{ row[col] }}</button>
+    <button mat-flat-button>{{ row[col] }}</button>
   </div>
 </ng-template>
 

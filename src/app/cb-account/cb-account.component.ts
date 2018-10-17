@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
+import { CbEventService } from '../cb-services/cb-event.service';
 
 @Component({
   selector: 'app-cb-account',
@@ -30,7 +31,8 @@ export class CbAccountComponent implements OnInit {
     private router: Router,
     private translationService: TranslationService,
     private _CbStorageService: CbStorageService,
-    private _CbApiService: CbApiService
+    private _CbApiService: CbApiService,
+    public _CbEventService: CbEventService
   ) {
     this.buildAccount();
   }
@@ -65,11 +67,14 @@ export class CbAccountComponent implements OnInit {
       if (err !== null) {
         console.error('invalid payload');
       } else {
+        this._CbEventService.LOADING = true;
         this._CbApiService.genericRequest(CbConstants.REQUESTS.UPDATE_PROFILE, payload).subscribe(result => {
           this._CbStorageService.updateSessionUserData(payload);
           console.log('UPDATE_PROFILE SUCCESS', result);
+          this._CbEventService.LOADING = false;
         }, error => {
           console.log('UPDATE_PROFILE ERROR', error);
+          this._CbEventService.LOADING = false;
         });
       }
     });

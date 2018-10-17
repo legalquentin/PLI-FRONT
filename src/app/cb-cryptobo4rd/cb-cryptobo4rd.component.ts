@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CbEventService } from '../cb-services/cb-event.service';
 
 @Component({
   selector: 'app-cb-cryptobo4rd',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbCryptobo4rdComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public _CbEventService: CbEventService
+  ) { }
 
   ngOnInit() {}
 }

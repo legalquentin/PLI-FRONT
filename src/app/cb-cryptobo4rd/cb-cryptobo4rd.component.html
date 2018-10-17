@@ -4,6 +4,7 @@
     <app-cb-menu-left></app-cb-menu-left>
   </mat-sidenav>
   <mat-sidenav-content>
+    <mat-progress-bar [ngClass]="{loading: _CbEventService.LOADING}" mode="indeterminate"></mat-progress-bar>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

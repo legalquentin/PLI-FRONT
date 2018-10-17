@@ -22,7 +22,7 @@ export class CbMenuTopComponent implements OnInit {
   public selectedAccount: any;
   public selectGlobal = 0;
   public selectNone = -1;
-  public userEmail = '';
+  public accountIdentifier = '';
 
   constructor(
     private router: Router,
@@ -36,9 +36,16 @@ export class CbMenuTopComponent implements OnInit {
   }
 
   ngOnInit() {
+    const fname = this._CbStorageService.getUserFirstName();
+    const lname = this._CbStorageService.getUserLastName();
+    const mail = this._CbStorageService.getUserEmail();
     console.log(this.lang);
     this.getAccounts();
-    this.userEmail = this._CbStorageService.getUserEmail();
+    if (fname !== '' || lname !== '') {
+      this.accountIdentifier = fname + ' ' + lname;
+    } else {
+      this.accountIdentifier = mail;
+    }
   }
 
   logout() {

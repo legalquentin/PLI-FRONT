@@ -8,7 +8,6 @@ import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from './cb-storage.service';
-import { PARAMETERS } from '@angular/core/src/util/decorators';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material';
 
@@ -32,8 +31,8 @@ export class CbApiService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private _CbStorageService: CbStorageService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private _CbStorageService: CbStorageService
   ) {}
 
   private getOptions() {

@@ -17,6 +17,7 @@
   "CONNECTION.LOGIN.BUTTON": "Connexion",
   "CONNECTION.ERROR.PAIR_INVALID": "Le nom d'utilisateur ou le mot de passe renseigné est invalide",
   "CONNECTION.ERROR.EMAIL_INCORRECT": "Le format de l'addresse mail n'est pas valide",
+  "CONNECTION.ERROR.LOGIN_TAKEN": "Login déja prit",
   "CONNECTION.ERROR.EMPTY_FIELD": "Vous devez renseignez tous les champs",
   "CONNECTION.ERROR.INVALID_RESP": "Un problème est survenu, merci de reesayer plus tard",
 
@@ -49,7 +50,11 @@
 
   "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading",
   "EXCHANGES.ADD.TITLE": "Ajouter un compte",
+  "EXCHANGES.ADD.INPUT_NAME": "Nom du compte",
+  "EXCHANGES.ADD.INPUT_PUBLIC": "Clée publique",
+  "EXCHANGES.ADD.INPUT_PRIVATE": "Clée privée",
   "EXCHANGES.EDIT.TITLE": "Vos comptes",
+  "EXCHANGES.EDIT.NO_ACCOUNTS": "Vous n'avez pas encore liée de comptes",
   "EXCHANGES.EDIT.DELETE.MODAL_TITLE": "Confirmez la suppression",
   "EXCHANGES.EDIT.DELETE.MODAL_BODY": "Etes-vous vraiment sûr de vouloir supprimer votre compte : ",
 

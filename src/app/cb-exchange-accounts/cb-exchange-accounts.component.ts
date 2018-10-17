@@ -34,6 +34,7 @@ export class CbExchangeAccountsComponent implements OnInit {
     columns: [],
     data: []
   };
+  public accountName: string;
   public publicKey: string;
   public privateKey: string;
   public LOADED = false;
@@ -67,12 +68,12 @@ export class CbExchangeAccountsComponent implements OnInit {
   }
 
   loadExchanges(): void {
+
     this._CbApiService
       .genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS)
       .subscribe(
         result => {
           console.log(result);
-          this.EXCHANGES = result.data;
           this.ACCOUNTS.columns.push({
             KEY: 'EXCHANGE',
             VIEW: this.textTemplate

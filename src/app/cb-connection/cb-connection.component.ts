@@ -56,7 +56,12 @@ export class CbConnectionComponent implements OnInit {
 
   public ERROR_MESSAGE = '';
 
-  private SESSION: SESSIONOBJECT;
+  private SESSION = {
+    SESSION_TOKEN: '',
+    USER: '',
+    FIRST: false,
+    ACCOUNTS: []
+  };
 
   constructor(
     private router: Router,
@@ -110,9 +115,9 @@ export class CbConnectionComponent implements OnInit {
   // INPUT VALIDATION
   validateInput(): any {
     if (
-      this.REGISTER.LOGIN === '' ||
-      this.REGISTER.MAIL === '' ||
-      this.REGISTER.PASSWORD === ''
+      this.REGISTER.LOGIN !== '' &&
+      this.REGISTER.MAIL !== '' &&
+      this.REGISTER.PASSWORD !== ''
     ) {
       return {
         login: this.REGISTER.LOGIN,
@@ -125,26 +130,29 @@ export class CbConnectionComponent implements OnInit {
 
   // HTTP REQUESTS
 
+  // REGISTER PROCEDURE
   doRegister(): void {
     this.loading = true;
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = this.validateInput();
     if (PAYLOAD) {
       const _sub = this._CbApiService.genericRequest(PATH.REGISTER, PAYLOAD);
-      _sub.subscribe(
-        result =>
-          this.getProfile(result.data, () => {
-            this.SESSION.FIRST = true;
-            this._CbStorageService.updateSessionData(this.SESSION);
-            this.router.navigate(['cryptobo4rd/dashboard']);
+      _sub.subscribe(result =>
+          this.getProfile(result.data, (ok) => {
+            if (ok) {
+              this.SESSION.FIRST = true;
+              this._CbStorageService.updateSessionData(this.SESSION);
+              this.router.navigate(['cryptobo4rd/dashboard']);
+            }
           }),
-        err => this.displayError(err)
+        error => this.displayError(error)
       );
     } else {
       this.displayError('EMPTY_FIELD');
     }
   }
 
+  // LOGIN PROCEDURE
   doLogin(): void {
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = {
@@ -156,16 +164,18 @@ export class CbConnectionComponent implements OnInit {
 
     _subLogin.subscribe(
       result => {
-        this.getProfile(result.data, () => {
-          this.getProviders(() => {
+        this.getProfile(result.data, (ok) => {
+          if (ok) {
+            // this.getProviders();
             this.router.navigate(['cryptobo4rd/dashboard']);
-          });
+          }
         });
       },
       err => this.displayError(err, true)
     );
   }
 
+  // RECOVER USER DATA
   getProfile(data: any, callback) {
     const PATH = CbConstants.REQUESTS;
     this.SESSION.SESSION_TOKEN = data.token;
@@ -176,15 +186,22 @@ export class CbConnectionComponent implements OnInit {
       result => {
         if (result.data) {
           this.SESSION.USER = result.data;
+          this._CbStorageService.updateSessionData(this.SESSION);
+          callback(true);
         } else {
           this.displayError('INVALID_RESP', true);
+          callback(false);
         }
       },
-      err => this.displayError(err, true)
+      err => {
+        this.displayError(err, true);
+        callback(false);
+      }
     );
   }
 
-  getProviders(callback) {
+  // RECOVER USER PROVIDERS
+  getProviders() {
     const PATH = CbConstants.REQUESTS;
     const _subPrv = this._CbApiService.genericRequest(PATH.LIST_PROVIDERS);
 
@@ -198,6 +215,7 @@ export class CbConnectionComponent implements OnInit {
         }
         this.SESSION.ACCOUNTS = accounts;
         this._CbStorageService.updateSessionData(this.SESSION);
+        this.router.navigate(['cryptobo4rd/dashboard']);
       },
       error => {
         this.displayError(error, true);
@@ -205,6 +223,7 @@ export class CbConnectionComponent implements OnInit {
     );
   }
 
+  // DISPLAY ERROR, STOP LOADING, AND CAN CLEAR SESSION
   displayError(msg, clear: boolean = false) {
     this.loading = false;
     this.ERROR_MESSAGE = this.translation.translate('CONNECTION.ERROR.' + msg);

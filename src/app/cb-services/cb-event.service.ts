@@ -19,6 +19,8 @@ export class CbEventService {
     }
   };
 
+  public LOADING = false;
+
   constructor() {}
 
   broadcast(key: string): void {
