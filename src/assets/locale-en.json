@@ -17,6 +17,7 @@
   "CONNECTION.ERROR.PAIR_INVALID": "The username or password you entered is incorrect",
   "CONNECTION.ERROR.EMAIL_INCORRECT": "Mail address format in not valid",
   "CONNECTION.ERROR.EMPTY_FIELD": "You must fill all of the fields",
+  "CONNECTION.ERROR.INVALID_RESP": "An error happened, please try again later",
 
   "MENU_LEFT.DASHBOARD": "Dashboard",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",
@@ -48,6 +49,8 @@
   "EXCHANGES.DISCLAIMER": "Here, you can manage your accounts accross multiples exchanges platforms",
   "EXCHANGES.ADD.TITLE": "Add an account",
   "EXCHANGES.EDIT.TITLE": "Your acounts",
+  "EXCHANGES.EDIT.DELETE.MODAL_TITLE": "Confirm the deletion",
+  "EXCHANGES.EDIT.DELETE.MODAL_BODY": "Are you sure you want to remove your account : ",
 
   "GRID.HEADER.EXCHANGE": "Exchange",
   "GRID.HEADER.SLIDER": "State",
@@ -56,5 +59,8 @@
 
   "MODAL.KEYS.TITLE": "Welcome to Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "To start with Cryptobo4rd, visualize your assets and make operations, you first need to provide an API key from an Exchange platform.",
-  "MODAL.KEYS.GREETINGS_TUTORIAL": "# Short tutorial on how to do it #"
+  "MODAL.KEYS.GREETINGS_TUTORIAL": "# Short tutorial on how to do it #",
+
+  "MODAL.CONFIRM.BUTTON_CONFIRM": "Proceed",
+  "MODAL.CONFIRM.BUTTON_CANCEL": "Cancel"
 }

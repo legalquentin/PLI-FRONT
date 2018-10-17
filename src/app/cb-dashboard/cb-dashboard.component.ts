@@ -102,7 +102,7 @@ export class CbDashboardComponent implements OnInit {
           width: 650,
           presetColorScheme: 'delek'
         });
-        this.chart.mount('#chart-container');
+        this.chart.mount($('#chart-container'));
         // const chart2 = new CryptowatchEmbed('bitfinex', 'btceth', {
         //   timePeriod: '1d',
         //   width: 650,
@@ -127,7 +127,7 @@ export class CbDashboardComponent implements OnInit {
         const dialogRef = this.dialog.open(CbKeysModalComponent, {
           width: '600px',
           height: '400px',
-          panelClass: 'keyDialogContainer',
+          panelClass: 'customDialogContainer',
           disableClose: true,
           data: {name: this._CbStorageService.getUserEmail()}
         });

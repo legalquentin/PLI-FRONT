@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { Language, TranslationService } from 'angular-l10n';
 
-export interface DialogData {
+export interface KeyDialogData {
   username: string;
 }
 
@@ -18,9 +18,9 @@ export class CbKeysModalComponent implements OnInit {
   public privateKey: string;
 
   constructor(
-    private translate: TranslationService,
+    private translationService: TranslationService,
     public dialogRef: MatDialogRef<CbKeysModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData
+    @Inject(MAT_DIALOG_DATA) public data: KeyDialogData
   ) {}
 
   ngOnInit(): void {}

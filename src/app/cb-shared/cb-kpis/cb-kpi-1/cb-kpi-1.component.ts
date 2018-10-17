@@ -30,7 +30,7 @@ export class CbKpi1Component implements OnInit {
 
   // line, area
   public autoScale = true;
-
+  public imagepath = '/src/assets/cryptos/svg/color/';
   constructor() {}
 
   ngOnInit() {
@@ -40,6 +40,7 @@ export class CbKpi1Component implements OnInit {
       name: this.kpi.currency,
       value: this.kpi.free
     };
+    this.imagepath += this.kpi.currency.toLowerCase() + '.svg';
   }
 
   onSelect(event) {

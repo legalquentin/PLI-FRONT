@@ -39,6 +39,7 @@ import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { CbConfirmModalComponent } from './cb-modals/cb-confirm-modal/cb-confirm-modal.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -86,7 +87,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbMessageTemplateComponent,
     CbSafeHtml,
     CbExchangeAccountsComponent,
-    CbKeysModalComponent
+    CbKeysModalComponent,
+    CbConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -114,7 +116,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    CbKeysModalComponent
+    CbKeysModalComponent,
+    CbConfirmModalComponent
   ]
 })
 export class AppModule { }

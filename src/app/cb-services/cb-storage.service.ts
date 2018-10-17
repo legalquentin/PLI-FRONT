@@ -17,16 +17,14 @@ export class CbStorageService {
     console.log('Session loaded', this.session);
   }
 
-  createSession(sessionObject: any, callback) {
+  createSession(sessionObject: any) {
     sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(sessionObject));
     this.loadSession();
-    callback();
   }
 
-  updateSessionData(userObject: any, callback): void {
+  updateSessionData(userObject: any): void {
     this.session = userObject;
     sessionStorage.setItem(CbConstants.SESSION_KEY, JSON.stringify(userObject));
-    callback();
   }
 
   clearSession(): void {
@@ -40,20 +38,19 @@ export class CbStorageService {
 
   updateSessionUserData(user) {
     this.session['USER'] = Object.assign(this.session['USER'], user);
-    this.updateSessionData(this.session, () => {});
+    this.updateSessionData(this.session);
   }
 
   updateSessionAccountsData(ACCOUNTS: any[]): any {
     this.session['ACCOUNTS'] = ACCOUNTS;
-    this.updateSessionData(this.session, () => {});
+    this.updateSessionData(this.session);
   }
 
   firstConnection(): any {
     if (this.session['FIRST']) {
       this.session['FIRST'] = false;
-      this.updateSessionData(this.session, () => {
-        return true;
-      });
+      this.updateSessionData(this.session);
+      return true;
     }
     return false;
   }

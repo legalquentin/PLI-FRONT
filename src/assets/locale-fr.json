@@ -18,6 +18,7 @@
   "CONNECTION.ERROR.PAIR_INVALID": "Le nom d'utilisateur ou le mot de passe renseigné est invalide",
   "CONNECTION.ERROR.EMAIL_INCORRECT": "Le format de l'addresse mail n'est pas valide",
   "CONNECTION.ERROR.EMPTY_FIELD": "Vous devez renseignez tous les champs",
+  "CONNECTION.ERROR.INVALID_RESP": "Un problème est survenu, merci de reesayer plus tard",
 
   "MENU_LEFT.DASHBOARD": "Tableau de bord",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",
@@ -49,6 +50,8 @@
   "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading",
   "EXCHANGES.ADD.TITLE": "Ajouter un compte",
   "EXCHANGES.EDIT.TITLE": "Vos comptes",
+  "EXCHANGES.EDIT.DELETE.MODAL_TITLE": "Confirmez la suppression",
+  "EXCHANGES.EDIT.DELETE.MODAL_BODY": "Etes-vous vraiment sûr de vouloir supprimer votre compte : ",
 
   "GRID.HEADER.EXCHANGE": "Plateforme",
   "GRID.HEADER.SLIDER": "Etat",
@@ -57,5 +60,8 @@
 
   "MODAL.KEYS.TITLE": "Bienvenue sur Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "Pour commencer à visualiser vos données et pouvoir effectuer des opérations, il vous faut rentrer au moins une clé d'API d'une plateforme d'exchange",
-  "MODAL.KEYS.GREETINGS_TUTORIAL": "# Court tutoriel sur comment proceder #"
+  "MODAL.KEYS.GREETINGS_TUTORIAL": "# Court tutoriel sur comment proceder #",
+
+  "MODAL.CONFIRM.BUTTON_CONFIRM": "Continuer",
+  "MODAL.CONFIRM.BUTTON_CANCEL": "Annuler"
 }
