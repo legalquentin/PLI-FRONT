@@ -20,6 +20,8 @@
   "CONNECTION.ERROR.LOGIN_TAKEN": "Login déja prit",
   "CONNECTION.ERROR.EMPTY_FIELD": "Vous devez renseignez tous les champs",
   "CONNECTION.ERROR.INVALID_RESP": "Un problème est survenu, merci de reesayer plus tard",
+  "CONNECTION.ERROR.ERR_CONNECTION_REFUSED": "Serveur injoignable, merci de réesayer plus tard",
+  "CONNECTION.ERROR.GENERIC_ERROR": "Un problème est survenu, merci de reesayer plus tard",
 
   "MENU_LEFT.DASHBOARD": "Tableau de bord",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",

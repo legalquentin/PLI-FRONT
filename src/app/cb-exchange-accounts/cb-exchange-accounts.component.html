@@ -9,6 +9,11 @@
     <div fxLayout="row">
       <div class="tile" fxFlex>
         <h3 class="title">{{ 'EXCHANGES.ADD.TITLE' | translate: lang }}</h3>
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Second"> Content 2 </mat-tab>
+  <mat-tab label="Third"> Content 3 </mat-tab>
+</mat-tab-group>
         <mat-accordion>
           <mat-expansion-panel *ngFor="let exchange of EXCHANGES" [expanded]="exchange.name === 'KRAKEN'">
             <mat-expansion-panel-header>
@@ -59,6 +64,7 @@
     {{ row[col] | date: 'dd/MM/yyyy' }}
   </div>
 </ng-template>
+
 
 <!-- Cell generic button Template -->
 <ng-template #buttonTemplate let-row="row" let-col="col">

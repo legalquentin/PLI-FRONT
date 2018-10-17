@@ -19,6 +19,8 @@
   "CONNECTION.ERROR.LOGIN_TAKEN": "Login already taken",
   "CONNECTION.ERROR.EMPTY_FIELD": "You must fill all of the fields",
   "CONNECTION.ERROR.INVALID_RESP": "An error happened, please try again later",
+  "CONNECTION.ERROR.ERR_CONNECTION_REFUSED": "Serveur unracheable, please try again later",
+  "CONNECTION.ERROR.GENERIC_ERROR": "An error happened, please try again later",
 
   "MENU_LEFT.DASHBOARD": "Dashboard",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",

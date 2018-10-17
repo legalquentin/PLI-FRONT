@@ -62,7 +62,11 @@ export class CbApiService {
         return throwError(error.message);
       }
     }
-    return throwError(error.error.message);
+    if (error.error.message) {
+      return throwError(error.error.message);
+    } else {
+      return throwError('GENERIC_ERROR');
+    }
   }
 
   public genericRequest(

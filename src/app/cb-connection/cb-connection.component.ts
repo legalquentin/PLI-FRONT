@@ -232,6 +232,6 @@ export class CbConnectionComponent implements OnInit {
     }
     setTimeout(() => {
       this.ERROR_MESSAGE = '';
-    }, 2500);
+    }, 3500);
   }
 }
