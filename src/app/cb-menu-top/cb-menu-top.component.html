@@ -34,7 +34,7 @@
   </div>
   <div class="right-nav">
     <img src="/src/assets/images/img_avatar.png" style="max-width:37px;max-height:37px; margin-left: 15px;">
-    <button mat-button [matMenuTriggerFor]="menu">
+    <button mat-button [matMenuTriggerFor]="menu" class="account-button">
       {{ _CbStorageService.getUserFullName() }}
     </button>
     <mat-menu #menu="matMenu">
