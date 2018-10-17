@@ -1,0 +1,13 @@
+<div class="modal-wrapper" fxLayout="column">
+  <div class="header" fxFlex="grow">
+    <h3>{{ data.title }}</h3>
+  </div>
+  <div class="body" fxFlex="grow">
+    <h4>{{ data.message }}</h4>
+  </div>
+  <div class="footer" fxFlex="grow">
+    <mat-divider></mat-divider>
+    <button mat-flat-button class="validate-button" (click)="confirm()">{{ 'MODAL.CONFIRM.BUTTON_CONFIRM' | translate: lang }}</button>
+    <button mat-flat-button class="cancel-button" (click)="cancel()">{{ 'MODAL.CONFIRM.BUTTON_CANCEL' | translate: lang }}</button>
+  </div>
+</div>
