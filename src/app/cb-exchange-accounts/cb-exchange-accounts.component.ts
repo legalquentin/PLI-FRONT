@@ -28,6 +28,8 @@ export class CbExchangeAccountsComponent implements OnInit {
   sliderTemplate: TemplateRef<any>;
   @ViewChild('iconButtonTemplate')
   iconButtonTemplate: TemplateRef<any>;
+  @ViewChild('dateTextTemplate')
+  dateTextTemplate: TemplateRef<any>;
 
   public EXCHANGES: Array<any>;
   public ACCOUNTS = {
@@ -76,26 +78,38 @@ export class CbExchangeAccountsComponent implements OnInit {
           this.EXCHANGES = result.data;
           console.log(result);
           this.ACCOUNTS.columns.push({
+            KEY: 'NAME',
+            VIEW: this.textTemplate
+          });
+          this.ACCOUNTS.columns.push({
             KEY: 'EXCHANGE',
             VIEW: this.textTemplate
           });
           this.ACCOUNTS.columns.push({
-            KEY: 'SLIDER',
+            KEY: 'ACTIVE',
             VIEW: this.sliderTemplate
           });
-          this.ACCOUNTS.columns.push({ KEY: 'DATE', VIEW: this.textTemplate });
+          this.ACCOUNTS.columns.push({
+            KEY: 'DATE',
+            VIEW: this.dateTextTemplate
+          });
           this.ACCOUNTS.columns.push({
             KEY: 'DELETE',
             VIEW: this.iconButtonTemplate
           });
           for (const exchange of this.EXCHANGES) {
-            if (typeof exchange.value === 'string') {
-              this.ACCOUNTS.data.push({
-                EXCHANGE: exchange.name,
-                SLIDER: true,
-                DATE: '15/10/2018',
-                DELETE: null
-              });
+            if (exchange.accounts.length > 0) {
+              for (const account of exchange.accounts) {
+                this.ACCOUNTS.data.push({
+                  ID: account.id,
+                  NAME: account.name,
+                  EXCHANGE: exchange.name,
+                  ACTIVE: account.active,
+                  DATE: account.dateOfCreation,
+                  RIGHTS: account.rights,
+                  DELETE: null
+                });
+              }
             }
           }
           this.LOADED = true;
@@ -133,7 +147,7 @@ export class CbExchangeAccountsComponent implements OnInit {
       message: trsl.translate(tpath + 'MODAL_BODY') + row.EXCHANGE + ' ?'
     };
 
-    this.openDialog(500, 208, data).subscribe(result => {
+    this.openDialog(500, 223, data).subscribe(result => {
       if (result) {
         // this._CbApiService.genericRequest(CbConstants.REQUESTS.)
       }

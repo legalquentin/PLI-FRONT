@@ -93,7 +93,6 @@ export class CbDashboardComponent implements OnInit {
     if (this.ACCOUNT.length > 0) {
       this.NO_EXCHANGE = false;
       this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES, ['BINANCE']).subscribe(result => {
-        // kpi
         console.log('GET_CURRENCIES SUCCESS', result);
         this.kpiData = result.data;
         this.ready = true;

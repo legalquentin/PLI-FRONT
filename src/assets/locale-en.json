@@ -57,8 +57,9 @@
   "EXCHANGES.EDIT.DELETE.MODAL_TITLE": "Confirm the deletion",
   "EXCHANGES.EDIT.DELETE.MODAL_BODY": "Are you sure you want to remove your account : ",
 
+  "GRID.HEADER.NAME": "Name",
   "GRID.HEADER.EXCHANGE": "Exchange",
-  "GRID.HEADER.SLIDER": "State",
+  "GRID.HEADER.ACTIVE": "State",
   "GRID.HEADER.DELETE": "Delete",
   "GRID.HEADER.DATE": "Creation date",
 
@@ -67,5 +68,8 @@
   "MODAL.KEYS.GREETINGS_TUTORIAL": "# Short tutorial on how to do it #",
 
   "MODAL.CONFIRM.BUTTON_CONFIRM": "Proceed",
-  "MODAL.CONFIRM.BUTTON_CANCEL": "Cancel"
+  "MODAL.CONFIRM.BUTTON_CANCEL": "Cancel",
+
+  "CRYPTOBOT.GRID.HELLO": "Hello"
+
 }

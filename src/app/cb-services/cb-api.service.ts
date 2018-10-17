@@ -55,12 +55,12 @@ export class CbApiService {
         `Backend returned code ${error.status}, body was:`,
         error.error
       );
-      // if (error.status === 403) {
-      //   this._CbStorageService.clearSession();
-      //   this.dialogRef.closeAll();
-      //   this.router.navigate(['/']);
-      //   return throwError(error.message);
-      // }
+      if (error.status === 403) {
+        this._CbStorageService.clearSession();
+        this.dialogRef.closeAll();
+        this.router.navigate(['/']);
+        return throwError(error.message);
+      }
     }
     return throwError(error.error.message);
   }

@@ -20,6 +20,14 @@ export class CbCryptobotComponent implements OnInit {
     columns: ['test', 'again', 'hello', 'world'],
     data: [
       { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
+      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
+      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
       { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' }
     ]
   };

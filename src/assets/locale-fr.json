@@ -58,8 +58,9 @@
   "EXCHANGES.EDIT.DELETE.MODAL_TITLE": "Confirmez la suppression",
   "EXCHANGES.EDIT.DELETE.MODAL_BODY": "Etes-vous vraiment sûr de vouloir supprimer votre compte : ",
 
+  "GRID.HEADER.NAME": "Nom",
   "GRID.HEADER.EXCHANGE": "Plateforme",
-  "GRID.HEADER.SLIDER": "Etat",
+  "GRID.HEADER.ACTIVE": "Etat",
   "GRID.HEADER.DELETE": "Supprimer",
   "GRID.HEADER.DATE": "Date d'ajout",
 
@@ -68,5 +69,7 @@
   "MODAL.KEYS.GREETINGS_TUTORIAL": "# Court tutoriel sur comment proceder #",
 
   "MODAL.CONFIRM.BUTTON_CONFIRM": "Continuer",
-  "MODAL.CONFIRM.BUTTON_CANCEL": "Annuler"
+  "MODAL.CONFIRM.BUTTON_CANCEL": "Annuler",
+
+  "CRYPTOBOT.GRID.HELLO": "Bonjour"
 }
