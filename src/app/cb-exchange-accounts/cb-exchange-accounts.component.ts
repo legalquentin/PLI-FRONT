@@ -73,6 +73,7 @@ export class CbExchangeAccountsComponent implements OnInit {
       .genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS)
       .subscribe(
         result => {
+          this.EXCHANGES = result.data;
           console.log(result);
           this.ACCOUNTS.columns.push({
             KEY: 'EXCHANGE',

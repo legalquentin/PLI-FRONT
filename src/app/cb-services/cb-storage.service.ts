@@ -89,6 +89,17 @@ export class CbStorageService {
     return userLastName;
   }
 
+  getUserFullName(): string {
+    let userFullName = this.getUserEmail();
+    const lname = this.getUserLastName();
+    const fname = this.getUserFirstName();
+
+    if (lname !== '' || fname !== '') {
+      userFullName = fname + ' ' + lname;
+    }
+    return userFullName;
+  }
+
   getUserVisibility(): number {
     let userVisibility = 0;
     if (this.session && this.session['USER'] && this.session['USER']['public']) {

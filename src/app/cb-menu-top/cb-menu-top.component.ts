@@ -28,7 +28,7 @@ export class CbMenuTopComponent implements OnInit {
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
-    private _CbStorageService: CbStorageService,
+    public _CbStorageService: CbStorageService,
     public _CbEventService: CbEventService
   ) {
     this.selectLang = false;
@@ -36,16 +36,8 @@ export class CbMenuTopComponent implements OnInit {
   }
 
   ngOnInit() {
-    const fname = this._CbStorageService.getUserFirstName();
-    const lname = this._CbStorageService.getUserLastName();
-    const mail = this._CbStorageService.getUserEmail();
-    console.log(this.lang);
     this.getAccounts();
-    if (fname !== '' || lname !== '') {
-      this.accountIdentifier = fname + ' ' + lname;
-    } else {
-      this.accountIdentifier = mail;
-    }
+    // this.accountIdentifier = this._CbStorageService.getUserFullName();
   }
 
   logout() {

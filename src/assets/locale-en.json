@@ -36,7 +36,7 @@
   "MENU_TOP.RIGHT.LOG_OUT": "Log out",
 
   "MESSAGE.EMPTY.HEADER": "No account initialized yet",
-  "MESSAGE.EMPTY.BODY": "You can set your API keys in <a id=\"navigate\">'Accounts'</a>",
+  "MESSAGE.EMPTY.BODY": "You can set your API keys in <a href=\"/cryptobo4rd/exchanges\">'Accounts'</a>",
 
   "ACCOUNT.INPUT.LOGIN": "Login",
   "ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP": "Contact an admin to change this setting",
