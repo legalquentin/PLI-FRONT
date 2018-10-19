@@ -51,6 +51,7 @@
 
   "EXCHANGES.DISCLAIMER": "Here, you can manage your accounts accross multiples exchanges platforms",
   "EXCHANGES.ADD.TITLE": "Add an account",
+  "EXCHANGES.ADD.SELECTOR": "Select your exchange",
   "EXCHANGES.ADD.INPUT_NAME": "Account name",
   "EXCHANGES.ADD.INPUT_PUBLIC": "Public key",
   "EXCHANGES.ADD.INPUT_PRIVATE": "Private key",

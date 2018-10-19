@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8" style="margin: 5px;">
+<div class="mat-elevation-z8">
   <table mat-table [dataSource]="DATASOURCE">
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -15,5 +15,6 @@
     <tr mat-row *matRowDef="let row; columns: DISPLAYED_COLUMNS;"></tr>
 
   </table>
-  <mat-paginator *ngIf="DATASOURCE.data.length > 10" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <!-- *ngIf="DATASOURCE.data.length === 5"  -->
 </div>

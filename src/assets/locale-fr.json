@@ -52,6 +52,7 @@
 
   "EXCHANGES.DISCLAIMER": "Ici, vous pouvez consulter ajouter et supprimer vos comptes reliés au plateformes de trading",
   "EXCHANGES.ADD.TITLE": "Ajouter un compte",
+  "EXCHANGES.ADD.SELECTOR": "Sélectionnez votre plateforme",
   "EXCHANGES.ADD.INPUT_NAME": "Nom du compte",
   "EXCHANGES.ADD.INPUT_PUBLIC": "Clée publique",
   "EXCHANGES.ADD.INPUT_PRIVATE": "Clée privée",

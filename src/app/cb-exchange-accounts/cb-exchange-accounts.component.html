@@ -8,44 +8,60 @@
     </div>
     <div fxLayout="row">
       <div class="tile" fxFlex>
-        <h3 class="title">{{ 'EXCHANGES.ADD.TITLE' | translate: lang }}</h3>
-<mat-tab-group>
-  <mat-tab label="First"> Content 1 </mat-tab>
-  <mat-tab label="Second"> Content 2 </mat-tab>
-  <mat-tab label="Third"> Content 3 </mat-tab>
-</mat-tab-group>
         <mat-accordion>
-          <mat-expansion-panel *ngFor="let exchange of EXCHANGES" [expanded]="exchange.name === 'KRAKEN'">
+          <mat-expansion-panel>
             <mat-expansion-panel-header>
-              <mat-panel-title>
-                {{ exchange.name }}
+              <mat-panel-title class="title">
+                {{ 'EXCHANGES.ADD.TITLE' | translate: lang }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <div fxLayout="column">
-              <form>
-                <mat-form-field class="genericBlackFormField">
-                  <input matInput [(ngModel)]="accountName" [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang" name="public" autocomplete="new-password">
+            <form fxLayout="column">
+              <mat-form-field color="primary">
+                <mat-select placeholder="{{'EXCHANGES.ADD.SELECTOR' | translate: lang }}">
+                  <mat-option *ngFor="let exchange of EXCHANGES" [value]="exchange">
+                    <span>{{ exchange.name }}</span>
+                    <img style="float: right; margin-top: 10px; max-width: 20px; max-height: 20px;" src="/src/assets/exchanges/logos/logo_{{exchange.name.toLowerCase()}}.png" alt="{{exchange.name}}">
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput [(ngModel)]="accountName" [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang"
+                  name="account" autocomplete="new-password" required>
+              </mat-form-field>
+              <div fxLayout="column">
+                <mat-form-field>
+                  <input matInput [(ngModel)]="publicKey" [placeholder]="'EXCHANGES.ADD.INPUT_PUBLIC' | translate: lang"
+                    name="public" autocomplete="new-password" required>
                 </mat-form-field>
-                <mat-form-field class="genericBlackFormField">
-                  <input matInput [(ngModel)]="publicKey" [placeholder]="'EXCHANGES.ADD.INPUT_PUBLIC' | translate: lang" name="public" autocomplete="new-password">
+                <mat-form-field>
+                  <input matInput [(ngModel)]="privateKey" [placeholder]="'EXCHANGES.ADD.INPUT_PRIVATE' | translate: lang"
+                    type="password" name="private" autocomplete="new-password" required>
                 </mat-form-field>
-                <mat-form-field class="genericBlackFormField">
-                  <input matInput [(ngModel)]="privateKey" [placeholder]="'EXCHANGES.ADD.INPUT_PRIVATE' | translate: lang" type="password" name="private"
-                    autocomplete="new-password">
-                </mat-form-field>
-              </form>
-            </div>
+              </div>
+            </form>
             <mat-action-row>
-              <button mat-flat-button (click)="createAccount(exchange.name)">Save</button>
+              <button mat-flat-button (click)="createAccount('test')">Save</button>
             </mat-action-row>
           </mat-expansion-panel>
+          <mat-expansion-panel [expanded]="true">
+            <mat-expansion-panel-header>
+              <mat-panel-title class="title">
+                {{ 'EXCHANGES.EDIT.TITLE' | translate: lang }}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <!-- <mat-card class="title" *ngIf="LOADED && ACCOUNTS.data.length > 0">{{ 'EXCHANGES.EDIT.TITLE' | translate: lang
+          }}</mat-card> -->
+            <app-cb-data-table *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
+            <mat-card *ngIf="LOADED && ACCOUNTS.data.length === 0">{{ 'EXCHANGES.EDIT.NO_ACCOUNTS' | translate: lang }}</mat-card>
+          </mat-expansion-panel>
         </mat-accordion>
+
       </div>
-      <div class="tile" fxFlex>
-        <h3 class="title">{{ 'EXCHANGES.EDIT.TITLE' | translate: lang }}</h3>
-        <app-cb-data-table *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
-        <mat-card *ngIf="LOADED && ACCOUNTS.data.length === 0">{{ 'EXCHANGES.EDIT.NO_ACCOUNTS' | translate: lang }}</mat-card>
-      </div>
+      <!-- <div class="tile" fxFlex>
+        <h3 class="title">{{ 'EXCHANGES.EDIT.TITLE' | translate: lang }}</h3> -->
+      <!-- <app-cb-data-table *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
+        <mat-card *ngIf="LOADED && ACCOUNTS.data.length === 0">{{ 'EXCHANGES.EDIT.NO_ACCOUNTS' | translate: lang }}</mat-card> -->
+      <!-- </div> -->
     </div>
   </div>
 </div>
@@ -76,7 +92,7 @@
 <!-- Cell generic slider Template -->
 <ng-template #sliderTemplate let-row="row" let-col="col">
   <div class="defaultCell">
-    <mat-slide-toggle [checked]="row[col]"></mat-slide-toggle>
+    <mat-slide-toggle color="primary" [checked]="row[col]"></mat-slide-toggle>
   </div>
 </ng-template>
 
