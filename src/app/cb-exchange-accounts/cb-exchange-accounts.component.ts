@@ -6,11 +6,14 @@ import { CbConfirmModalComponent } from '../cb-modals/cb-confirm-modal/cb-confir
 import { MatDialog } from '@angular/material';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { Observable } from 'rxjs';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { ValidSelection } from '../cb-shared/cb-match-form';
 
 interface ConfirmDialogData {
   title: string;
   message: string;
 }
+
 
 @Component({
   selector: 'app-cb-exchange-accounts',
@@ -38,10 +41,31 @@ export class CbExchangeAccountsComponent implements OnInit {
     columns: [],
     data: []
   };
-  public accountName: string;
+  public accountName = new FormControl('', [
+    Validators.required,
+    Validators.email,
+  ]);
+
   public publicKey: string;
   public privateKey: string;
   public LOADED = false;
+
+  public selected = new FormControl('valid', [
+    Validators.required,
+    Validators.pattern('valid'),
+  ]);
+
+  public selectFormControl = new FormControl('valid', [
+    Validators.required,
+    Validators.pattern('valid'),
+  ]);
+
+  public nativeSelectFormControl = new FormControl('valid', [
+    Validators.required,
+    Validators.pattern('valid'),
+  ]);
+
+  public matcher = new ValidSelection();
 
   constructor(
     private translationService: TranslationService,

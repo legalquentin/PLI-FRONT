@@ -26,7 +26,7 @@ import { CbKpi1Component } from './cb-shared/cb-kpis/cb-kpi-1/cb-kpi-1.component
 import { CbWidgetContainerComponent } from './cb-shared/cb-widgets/cb-widget-container/cb-widget-container.component';
 import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/cb-widget-table.component';
 import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
 import { CbAccountComponent } from './cb-account/cb-account.component';
 import { CbDataTableComponent } from './cb-data-table/cb-data-table.component';
@@ -101,7 +101,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     NgxChartsModule,
     FlexLayoutModule,
     AppMaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

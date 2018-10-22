@@ -21,13 +21,18 @@
                   <mat-option *ngFor="let exchange of EXCHANGES" [value]="exchange">
                     <span>{{ exchange.name }}</span>
                     <img style="float: right; margin-top: 10px; max-width: 20px; max-height: 20px;" src="/src/assets/exchanges/logos/logo_{{exchange.name.toLowerCase()}}.png"
-                      alt="{{exchange.name}}">
+                      alt="{{exchange.name}}" required>
                   </mat-option>
                 </mat-select>
               </mat-form-field>
               <mat-form-field>
-                <input matInput [(ngModel)]="accountName" [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang"
-                  name="account" autocomplete="new-password" required>
+                <input matInput [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang"
+                  name="account" autocomplete="new-password" required [formControl]="accountName" [errorStateMatcher]="matcher">
+                  <mat-hint>Errors appear instantly!</mat-hint>
+                  <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
+                  <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
+                    Your selection is invalid
+                </mat-error>
               </mat-form-field>
               <div fxLayout="column">
                 <mat-form-field>
