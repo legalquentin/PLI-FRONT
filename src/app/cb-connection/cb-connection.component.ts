@@ -6,22 +6,10 @@ import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
-import { CbLocaleService } from '../cb-services/cb-locale.service';
-import { Observable, of } from 'rxjs';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidSelection } from '../cb-shared/cb-match-form';
 
-interface REGISTER {
-  LOGIN: string;
-  MAIL: string;
-  PASSWORD: string;
-  REPEAT_PASSWORD: string;
-}
-
-interface SESSIONOBJECT {
-  SESSION_TOKEN: String;
-  USER: any;
-  FIRST: boolean;
-  ACCOUNTS: Array<any>;
-}
+declare let $: any;
 
 @Component({
   selector: 'app-cb-connection',
@@ -42,18 +30,6 @@ export class CbConnectionComponent implements OnInit {
     login: false
   };
 
-  public REGISTER = {
-    LOGIN: '',
-    MAIL: '',
-    PASSWORD: '',
-    REPEAT_PASSWORD: ''
-  };
-
-  public LOGIN = {
-    IDENTIFIER: '',
-    PASSWORD: ''
-  };
-
   public ERROR_MESSAGE = '';
 
   private SESSION = {
@@ -63,13 +39,43 @@ export class CbConnectionComponent implements OnInit {
     ACCOUNTS: []
   };
 
+  public loginFormGroup = new FormGroup({
+    login: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+    ])
+  });
+
+  public matcher = new ValidSelection();
+  public registerFormGroup = new FormGroup({
+    email: new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]),
+    login: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]{3,20}$'),
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]{3,20}$'),
+    ])
+  }, [ this.checkPasswords ]);
+
   constructor(
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
     private _CbApiService: CbApiService,
     private _CbStorageService: CbStorageService,
-    private _CbLocaleService: CbLocaleService,
     public _CbEventService: CbEventService
   ) {}
 
@@ -112,20 +118,11 @@ export class CbConnectionComponent implements OnInit {
     });
   }
 
-  // INPUT VALIDATION
-  validateInput(): any {
-    if (
-      this.REGISTER.LOGIN !== '' &&
-      this.REGISTER.MAIL !== '' &&
-      this.REGISTER.PASSWORD !== ''
-    ) {
-      return {
-        login: this.REGISTER.LOGIN,
-        email: this.REGISTER.MAIL,
-        password: this.REGISTER.PASSWORD
-      };
-    }
-    return false;
+  checkPasswords(group: FormGroup) {
+    const pass = group.controls.password.value;
+    const confirmPassword = group.controls.confirmPassword.value;
+
+    return pass === confirmPassword ? null : { notSame: true };
   }
 
   // HTTP REQUESTS
@@ -134,7 +131,12 @@ export class CbConnectionComponent implements OnInit {
   doRegister(): void {
     this.loading = true;
     const PATH = CbConstants.REQUESTS;
-    const PAYLOAD = this.validateInput();
+    const PAYLOAD = {
+      email: this.registerFormGroup.get('email').value,
+      login: this.registerFormGroup.get('login').value,
+      password: this.registerFormGroup.get('password').value,
+    };
+    this.registerFormGroup.disable();
     if (PAYLOAD) {
       const _sub = this._CbApiService.genericRequest(PATH.REGISTER, PAYLOAD);
       _sub.subscribe(result =>
@@ -156,9 +158,10 @@ export class CbConnectionComponent implements OnInit {
   doLogin(): void {
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = {
-      login: this.LOGIN.IDENTIFIER,
-      password: this.LOGIN.PASSWORD
+      login: this.loginFormGroup.get('login').value,
+      password: this.loginFormGroup.get('password').value,
     };
+    this.loginFormGroup.disable();
     this.loading = true;
     const _subLogin = this._CbApiService.genericRequest(PATH.LOGIN, PAYLOAD);
 
@@ -233,5 +236,10 @@ export class CbConnectionComponent implements OnInit {
     setTimeout(() => {
       this.ERROR_MESSAGE = '';
     }, 3500);
+  }
+
+  inputChange(data, form: string) {
+    console.log(data.target.value);
+    this.loginFormGroup.get(form).setValue(data.target.value);
   }
 }

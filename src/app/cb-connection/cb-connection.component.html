@@ -17,8 +17,8 @@
     <div class="left-footer" fxFlex="15%">
     </div>
   </div>
-  <div class="right-connection" fxFlex="41%;" fxLayout="column">
-    <div class="right-header" fxFlex="25%">
+  <div class="right-connection" fxFlex="41%;" fxLayout="column" id="right">
+    <div class="right-header" fxFlex="19%">
       <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
         <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
           EN
@@ -30,38 +30,80 @@
     </div>
     <div class="right-content" fxFlex="60%">
       <div class="form-wrapper" [@fade]="_CbEventService.ANIMATIONS.language.state" [@fade]="_CbEventService.ANIMATIONS.login.state">
-        <form *ngIf="register" fxLayout="column">
+        <form *ngIf="register" fxLayout="column" [formGroup]="registerFormGroup">
           <h2 class="form-header">{{ 'CONNECTION.REGISTER.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input [disabled]="loading" matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" name="mail" [(ngModel)]="REGISTER.MAIL">
+            <input matInput [placeholder]="'CONNECTION.REGISTER.MAIL' | translate:lang" name="mail"
+            formControlName="email" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="registerFormGroup.hasError('required', 'email')">
+              Please enter your email
+            </mat-error>
+            <mat-error *ngIf="registerFormGroup.hasError('email', 'email')">
+              Invalid email address
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input [disabled]="loading" matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" name="username" [(ngModel)]="REGISTER.LOGIN">
+            <input matInput [placeholder]="'CONNECTION.REGISTER.USERNAME' | translate:lang" name="login"
+              formControlName="login" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="registerFormGroup.hasError('required', 'login')">
+                Please enter your username
+              </mat-error>
+              <mat-error *ngIf="registerFormGroup.hasError('pattern', 'login')">
+                Invalid username
+              </mat-error>
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input [disabled]="loading" matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang" name="password"
-              [(ngModel)]="REGISTER.PASSWORD">
+            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.PASSWORD' | translate:lang"
+              name="password" formControlName="password" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="registerFormGroup.hasError('required', 'password')">
+                Please enter your password
+              </mat-error>
+              <mat-error *ngIf="registerFormGroup.hasError('pattern', 'password')">
+                Invalid password
+              </mat-error>
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input [disabled]="loading" matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang" name="repeat-password"
-              [(ngModel)]="REGISTER.REPEAT_PASSWORD">
+            <input matInput type="password" [placeholder]="'CONNECTION.REGISTER.REPEAT_PASSWORD' | translate:lang"
+              name="repeat-password" formControlName="confirmPassword" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="registerFormGroup.hasError('required', 'confirmPassword')">
+                Please enter your password
+              </mat-error>
+              <mat-error *ngIf="registerFormGroup.hasError('pattern', 'confirmPassword')">
+                Invalid password
+              </mat-error>
+              <mat-error *ngIf="registerFormGroup.hasError('notSame')">
+                Passwords do not match
+            </mat-error>
           </mat-form-field>
-          <button [disabled]="loading" mat-raised-button class="form-btn" (click)="doRegister()">{{ 'CONNECTION.REGISTER.BUTTON' |
+          <button [disabled]="loading || !registerFormGroup.valid" style="margin-top: 10px;" mat-raised-button class="form-btn" (click)="doRegister()">{{
+            'CONNECTION.REGISTER.BUTTON' |
             translate:lang
             }}
           </button>
           <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
         </form>
         <!-- LOGIN FORM -->
-        <form id="login" method="post" *ngIf="!register" [@fade]="_CbEventService.ANIMATIONS.language.state" fxLayout="column">
+        <form id="login" method="post" *ngIf="!register" style="margin-top: 15%;" [@fade]="_CbEventService.ANIMATIONS.language.state" fxLayout="column"
+          [formGroup]="loginFormGroup">
           <h2 class="form-header">{{ 'CONNECTION.LOGIN.TITLE' | translate:lang }}</h2>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput [(ngModel)]="LOGIN.IDENTIFIER" [disabled]="loading" name="email" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)">
+            <input (change)="inputChange($event, 'login')" matInput name="email" [placeholder]="('CONNECTION.LOGIN.MAIL' | translate: lang) + ' / ' + ('CONNECTION.LOGIN.USERNAME' | translate: lang)" formControlName="login" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="registerFormGroup.hasError('required', 'login')">
+              Please enter your login or email address
+            </mat-error>
+            <mat-error *ngIf="registerFormGroup.hasError('pattern', 'login')">
+              Invalid email address
+            </mat-error>
           </mat-form-field>
           <mat-form-field class="genericWhiteFormField">
-            <input matInput type="password" [(ngModel)]="LOGIN.PASSWORD" [disabled]="loading" name="password" [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang">
+            <input (change)="inputChange($event, 'password')" matInput type="password" name="password"
+              [placeholder]="'CONNECTION.LOGIN.PASSWORD' | translate:lang" formControlName="password" [errorStateMatcher]="matcher">
+              <mat-error *ngIf="registerFormGroup.hasError('required', 'password')">
+                Please enter your password
+              </mat-error>
           </mat-form-field>
-          <button mat-raised-button type="submit" class="form-btn" [disabled]="loading" (click)="doLogin()">{{ 'CONNECTION.LOGIN.BUTTON' |
+          <button mat-raised-button type="submit" class="form-btn" [disabled]="loading" (click)="doLogin()">{{
+            'CONNECTION.LOGIN.BUTTON' |
             translate:lang
             }}</button>
           <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>

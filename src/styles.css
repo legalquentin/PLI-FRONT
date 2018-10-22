@@ -14,3 +14,12 @@ body { margin: 0; }
 mat-icon {
   font-family: 'Material Icons' !important;
 }
+
+/* .mat-error {
+  color: #fbbe10 !important;
+}
+
+::ng-deep .mat-warn .mat-input-element, .mat-form-field-invalid .mat-input-element {
+  caret-color: #fbbe10 !important;
+} */
+

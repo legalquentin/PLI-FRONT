@@ -138,3 +138,7 @@ mat-button-toggle {
   color: rgb(238, 238, 238);
   background-color: var(--back-color);
 }
+
+mat-form-field {
+  margin-bottom: 10px;
+}

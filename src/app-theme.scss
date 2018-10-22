@@ -3,7 +3,7 @@
 @include mat-core();
 $app-green-primary: mat-palette($mat-green);
 // Create the theme object (a Sass map containing all of the palettes).
-$app-green-theme: mat-light-theme($app-green-primary, mat-palette($mat-grey));
+$app-green-theme: mat-light-theme($app-green-primary, mat-palette($mat-grey), mat-palette($mat-amber));
 @include angular-material-theme($app-green-theme);
 @mixin mat-form-field-theme() {
     .mat-form-field {
