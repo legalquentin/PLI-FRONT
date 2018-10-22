@@ -47,9 +47,15 @@
 }
 
 mat-icon.icons-cell.mat-icon.material-icons {
+  cursor: default;
   color: var(--primary-color);
 }
 
 mat-icon.icons-cell.mat-icon.material-icons.disabled {
+  cursor: default;
   color: rgb(182, 182, 182);
+}
+
+.add-account-form mat-form-field {
+  margin-bottom: 10px;
 }

@@ -6,7 +6,7 @@ import { CbConfirmModalComponent } from '../cb-modals/cb-confirm-modal/cb-confir
 import { MatDialog } from '@angular/material';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { Observable } from 'rxjs';
-import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ValidSelection } from '../cb-shared/cb-match-form';
 
 interface ConfirmDialogData {
@@ -41,13 +41,24 @@ export class CbExchangeAccountsComponent implements OnInit {
     columns: [],
     data: []
   };
-  public accountName = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
 
-  public publicKey: string;
-  public privateKey: string;
+  public addFormGroup = new FormGroup({
+    exchangeSelection: new FormControl('', [
+      Validators.required
+    ]),
+    accountName: new FormControl('', [
+      Validators.required
+    ]),
+    publicKey: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]*')
+    ]),
+    privateKey: new FormControl('', [
+      Validators.required,
+      Validators.pattern('[a-zA-Z0-9]*')
+    ])
+  });
+
   public LOADED = false;
 
   public selected = new FormControl('valid', [
@@ -74,8 +85,6 @@ export class CbExchangeAccountsComponent implements OnInit {
     private _CbStorageService: CbStorageService
   ) {
     this.loadExchanges();
-    this.publicKey = '';
-    this.privateKey = '';
   }
 
   ngOnInit() { }
@@ -154,8 +163,8 @@ export class CbExchangeAccountsComponent implements OnInit {
   createAccount(exchange: string): void {
     const payload = {
       URL_PARAM: [exchange],
-      value: this.publicKey,
-      sign: this.privateKey
+      value: '', // this.publicKey,
+      sign: '' // this.privateKey
     };
     this._CbApiService
       .genericRequest(CbConstants.REQUESTS.ADD_PROVIDERS, payload)
@@ -182,7 +191,7 @@ export class CbExchangeAccountsComponent implements OnInit {
       if (result) {
         this._CbApiService.genericRequest(
           CbConstants.REQUESTS.DELETE_PROVIDER,
-          [row.EXCHANGE, row.ID]).subscribe(res => {
+          [row.EXCHANGE, row.NAME]).subscribe(res => {
           console.log('DELETE_PROVIDER SUCCESS', res);
         }, error => {
           console.log('DELETE_PROVIDER ERROR', error);

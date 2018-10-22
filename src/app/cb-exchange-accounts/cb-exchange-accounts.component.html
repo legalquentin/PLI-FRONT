@@ -15,38 +15,49 @@
                 {{ 'EXCHANGES.ADD.TITLE' | translate: lang }}
               </mat-panel-title>
             </mat-expansion-panel-header>
-            <form fxLayout="column">
+            <form fxLayout="column" class="add-account-form" [formGroup]="addFormGroup">
               <mat-form-field color="primary">
-                <mat-select placeholder="{{'EXCHANGES.ADD.SELECTOR' | translate: lang }}">
+                <mat-select placeholder="{{'EXCHANGES.ADD.SELECTOR' | translate: lang }}" required formControlName="exchangeSelection"
+                  [errorStateMatcher]="matcher">
                   <mat-option *ngFor="let exchange of EXCHANGES" [value]="exchange">
                     <span>{{ exchange.name }}</span>
                     <img style="float: right; margin-top: 10px; max-width: 20px; max-height: 20px;" src="/src/assets/exchanges/logos/logo_{{exchange.name.toLowerCase()}}.png"
                       alt="{{exchange.name}}" required>
                   </mat-option>
                 </mat-select>
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                <mat-error *ngIf="addFormGroup.get('exchangeSelection').hasError('required')">You must select an exchange</mat-error>
               </mat-form-field>
               <mat-form-field>
-                <input matInput [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang"
-                  name="account" autocomplete="new-password" required [formControl]="accountName" [errorStateMatcher]="matcher">
-                  <mat-hint>Errors appear instantly!</mat-hint>
-                  <mat-error *ngIf="selected.hasError('required')">You must make a selection</mat-error>
-                  <mat-error *ngIf="selected.hasError('pattern') && !selected.hasError('required')">
-                    Your selection is invalid
+                <input matInput [placeholder]="'EXCHANGES.ADD.INPUT_NAME' | translate: lang" name="account"
+                  autocomplete="new-password" required formControlName="accountName" [errorStateMatcher]="matcher">
+                <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+                <mat-error *ngIf="addFormGroup.get('accountName').hasError('required')">You must name your account</mat-error>
+                <mat-error *ngIf="addFormGroup.get('accountName').hasError('pattern') && !addFormGroup.get('accountName').hasError('required')">
+                  Your account name is invalid
                 </mat-error>
               </mat-form-field>
               <div fxLayout="column">
                 <mat-form-field>
-                  <input matInput [(ngModel)]="publicKey" [placeholder]="'EXCHANGES.ADD.INPUT_PUBLIC' | translate: lang"
+                  <input matInput formControlName="publicKey" [placeholder]="'EXCHANGES.ADD.INPUT_PUBLIC' | translate: lang"
                     name="public" autocomplete="new-password" required>
+                  <mat-error *ngIf="addFormGroup.get('publicKey').hasError('required')">You must provide a public api key</mat-error>
+                  <mat-error *ngIf="addFormGroup.get('publicKey').hasError('pattern') && !addFormGroup.get('publicKey').hasError('required')">
+                    Your public key is invalid
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                  <input matInput [(ngModel)]="privateKey" [placeholder]="'EXCHANGES.ADD.INPUT_PRIVATE' | translate: lang"
+                  <input matInput formControlName="privateKey" [placeholder]="'EXCHANGES.ADD.INPUT_PRIVATE' | translate: lang"
                     type="password" name="private" autocomplete="new-password" required>
+                  <mat-error *ngIf="addFormGroup.get('privateKey').hasError('required')">You must provide a private api key</mat-error>
+                  <mat-error *ngIf="addFormGroup.get('privateKey').hasError('pattern') && !addFormGroup.get('privateKey').hasError('required')">
+                    Your private key is invalid
+                  </mat-error>
                 </mat-form-field>
               </div>
             </form>
             <mat-action-row>
-              <button mat-flat-button (click)="createAccount('test')">Save</button>
+              <button mat-flat-button (click)="createAccount('test')" [disabled]="!addFormGroup.valid">Save</button>
             </mat-action-row>
           </mat-expansion-panel>
           <mat-expansion-panel [expanded]="true">
@@ -104,10 +115,12 @@
 
 <!-- Cell right icons Template -->
 <ng-template #iconRightsTemplate let-row="row" let-col="col">
-    <div class="defaultCell">
-      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.READ' | translate: lang">visibility</mat-icon>
-      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.TRADE' | translate: lang" [ngClass]="{'disabled': row[col] < 2}">swap_horiz</mat-icon>
-      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW' | translate: lang" [ngClass]="{'disabled': row[col] < 3}">account_balance_wallet</mat-icon>
+  <div class="defaultCell">
+    <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.READ' | translate: lang">visibility</mat-icon>
+    <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.TRADE' | translate: lang"
+      [ngClass]="{'disabled': row[col] < 2}">swap_horiz</mat-icon>
+    <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW' | translate: lang"
+      [ngClass]="{'disabled': row[col] < 3}">account_balance_wallet</mat-icon>
   </div>
 </ng-template>
 
