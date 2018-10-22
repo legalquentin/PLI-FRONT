@@ -70,7 +70,8 @@ export class CbDashboardComponent implements OnInit {
     bandColor: '#AAAAAA'
   };
 
-  public ACCOUNT = [];
+  public ACCOUNTS = [];
+  public ACTIVE_ACCOUNT = 0;
   public NO_EXCHANGE = true;
   public EMPTY = {
     HEADER: '<h3>' + this.translation.translate('MESSAGE.EMPTY.HEADER') + '</h3>',
@@ -89,30 +90,9 @@ export class CbDashboardComponent implements OnInit {
   ngOnInit() {
     $('#navigate').click(this.navigate('exchange'));
     this.firstConnection();
-    this.ACCOUNT = this._CbStorageService.getAccounts();
-    if (this.ACCOUNT.length > 0) {
-      this.NO_EXCHANGE = false;
-      this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES, ['BINANCE']).subscribe(result => {
-        console.log('GET_CURRENCIES SUCCESS', result);
-        this.kpiData = result.data;
-        this.ready = true;
-        this.chart = new CryptowatchEmbed('bitfinex', 'btcusd', {
-          timePeriod: '1d',
-          width: 650,
-          presetColorScheme: 'delek'
-        });
-        this.chart.mount($('#chart-container'));
-        // const chart2 = new CryptowatchEmbed('bitfinex', 'btceth', {
-        //   timePeriod: '1d',
-        //   width: 650,
-        //   presetColorScheme: 'delek'
-        // });
-        // chart2.mount('#chart-container-2');
-
-      }, error => {
-        console.log('GET_CURRENCIES ERROR', error);
-      });
-    }
+    this.ACCOUNTS = this._CbStorageService.getAccounts();
+    this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
+    this.loadCurrencies();
   }
 
   navigate(path: string) {
@@ -136,4 +116,15 @@ export class CbDashboardComponent implements OnInit {
       });
     }
   }
+
+  loadCurrencies(): void {
+      this.NO_EXCHANGE = false;
+      this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES_DETAILS, [
+        this.ACTIVE_ACCOUNT
+      ]).subscribe(result => {
+        console.log('GET_CURRENCIES SUCCESS', result);
+      }, error => {
+        console.log('GET_CURRENCIES ERROR', error);
+      });
+    }
 }

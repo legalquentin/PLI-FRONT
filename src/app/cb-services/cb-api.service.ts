@@ -82,6 +82,8 @@ export class CbApiService {
         return this.POST(_REQUEST.PATH, _PAYLOAD);
       case 'PUT':
         return this.PUT(_REQUEST.PATH, _PAYLOAD);
+      case 'DELETE':
+        return this.DELETE(_REQUEST.PATH, _PAYLOAD);
     }
   }
 
@@ -115,6 +117,18 @@ export class CbApiService {
     return this.http.put<any>(
       this.config.apiUrl + _ENDPOINT,
       _PAYLOAD,
+      this.getOptions()
+    ).pipe(catchError(this.handleError));
+  }
+
+  private DELETE(_ENDPOINT: string, _PARAMETERS: any): Observable<any> {
+    if (_PARAMETERS) {
+      for (const param of _PARAMETERS) {
+        _ENDPOINT += '/' + param;
+      }
+    }
+    return this.http.delete<any>(
+      this.config.apiUrl + _ENDPOINT,
       this.getOptions()
     ).pipe(catchError(this.handleError));
   }

@@ -33,3 +33,23 @@
 .mat-expansion-panel-spacing {
   margin: 0px;
 }
+
+::ng-deep .mat-column-DELETE {
+  padding-right: 0px !important;
+}
+
+::ng-deep .mat-column-RIGHTS {
+  padding-left: 20px !important;
+}
+
+::ng-deep .mat-column-RIGHTS.mat-cell {
+  padding-left: 0px !important;
+}
+
+mat-icon.icons-cell.mat-icon.material-icons {
+  color: var(--primary-color);
+}
+
+mat-icon.icons-cell.mat-icon.material-icons.disabled {
+  color: rgb(182, 182, 182);
+}

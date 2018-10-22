@@ -166,8 +166,7 @@ export class CbConnectionComponent implements OnInit {
       result => {
         this.getProfile(result.data, (ok) => {
           if (ok) {
-            // this.getProviders();
-            this.router.navigate(['cryptobo4rd/dashboard']);
+            this.getProviders();
           }
         });
       },
@@ -209,8 +208,9 @@ export class CbConnectionComponent implements OnInit {
       result => {
         const accounts = [];
         for (const exchange of result.data) {
-          if (typeof exchange.value === 'string') {
-            accounts.push({ EXCHANGE: exchange.name });
+          for (const account of exchange.accounts) {
+            account.exchange = exchange.name;
+            accounts.push(account);
           }
         }
         this.SESSION.ACCOUNTS = accounts;

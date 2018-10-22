@@ -20,7 +20,8 @@
                 <mat-select placeholder="{{'EXCHANGES.ADD.SELECTOR' | translate: lang }}">
                   <mat-option *ngFor="let exchange of EXCHANGES" [value]="exchange">
                     <span>{{ exchange.name }}</span>
-                    <img style="float: right; margin-top: 10px; max-width: 20px; max-height: 20px;" src="/src/assets/exchanges/logos/logo_{{exchange.name.toLowerCase()}}.png" alt="{{exchange.name}}">
+                    <img style="float: right; margin-top: 10px; max-width: 20px; max-height: 20px;" src="/src/assets/exchanges/logos/logo_{{exchange.name.toLowerCase()}}.png"
+                      alt="{{exchange.name}}">
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -95,6 +96,16 @@
     <mat-slide-toggle color="primary" [checked]="row[col]"></mat-slide-toggle>
   </div>
 </ng-template>
+
+<!-- Cell right icons Template -->
+<ng-template #iconRightsTemplate let-row="row" let-col="col">
+    <div class="defaultCell">
+      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.READ' | translate: lang">visibility</mat-icon>
+      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.TRADE' | translate: lang" [ngClass]="{'disabled': row[col] < 2}">swap_horiz</mat-icon>
+      <mat-icon aria-label="read" class="icons-cell" [matTooltip]="'GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW' | translate: lang" [ngClass]="{'disabled': row[col] < 3}">account_balance_wallet</mat-icon>
+  </div>
+</ng-template>
+
 
 <!-- Cell delete icon Template -->
 <ng-template #iconButtonTemplate let-row="row" let-col="col">

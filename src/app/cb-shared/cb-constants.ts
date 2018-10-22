@@ -43,9 +43,17 @@ export class CbConstants {
       PATH: '/provider',
       METHOD: 'POST'
     },
+    DELETE_PROVIDER: {
+      PATH: '/provider',
+      METHOD: 'DELETE'
+    },
     // EXCHANGES ACCOUNT
     GET_CURRENCIES: {
       PATH: '/account-currency',
+      METHOD: 'GET'
+    },
+    GET_CURRENCIES_DETAILS: {
+      PATH: '/account-currency/details',
       METHOD: 'GET'
     }
   };

@@ -26,6 +26,7 @@
   "MENU_LEFT.DASHBOARD": "Tableau de bord",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",
   "MENU_LEFT.FUNDS": "Portefeuille",
+  "MENU_LEFT.SOCIAL": "Communauté",
   "MENU_LEFT.SETTINGS": "Paramètres",
   "MENU_LEFT.TRANSACTION": "Transaction",
 
@@ -66,6 +67,11 @@
   "GRID.HEADER.ACTIVE": "Etat",
   "GRID.HEADER.DELETE": "Supprimer",
   "GRID.HEADER.DATE": "Date d'ajout",
+  "GRID.HEADER.RIGHTS": "Droits",
+
+  "GRID.CELL.RIGHTS.TOOLTIP.READ": "Lecture",
+  "GRID.CELL.RIGHTS.TOOLTIP.TRADE": "Opérations",
+  "GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW": "Retrait",
 
   "MODAL.KEYS.TITLE": "Bienvenue sur Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "Pour commencer à visualiser vos données et pouvoir effectuer des opérations, il vous faut rentrer au moins une clé d'API d'une plateforme d'exchange",

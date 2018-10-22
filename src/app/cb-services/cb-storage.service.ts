@@ -41,6 +41,11 @@ export class CbStorageService {
     this.updateSessionData(this.session);
   }
 
+  setActiveAccount(account) {
+    this.session['USER'] = Object.assign(this.session['USER'], { activeSegment: account });
+    this.updateSessionData(this.session);
+  }
+
   updateSessionAccountsData(ACCOUNTS: any[]): any {
     this.session['ACCOUNTS'] = ACCOUNTS;
     this.updateSessionData(this.session);
@@ -140,5 +145,13 @@ export class CbStorageService {
       sessionToken = this.session['SESSION_TOKEN'];
     }
     return sessionToken;
+  }
+
+  getActiveAccount(): number {
+    let activeAccountId = 0;
+    if (this.session && this.session['USER'] && this.session['USER']['activeSegment']) {
+      activeAccountId = this.session['USER'];
+    }
+    return activeAccountId;
   }
 }

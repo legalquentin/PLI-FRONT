@@ -11,6 +11,7 @@ import { CbAccountComponent } from './cb-account/cb-account.component';
 import { CbFundsComponent } from './cb-funds/cb-funds.component';
 import { CbTransactionComponent } from './cb-transaction/cb-transaction.component';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
+import { CbSocialComponent } from './cb-social/cb-social.component';
 
 const routes: Routes = [
   { path: '', component: CbConnectionComponent, canActivate: [CbAuthgardService]},
@@ -22,6 +23,7 @@ const routes: Routes = [
       { path: 'cryptobot', component: CbCryptobotComponent, data: { page: 'cryptobot' }},
       { path: 'funds', component: CbFundsComponent, data: { page: 'funds' }},
       { path: 'transaction', component: CbTransactionComponent, data: { page: 'transaction' }},
+      { path: 'social', component: CbSocialComponent, data: { page: 'social' }},
       { path: 'settings', component: CbSettingsComponent, data: { page: 'settings' }},
       { path: 'account', component: CbAccountComponent, data: { page: 'account' }},
       { path: 'exchanges', component: CbExchangeAccountsComponent, data: { page: 'exchanges' }},

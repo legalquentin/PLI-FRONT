@@ -40,6 +40,7 @@ import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-
 import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { CbConfirmModalComponent } from './cb-modals/cb-confirm-modal/cb-confirm-modal.component';
+import { CbSocialComponent } from './cb-social/cb-social.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -88,7 +89,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbSafeHtml,
     CbExchangeAccountsComponent,
     CbKeysModalComponent,
-    CbConfirmModalComponent
+    CbConfirmModalComponent,
+    CbSocialComponent
   ],
   imports: [
     BrowserModule,

@@ -55,11 +55,13 @@ export class CbMenuTopComponent implements OnInit {
 
   getAccounts() {
     this.ACCOUNTS = this._CbStorageService.getAccounts();
-    console.log(this.ACCOUNTS);
+    this.selectedAccount = this._CbStorageService.getActiveAccount();
     if (this.ACCOUNTS.length === 1) {
       this.selectedAccount = this.ACCOUNTS[0];
-    } else if (this.ACCOUNTS.length > 1) {
-      this.selectedAccount = this.selectGlobal;
+      this._CbStorageService.setActiveAccount(this.selectedAccount);
+    } else if (this.ACCOUNTS.length === 0) {
+      this.selectedAccount = 0;
+      this._CbStorageService.setActiveAccount(0);
     }
   }
 }

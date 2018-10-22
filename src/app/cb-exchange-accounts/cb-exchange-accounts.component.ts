@@ -26,6 +26,8 @@ export class CbExchangeAccountsComponent implements OnInit {
   buttonTemplate: TemplateRef<any>;
   @ViewChild('sliderTemplate')
   sliderTemplate: TemplateRef<any>;
+  @ViewChild('iconRightsTemplate')
+  iconRightsTemplate: TemplateRef<any>;
   @ViewChild('iconButtonTemplate')
   iconButtonTemplate: TemplateRef<any>;
   @ViewChild('dateTextTemplate')
@@ -82,6 +84,10 @@ export class CbExchangeAccountsComponent implements OnInit {
             VIEW: this.textTemplate
           });
           this.ACCOUNTS.columns.push({
+            KEY: 'RIGHTS',
+            VIEW: this.iconRightsTemplate
+          });
+          this.ACCOUNTS.columns.push({
             KEY: 'EXCHANGE',
             VIEW: this.textTemplate
           });
@@ -101,7 +107,7 @@ export class CbExchangeAccountsComponent implements OnInit {
             if (exchange.accounts.length > 0) {
               for (const account of exchange.accounts) {
                 this.ACCOUNTS.data.push({
-                  ID: account.id,
+                  ID: account.provider_id,
                   NAME: account.name,
                   EXCHANGE: exchange.name,
                   ACTIVE: account.active,
@@ -144,12 +150,19 @@ export class CbExchangeAccountsComponent implements OnInit {
     const tpath = 'EXCHANGES.EDIT.DELETE.';
     const data = {
       title: trsl.translate(tpath + 'MODAL_TITLE'),
-      message: trsl.translate(tpath + 'MODAL_BODY') + row.EXCHANGE + ' ?'
+      message: trsl.translate(tpath + 'MODAL_BODY') + row.EXCHANGE +
+      ' "' + row.NAME + '" ?'
     };
 
     this.openDialog(500, 223, data).subscribe(result => {
       if (result) {
-        // this._CbApiService.genericRequest(CbConstants.REQUESTS.)
+        this._CbApiService.genericRequest(
+          CbConstants.REQUESTS.DELETE_PROVIDER,
+          [row.EXCHANGE, row.ID]).subscribe(res => {
+          console.log('DELETE_PROVIDER SUCCESS', res);
+        }, error => {
+          console.log('DELETE_PROVIDER ERROR', error);
+        });
       }
     });
   }

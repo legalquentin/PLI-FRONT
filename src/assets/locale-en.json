@@ -25,6 +25,7 @@
   "MENU_LEFT.DASHBOARD": "Dashboard",
   "MENU_LEFT.CRYPTOBOT": "CryptoBot",
   "MENU_LEFT.FUNDS": "Funds",
+  "MENU_LEFT.SOCIAL": "Social",
   "MENU_LEFT.SETTINGS": "Settings",
   "MENU_LEFT.TRANSACTION": "Transaction",
 
@@ -65,6 +66,11 @@
   "GRID.HEADER.ACTIVE": "State",
   "GRID.HEADER.DELETE": "Delete",
   "GRID.HEADER.DATE": "Creation date",
+  "GRID.HEADER.RIGHTS": "Rights",
+
+  "GRID.CELL.RIGHTS.TOOLTIP.READ": "Read",
+  "GRID.CELL.RIGHTS.TOOLTIP.TRADE": "Trade",
+  "GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW": "Withdraw",
 
   "MODAL.KEYS.TITLE": "Welcome to Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "To start with Cryptobo4rd, visualize your assets and make operations, you first need to provide an API key from an Exchange platform.",

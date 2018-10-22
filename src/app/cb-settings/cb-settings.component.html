@@ -29,6 +29,18 @@
             No
           </mat-button-toggle>
         </mat-button-toggle-group>
+        <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="false">
+            <mat-button-toggle value="lang" disabled>
+              Newsletter
+              <!-- <mat-icon>translate</mat-icon> -->
+            </mat-button-toggle>
+            <mat-button-toggle [value]="true" >
+              Yes
+            </mat-button-toggle>
+            <mat-button-toggle [value]="false" >
+              No
+            </mat-button-toggle>
+          </mat-button-toggle-group>
       </div>
     </div>
   </div>

@@ -5,16 +5,15 @@
   <div class="middle-left-nav" fxFlex>
     <mat-form-field class="genericWhiteFormField accountSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
       <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="ACCOUNTS.length === 0"
-        [value]="selectedAccount" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}"
-        [matTooltipDisabled]="ACCOUNTS.length !== 0">
-        <mat-option *ngFor="let account of ACCOUNTS" [value]="account">
-          {{ account.EXCHANGE }}
-        </mat-option>
+        [value]="selectedAccount" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}" [matTooltipDisabled]="ACCOUNTS.length !== 0">
         <mat-option *ngIf="ACCOUNTS.length > 1" [value]="selectGlobal">
           {{ 'MENU_TOP.SELECTOR.SELECT_ALL' | translate: lang }}
         </mat-option>
         <mat-option *ngIf="ACCOUNTS.length === 0" [value]="selectNone">
           {{ 'MENU_TOP.SELECTOR.NOT_SET' | translate: lang }}
+        </mat-option>
+        <mat-option *ngFor="let account of ACCOUNTS" [value]="account">
+          {{ account.name }}
         </mat-option>
       </mat-select>
     </mat-form-field>

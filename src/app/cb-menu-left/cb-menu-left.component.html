@@ -12,22 +12,11 @@
     <a mat-list-item [@fade]="_CbEventService.ANIMATIONS.language.state" [ngClass]="(router.url.toUpperCase() === '/CRYPTOBO4RD/TRANSACTION') ? 'active' : 'not'" (click)="navigate('transaction')">
       <mat-icon>payment</mat-icon>{{ 'MENU_LEFT.TRANSACTION' | translate: lang }}
     </a>
+    <a mat-list-item [@fade]="_CbEventService.ANIMATIONS.language.state" [ngClass]="(router.url.toUpperCase() === '/CRYPTOBO4RD/SOCIAL') ? 'active' : 'not'" (click)="navigate('social')">
+      <mat-icon>group</mat-icon>{{ 'MENU_LEFT.SOCIAL' | translate: lang }}
+    </a>
     <a mat-list-item [@fade]="_CbEventService.ANIMATIONS.language.state" [ngClass]="(router.url.toUpperCase() === '/CRYPTOBO4RD/SETTINGS') ? 'active' : 'not'" (click)="navigate('settings')">
       <mat-icon>settings</mat-icon>{{ 'MENU_LEFT.SETTINGS' | translate: lang }}
     </a>
   </mat-nav-list>
-
-  <div style="margin-top: 260px; color: white !important; padding:15px;">
-    <mat-icon style="font-size: 30px;" matTooltip="{{ USERS.length }} Utilisateurs">group</mat-icon> {{ USERS.length }}
-    <!-- <mat-list style="height:250px; overflow-y: scroll;">
-      <mat-list-item *ngFor="let user of USERS" style="color: white !important; height: 60px;">
-        <img matListAvatar [src]="user.avatar" width="25px" alt="...">kBcdGhcJhVbJmCO7CoK9RRVYKBmD4SPz8M7hWsIKmzUuAxJ4KJ0VOHBSHNAbuMOt
-        <h3 matLine> {{user.id}} </h3>HsellwTAnA1Jq24YXHQvuwn2ZxyaRsviQISoLL42XQdIOWeG92oryte2xFG2KPqH
-        <p matLine>
-          <span> {{user.firstname}} </span>
-          <span class="demo-2"> -- {{user.name}} </span>
-        </p>
-      </mat-list-item>
-    </mat-list> -->
-  </div>
 </div>
