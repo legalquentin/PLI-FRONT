@@ -36,6 +36,7 @@ export class CbDataTableComponent implements OnInit {
     this.LENGHT = this.CONFIG.data.length;
     this.COLUMNS = this.CONFIG.columns;
     this.DISPLAYED_COLUMNS = this.COLUMNS.map(obj => obj.KEY);
+    // this.DISPLAYED_COLUMNS.push('menu');
     this.DATASOURCE = new MatTableDataSource(this.CONFIG.data);
     // this.SELECTION.select(this.DATASOURCE.data[1]);
     if (this.LENGHT > 10) {

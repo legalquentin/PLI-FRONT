@@ -156,13 +156,13 @@ export class CbConnectionComponent implements OnInit {
 
   // LOGIN PROCEDURE
   doLogin(): void {
+    this.loading = true;
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = {
       login: this.loginFormGroup.get('login').value,
       password: this.loginFormGroup.get('password').value,
     };
     this.loginFormGroup.disable();
-    this.loading = true;
     const _subLogin = this._CbApiService.genericRequest(PATH.LOGIN, PAYLOAD);
 
     _subLogin.subscribe(
@@ -170,6 +170,8 @@ export class CbConnectionComponent implements OnInit {
         this.getProfile(result.data, (ok) => {
           if (ok) {
             this.getProviders();
+          } else {
+            this.displayError('ERROR', true);
           }
         });
       },

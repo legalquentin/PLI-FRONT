@@ -43,8 +43,8 @@ export class CbConstants {
       PATH: '/provider',
       METHOD: 'POST'
     },
-    DELETE_PROVIDER: {
-      PATH: '/provider',
+    DELETE_PROVIDER_ACCOUNT: {
+      PATH: '/provider/account',
       METHOD: 'DELETE'
     },
     // EXCHANGES ACCOUNT

@@ -36,11 +36,14 @@ export class CbExchangeAccountsComponent implements OnInit {
   @ViewChild('dateTextTemplate')
   dateTextTemplate: TemplateRef<any>;
 
+  public LOADED = false;
   public EXCHANGES: Array<any>;
   public ACCOUNTS = {
     columns: [],
     data: []
   };
+
+  public matcher = new ValidSelection();
 
   public addFormGroup = new FormGroup({
     exchangeSelection: new FormControl('', [
@@ -59,32 +62,13 @@ export class CbExchangeAccountsComponent implements OnInit {
     ])
   });
 
-  public LOADED = false;
-
-  public selected = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-  public selectFormControl = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-  public nativeSelectFormControl = new FormControl('valid', [
-    Validators.required,
-    Validators.pattern('valid'),
-  ]);
-
-  public matcher = new ValidSelection();
-
   constructor(
     private translationService: TranslationService,
     private dialog: MatDialog,
     private _CbApiService: CbApiService,
     private _CbStorageService: CbStorageService
   ) {
-    this.loadExchanges();
+    this.loadAccounts();
   }
 
   ngOnInit() { }
@@ -104,7 +88,7 @@ export class CbExchangeAccountsComponent implements OnInit {
     return dialogRef.afterClosed();
   }
 
-  loadExchanges(): void {
+  loadAccounts(): void {
 
     this._CbApiService
       .genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS)
@@ -112,6 +96,8 @@ export class CbExchangeAccountsComponent implements OnInit {
         result => {
           this.EXCHANGES = result.data;
           console.log(result);
+          this.ACCOUNTS.columns = [];
+          this.ACCOUNTS.data = [];
           this.ACCOUNTS.columns.push({
             KEY: 'NAME',
             VIEW: this.textTemplate
@@ -190,9 +176,10 @@ export class CbExchangeAccountsComponent implements OnInit {
     this.openDialog(500, 223, data).subscribe(result => {
       if (result) {
         this._CbApiService.genericRequest(
-          CbConstants.REQUESTS.DELETE_PROVIDER,
-          [row.EXCHANGE, row.NAME]).subscribe(res => {
+          CbConstants.REQUESTS.DELETE_PROVIDER_ACCOUNT,
+          [row.ID]).subscribe(res => {
           console.log('DELETE_PROVIDER SUCCESS', res);
+          this.loadAccounts();
         }, error => {
           console.log('DELETE_PROVIDER ERROR', error);
         });
