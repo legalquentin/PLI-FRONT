@@ -42,6 +42,7 @@ import { CbConfirmModalComponent } from './cb-modals/cb-confirm-modal/cb-confirm
 import { CbSocialComponent } from './cb-social/cb-social.component';
 import { CbDashboardPieComponent } from './cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
 import { CbDashboardGraphComponent } from './cb-shared/cb-dashboard-graph/cb-dashboard-graph.component';
+import { CbDashboardTableComponent } from './cb-shared/cb-dashboard-table/cb-dashboard-table.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -92,7 +93,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbConfirmModalComponent,
     CbSocialComponent,
     CbDashboardPieComponent,
-    CbDashboardGraphComponent
+    CbDashboardGraphComponent,
+    CbDashboardTableComponent
   ],
   imports: [
     BrowserModule,

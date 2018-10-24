@@ -1,12 +1,17 @@
 .widget-wrapper {
   background-color: var(--back-color);
-  border-radius: 4px;
-  padding: 5px;
 }
 
-.options {
+.toolbar {
   background-color: var(--primary-color);
   color: white;
+  align-items: center;
+  display: inline-flex;
+  margin-bottom: 5px;
+}
+
+.toolbar > div > span {
+  margin-left: 10px;
 }
 
 ::ng-deep .legend-label:hover {

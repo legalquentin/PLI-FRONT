@@ -10,7 +10,7 @@ export class CbDashboardGraphComponent implements OnInit {
 
   public DATA: Array<any>;
   public LOADED = false;
-  public VIEW = [680, 330];
+  public VIEW = [600, 315];
   public GRID_CONFIG = {
     showXAxis: false,
     showYAxis: true,
@@ -20,6 +20,11 @@ export class CbDashboardGraphComponent implements OnInit {
     showYAxisLabel: false,
     yFormat: this.yFormat,
     yAxisLabel: 'ETH - USDT',
+    colorScheme: {
+      domain: [
+        '#a8385d', '#7aa3e5', '#a27ea8', '#aae3f5', '#adcded', '#a95963', '#8796c0', '#7ed3ed', '#50abcc', '#ad6886'
+      ]
+    },
     animations: true
   };
 

@@ -79,9 +79,51 @@ $app-green-theme: mat-light-theme($app-green-primary, mat-palette($mat-grey), ma
 }
 
 @mixin ngx-chart() {
-  ::ng-deep .ngx-charts {
+  .ngx-charts {
+
+    .tooltip-anchor {
+      fill: white !important;
+    }
+
+    .gauge {
+      .background-arc{
+        path {
+          fill: white;
+        }
+      }
+      .gauge-tick {
+        path {
+          stroke: white;
+        }
+        text {
+          fill: white;
+        }
+      }
+    }
+
     text{
         fill: #fff!important;
+    }
+  }
+
+  .chart-legend {
+
+    .legend-item {
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .legend-label {
+      &:hover {
+        color: #fff !important;
+      }
+
+      .active {
+        .legend-label-text {
+          color: #fff !important;
+        }
+      }
     }
   }
 }

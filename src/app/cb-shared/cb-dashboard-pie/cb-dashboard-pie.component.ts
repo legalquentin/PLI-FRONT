@@ -10,7 +10,7 @@ export class CbDashboardPieComponent implements OnInit {
 
   public DATA: Array<any>;
   public LOADED = false;
-  public VIEW = [550, 200];
+  public VIEW = [600, 200];
 
   constructor() {
 
