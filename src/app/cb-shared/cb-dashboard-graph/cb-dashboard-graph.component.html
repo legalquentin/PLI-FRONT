@@ -4,6 +4,18 @@
       <span>Assets evolution</span>
     </div>
     <div>
+      <!-- <mat-form-field class="date-input">
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field> -->
+      <input [matDatepicker]="picker" style="width: 0; height: 0; padding: 0; margin: 0; border: none;">
+      <mat-datepicker #picker></mat-datepicker>
+      <button mat-icon-button (click)="picker.open()">
+        <mat-icon>date_range</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>settings</mat-icon>
+      </button>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
