@@ -14,9 +14,6 @@
         <mat-icon>date_range</mat-icon>
       </button>
       <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>settings</mat-icon>
-      </button>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>more_vert</mat-icon>
       </button>
     </div>
@@ -24,8 +21,7 @@
   <ngx-charts-line-chart *ngIf="LOADED" [results]="DATA" [view]="VIEW" [customColors]="GRID_CONFIG.colorScheme"
     [gradient]="GRID_CONFIG.gradient" [xAxis]="GRID_CONFIG.showXAxis" [yAxis]="GRID_CONFIG.showYAxis" [legend]="GRID_CONFIG.showLegend"
     [showXAxisLabel]="GRID_CONFIG.showXAxisLabel" [yAxisTickFormatting]="GRID_CONFIG.yFormat" [showYAxisLabel]="GRID_CONFIG.showYAxisLabel"
-    [yAxisLabel]="GRID_CONFIG.yAxisLabel" [animations]="GRID_CONFIG.animations" [autoScale]="GRID_CONFIG.autoScale"
-    (select)="onSelect($event)"></ngx-charts-line-chart>
+    [yAxisLabel]="GRID_CONFIG.yAxisLabel" [animations]="GRID_CONFIG.animations"></ngx-charts-line-chart>
 </div>
 
 <mat-menu #menu="matMenu">

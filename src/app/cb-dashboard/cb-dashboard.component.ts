@@ -26,6 +26,8 @@ export class CbDashboardComponent implements OnInit {
     LOADED: false,
     DATA: []
   };
+  public TABLE_CONFIG = {};
+
   public ready = false;
 
   public ACCOUNTS = [];

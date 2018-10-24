@@ -2,12 +2,12 @@
   <app-cb-message-template *ngIf="NO_EXCHANGE" [MESSAGE]="EMPTY"></app-cb-message-template>
   <div fxLayout="column">
     <div class="top" fxLayout="row" *ngIf="ready">
-      <app-cb-dashboard-pie [CONFIG]="PIE_CONFIG"></app-cb-dashboard-pie>
+      <app-cb-dashboard-pie fxFlex [CONFIG]="PIE_CONFIG"></app-cb-dashboard-pie>
       <div class="tile" fxFlex></div>
     </div>
     <div class="bottom" fxLayout="row" *ngIf="ready">
-      <app-cb-dashboard-graph [CONFIG]="GRAPH_CONFIG"></app-cb-dashboard-graph>
-      <div class="tile" fxFlex></div>
+      <app-cb-dashboard-graph fxFlex [CONFIG]="GRAPH_CONFIG"></app-cb-dashboard-graph>
+      <app-cb-dashboard-table fxFlex [CONFIG]="TABLE_CONFIG"></app-cb-dashboard-table>
       <!-- <div id="chart-container-2"></div> -->
     </div>
   </div>
