@@ -24,7 +24,6 @@ import { CbCryptobotComponent } from './cb-cryptobot/cb-cryptobot.component';
 import { CbSettingsComponent } from './cb-settings/cb-settings.component';
 import { CbKpi1Component } from './cb-shared/cb-kpis/cb-kpi-1/cb-kpi-1.component';
 import { CbWidgetContainerComponent } from './cb-shared/cb-widgets/cb-widget-container/cb-widget-container.component';
-import { CbWidgetTableComponent } from './cb-shared/cb-widgets/cb-widget-table/cb-widget-table.component';
 import { CbWidgetLineChartComponent } from './cb-shared/cb-widgets/cb-widget-line-chart/cb-widget-line-chart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CbAuthgardService } from './cb-services/cb-authgard.service';
@@ -41,6 +40,8 @@ import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.co
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { CbConfirmModalComponent } from './cb-modals/cb-confirm-modal/cb-confirm-modal.component';
 import { CbSocialComponent } from './cb-social/cb-social.component';
+import { CbDashboardPieComponent } from './cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
+import { CbDashboardGraphComponent } from './cb-shared/cb-dashboard-graph/cb-dashboard-graph.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -78,7 +79,6 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbCryptobotComponent,
     CbSettingsComponent,
     CbWidgetContainerComponent,
-    CbWidgetTableComponent,
     CbWidgetLineChartComponent,
     CbAccountComponent,
     CbDataTableComponent,
@@ -90,7 +90,9 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbExchangeAccountsComponent,
     CbKeysModalComponent,
     CbConfirmModalComponent,
-    CbSocialComponent
+    CbSocialComponent,
+    CbDashboardPieComponent,
+    CbDashboardGraphComponent
   ],
   imports: [
     BrowserModule,

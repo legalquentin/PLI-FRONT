@@ -1,14 +1,13 @@
 <div class="wrapper">
   <app-cb-message-template *ngIf="NO_EXCHANGE" [MESSAGE]="EMPTY"></app-cb-message-template>
   <div fxLayout="column">
-    <div fxLayout="row" *ngIf="ready">
-      <app-cb-kpi-1 [kpi]="kpiData[0]"></app-cb-kpi-1>
-      <app-cb-kpi-1 [kpi]="kpiData[1]"></app-cb-kpi-1>
-      <app-cb-kpi-1 [kpi]="kpiData[2]"></app-cb-kpi-1>
-      <app-cb-kpi-1 [kpi]="kpiData[3]"></app-cb-kpi-1>
+    <div class="top" fxLayout="row" *ngIf="ready">
+      <app-cb-dashboard-pie [CONFIG]="PIE_CONFIG"></app-cb-dashboard-pie>
+      <div class="tile" fxFlex></div>
     </div>
-    <div fxLayout="row" *ngIf="ready">
-      <div id="chart-container"></div>
+    <div class="bottom" fxLayout="row" *ngIf="ready">
+      <app-cb-dashboard-graph [CONFIG]="GRAPH_CONFIG"></app-cb-dashboard-graph>
+      <div class="tile" fxFlex></div>
       <!-- <div id="chart-container-2"></div> -->
     </div>
   </div>
