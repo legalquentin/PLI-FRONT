@@ -62,6 +62,10 @@
   "GRID.HEADER.ACTIVE": "State",
   "GRID.HEADER.DELETE": "Delete",
   "GRID.HEADER.DATE": "Creation date",
+  "GRID.HEADER.ORDER_TYPE": "Ordrer",
+  "GRID.HEADER.PRICE": "Price",
+  "GRID.HEADER.CRYPTO": "Cripto-curencie used",
+  "GRID.HEADER.NUMBER": "Quantity",
 
   "MODAL.KEYS.TITLE": "Welcome to Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "To start with Cryptobo4rd, visualize your assets and make operations, you first need to provide an API key from an Exchange platform.",
@@ -70,6 +74,9 @@
   "MODAL.CONFIRM.BUTTON_CONFIRM": "Proceed",
   "MODAL.CONFIRM.BUTTON_CANCEL": "Cancel",
 
-  "CRYPTOBOT.GRID.HELLO": "Hello"
+  "CRYPTOBOT.GRID.HELLO": "Hello",
+  "CRYPTOBOT.TAB.VALUE_EXCHANGE": "Value allowed",
+  "CRYPTOBOT.TAB.GRAPH":"Exchange graphic",
+  "CRYPTOBOT.TAB.STATISTIC":"Statistic"
 
 }

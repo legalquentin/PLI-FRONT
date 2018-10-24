@@ -21,6 +21,7 @@ import {
   MatCheckboxModule,
   MatSliderModule,
   MatSlideToggleModule,
+  MatTabsModule,
   MatDialogModule
 } from '@angular/material';
 
@@ -46,6 +47,7 @@ import {
     MatCheckboxModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatDialogModule
   ],
   exports: [
@@ -69,6 +71,7 @@ import {
     MatCheckboxModule,
     MatSliderModule,
     MatSlideToggleModule,
+    MatTabsModule,
     MatDialogModule
   ]
 })
