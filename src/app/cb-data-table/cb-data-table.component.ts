@@ -27,6 +27,10 @@ export class CbDataTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initDataTable();
+  }
+
+  initDataTable() {
     const initialSelection = [];
     const allowMultiSelect = true;
     this.SELECTION = new SelectionModel<any>(
@@ -38,7 +42,7 @@ export class CbDataTableComponent implements OnInit {
     this.DISPLAYED_COLUMNS = this.COLUMNS.map(obj => obj.KEY);
     // this.DISPLAYED_COLUMNS.push('menu');
     this.DATASOURCE = new MatTableDataSource(this.CONFIG.data);
-    // this.SELECTION.select(this.DATASOURCE.data[1]);
+    // this.SELECTION.select(this.DATASOURCE.data[1]); /account/account-id
     if (this.LENGHT > 10) {
       this.DATASOURCE.paginator = this.PAGINATOR;
       this.DATASOURCE.paginator.length = 4;
@@ -58,5 +62,9 @@ export class CbDataTableComponent implements OnInit {
     this.isAllSelected()
       ? this.SELECTION.clear()
       : this.DATASOURCE.data.forEach(row => this.SELECTION.select(row));
+  }
+
+  reload() {
+    this.initDataTable();
   }
 }

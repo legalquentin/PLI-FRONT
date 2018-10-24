@@ -68,7 +68,7 @@
             </mat-expansion-panel-header>
             <!-- <mat-card class="title" *ngIf="LOADED && ACCOUNTS.data.length > 0">{{ 'EXCHANGES.EDIT.TITLE' | translate: lang
           }}</mat-card> -->
-            <app-cb-data-table *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
+            <app-cb-data-table #dataTable *ngIf="LOADED && ACCOUNTS.data.length > 0" [CONFIG]="ACCOUNTS"></app-cb-data-table>
             <mat-card *ngIf="LOADED && ACCOUNTS.data.length === 0">{{ 'EXCHANGES.EDIT.NO_ACCOUNTS' | translate: lang }}</mat-card>
           </mat-expansion-panel>
         </mat-accordion>

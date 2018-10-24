@@ -23,6 +23,8 @@ interface ConfirmDialogData {
 export class CbExchangeAccountsComponent implements OnInit {
   @Language()
   lang: string;
+  @ViewChild('dataTable')
+  dataTable: TemplateRef<any>;
   @ViewChild('textTemplate')
   textTemplate: TemplateRef<any>;
   @ViewChild('buttonTemplate')
@@ -96,8 +98,6 @@ export class CbExchangeAccountsComponent implements OnInit {
         result => {
           this.EXCHANGES = result.data;
           console.log(result);
-          this.ACCOUNTS.columns = [];
-          this.ACCOUNTS.data = [];
           this.ACCOUNTS.columns.push({
             KEY: 'NAME',
             VIEW: this.textTemplate
@@ -126,7 +126,7 @@ export class CbExchangeAccountsComponent implements OnInit {
             if (exchange.accounts.length > 0) {
               for (const account of exchange.accounts) {
                 this.ACCOUNTS.data.push({
-                  ID: account.provider_id,
+                  ID: account.id,
                   NAME: account.name,
                   EXCHANGE: exchange.name,
                   ACTIVE: account.active,
@@ -179,6 +179,8 @@ export class CbExchangeAccountsComponent implements OnInit {
           CbConstants.REQUESTS.DELETE_PROVIDER_ACCOUNT,
           [row.ID]).subscribe(res => {
           console.log('DELETE_PROVIDER SUCCESS', res);
+          this.ACCOUNTS.columns = [];
+          this.ACCOUNTS.data = [];
           this.loadAccounts();
         }, error => {
           console.log('DELETE_PROVIDER ERROR', error);
