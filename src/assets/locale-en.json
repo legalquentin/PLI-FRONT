@@ -86,6 +86,11 @@
   "CRYPTOBOT.GRID.HELLO": "Hello",
   "CRYPTOBOT.TAB.VALUE_EXCHANGE": "Value allowed",
   "CRYPTOBOT.TAB.GRAPH":"Exchange graphic",
-  "CRYPTOBOT.TAB.STATISTIC":"Statistic"
+  "CRYPTOBOT.TAB.STATISTIC":"Statistic",
+  "CRYPTOBOT.TAB.TOTAL_HAVE":"Total Crypto coint",
 
+  "GLOBAL.CELL.ICON.CANCEL":"Cancel",
+  "GLOBAL.CELL.ICON.WARNING":"Warning",
+  "GLOBAL.CELL.ICON.CHECK":"OK",
+  "GLOBAL.CELL.ICON.TIME":"En attente"
 }

@@ -2,26 +2,6 @@
   <div class="cryptobot-left" fxFlex>
     <div class="tile" fxFlex fxLayout="row">
       <app-cb-data-table *ngIf="LOADED" [CONFIG]="TRANSACTIONS"></app-cb-data-table>
-          <div>
-            <div>
-                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
-                <span>Validée</span>
-            </div>
-            <div>
-                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
-              <span>En cour</span>
-            </div>
-            <div>
-                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
-              <span>Anuller</span>
-            </div>
-            <div>
-              <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
-              <span>Erreur</span>
-            </div>
-          </div>
-
-
     </div>
   </div>
   <div class="cryptobot-right" fxLayout="column" fxFlex>
@@ -68,6 +48,32 @@
     </div>
   </div>
 </div>
+
+<!-- Cell basic template-->
 <ng-template #testTemplate let-row="row" let-col="col">
   <div class="defaultCell">{{row[col]}}</div>
+</ng-template>
+
+<!-- Cell generic slider Template -->
+<ng-template #sliderTemplate let-row="row" let-col="col">
+    <div class="defaultCell">
+      <mat-slide-toggle color="primary" [checked]="row[col]"></mat-slide-toggle>
+    </div>
+  </ng-template>
+
+  <!-- Cell delete icon Template -->
+<ng-template #iconButtonTemplate let-row="row" let-col="col">
+    <button mat-icon-button>
+      <mat-icon aria-label="delete" (click)="delete(row)">delete</mat-icon>
+    </button>
+  </ng-template>
+
+  <!-- Cell right icons Template -->
+<ng-template #iconStatTemplate let-row="row" let-col="col">
+    <div class="defaultCell">
+      <mat-icon *ngIf="row[col] == 0" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.CHECK' | translate: lang">check</mat-icon>
+      <mat-icon *ngIf="row[col] == 1" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.TIME' | translate: lang">access_time</mat-icon>
+      <mat-icon *ngIf="row[col] == 2" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.CANCEL' | translate: lang">cancel</mat-icon>
+      <mat-icon *ngIf="row[col] == 3" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.WARNING' | translate: lang">warning</mat-icon>
+    </div>
 </ng-template>

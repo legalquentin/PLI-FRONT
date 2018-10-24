@@ -87,6 +87,11 @@
   "CRYPTOBOT.GRID.HELLO": "Bonjour",
   "CRYPTOBOT.TAB.VALUE_EXCHANGE": "Valeurs autaurisée",
   "CRYPTOBOT.TAB.GRAPH":"Graphique des échanges",
-  "CRYPTOBOT.TAB.STATISTIC":"Statistique"
+  "CRYPTOBOT.TAB.STATISTIC":"Statistique",
+  "CRYPTOBOT.TAB.TOTAL_HAVE":"Total crypto valleur",
 
+  "GLOBAL.CELL.ICON.CANCEL":"Annulée",
+  "GLOBAL.CELL.ICON.WARNING":"Erreur",
+  "GLOBAL.CELL.ICON.CHECK":"Validée",
+  "GLOBAL.CELL.ICON.TIME":"En attente"
 }
