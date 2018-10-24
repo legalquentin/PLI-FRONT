@@ -72,6 +72,10 @@
   "GRID.CELL.RIGHTS.TOOLTIP.READ": "Lecture",
   "GRID.CELL.RIGHTS.TOOLTIP.TRADE": "Opérations",
   "GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW": "Retrait",
+  "GRID.HEADER.ORDER_TYPE": "Ordre",
+  "GRID.HEADER.PRICE": "Prie",
+  "GRID.HEADER.CRYPTO": "Cripto-monais utiliser",
+  "GRID.HEADER.NUMBER": "Quantiter",
 
   "MODAL.KEYS.TITLE": "Bienvenue sur Cryptobo4rd !",
   "MODAL.KEYS.GREETINGS": "Pour commencer à visualiser vos données et pouvoir effectuer des opérations, il vous faut rentrer au moins une clé d'API d'une plateforme d'exchange",
@@ -80,5 +84,9 @@
   "MODAL.CONFIRM.BUTTON_CONFIRM": "Continuer",
   "MODAL.CONFIRM.BUTTON_CANCEL": "Annuler",
 
-  "CRYPTOBOT.GRID.HELLO": "Bonjour"
+  "CRYPTOBOT.GRID.HELLO": "Bonjour",
+  "CRYPTOBOT.TAB.VALUE_EXCHANGE": "Valeurs autaurisée",
+  "CRYPTOBOT.TAB.GRAPH":"Graphique des échanges",
+  "CRYPTOBOT.TAB.STATISTIC":"Statistique"
+
 }

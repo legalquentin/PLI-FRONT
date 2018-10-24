@@ -61,6 +61,7 @@ export class CbApiService {
         this.router.navigate(['/']);
         return throwError(error.message);
       }
+      return throwError('GENERIC_ERROR');
     }
     if (error.error.message) {
       return throwError(error.error.message);

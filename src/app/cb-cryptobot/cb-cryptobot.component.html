@@ -1,15 +1,73 @@
 <div class="cryptobot-wrapper" fxLayout="row">
   <div class="cryptobot-left" fxFlex>
     <div class="tile" fxFlex fxLayout="row">
-      <app-cb-widget-table [widget]="configBotLatest"></app-cb-widget-table>
+      <app-cb-data-table *ngIf="LOADED" [CONFIG]="TRANSACTIONS"></app-cb-data-table>
+          <div>
+            <div>
+                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
+                <span>Validée</span>
+            </div>
+            <div>
+                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
+              <span>En cour</span>
+            </div>
+            <div>
+                <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
+              <span>Anuller</span>
+            </div>
+            <div>
+              <div style="border: 1px solid black; width:20px;height:20px;display: inline-block;"></div>
+              <span>Erreur</span>
+            </div>
+          </div>
+
+
     </div>
   </div>
   <div class="cryptobot-right" fxLayout="column" fxFlex>
     <div class="tile" fxFlex>
-      <app-cb-widget-table [widget]="configBotLatest"></app-cb-widget-table>
+        <mat-tab-group>
+            <mat-tab label="{{ 'CRYPTOBOT.TAB.GRAPH' | translate: lang }}">
+              cette page représente un grapgique des écahnge en € réalisée par le bot
+              graphique ici
+
+            </mat-tab>
+            <mat-tab label="{{ 'CRYPTOBOT.TAB.VALUE_EXCHANGE' | translate: lang }}">
+                <app-cb-data-table *ngIf="LOADED_TABLE2" [CONFIG]="CRYPTO_LIST"></app-cb-data-table>
+              Lisye des valleur que le bot a le droit d'acherée / vendre
+              graphique ici 3
+              coucou
+
+            </mat-tab>
+            <mat-tab label="{{ 'CRYPTOBOT.TAB.STATISTIC' | translate: lang }}">
+              Opérations dans la derniére heur.<br>
+              Opérations dans les dernére 24 heurs.<br>
+              Opérations total du bot.<br>
+              Recap des action du bot (opétation dans les derniére heurs etc.)
+              graphique ici 2
+
+            </mat-tab>
+
+          </mat-tab-group>
+
+
     </div>
     <div class="tile" fxFlex>
-      <p>bot-right</p>
+        <div>
+            <button mat-raised-button>Bot off</button>
+            <span>Info ici mais egalement des description </span>
+        </div>
+        <div>
+            <button mat-raised-button>Modal ?</button>
+          <span>Choix de la tratégie de vente</span>
+        </div>
+        <div>
+          <button mat-raised-button>Information</button>
+          <span>Mention légale et législation</span>
+        </div>
     </div>
   </div>
 </div>
+<ng-template #testTemplate let-row="row" let-col="col">
+  <div class="defaultCell">{{row[col]}}</div>
+</ng-template>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslationService, LocaleService } from 'angular-l10n';
+import { TranslationService, LocaleService, Language } from 'angular-l10n';
 
 @Component({
   selector: 'app-cb-cryptobot',
@@ -8,29 +8,22 @@ import { TranslationService, LocaleService } from 'angular-l10n';
   styleUrls: ['./cb-cryptobot.component.css']
 })
 export class CbCryptobotComponent implements OnInit {
+  @Language()
+  lang: string;
+  @ViewChild('testTemplate')
+  textTemplate: TemplateRef<any>;
 
-  public globalsLines = {
-    name: 'Bots net revenues',
-    values: ['ETH', 'BTC', 'TRN'],
-    colors: ['#5AA454', '#4f34f6', '#f34d23'],
-    view: [350, 200]
-  };
+public LOADED = false;
+public LOADED_TABLE2 = false;
 
-  public configBotLatest = {
-    columns: ['test', 'again', 'hello', 'world'],
-    data: [
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' }
-    ]
-  };
+public CRYPTO_LIST = {
+  columns: [],
+  data: []
+};
+public TRANSACTIONS = {
+  columns: [],
+  data: []
+};
 
   constructor(
     private router: Router,
@@ -39,6 +32,73 @@ export class CbCryptobotComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.TRANSACTIONS.columns.push({
+      KEY: 'EXCHANGE',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'DATE',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'ORDER_TYPE',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'CRYPTO',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'NUMBER',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'PRICE',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.columns.push({
+      KEY: 'ACTIVE',
+      VIEW: this.textTemplate
+    });
+    this.TRANSACTIONS.data.push({
+      EXCHANGE: 'salut',
+      DATE: '16/20/2004',
+      ORDER_TYPE: 'dqbdsdgbdgb',
+      PRICE: '15€',
+      CRYPTO: 'bitcoin',
+      NUMBER: '0.002',
+      ACTIVE: 'en coure'
+    });
+    this.TRANSACTIONS.data.push({
+      EXCHANGE: 'salut'
+    });
+    this.TRANSACTIONS.data.push({
+      EXCHANGE: 'salut'
+    });
+    this.LOADED = true;
+
+
+
+    this.CRYPTO_LIST.columns.push({
+      KEY: 'CRYPTO',
+      VIEW: this.textTemplate
+    });
+    this.CRYPTO_LIST.data.push({
+      CRYPTO: 'Bitcoin'
+    });
+    this.CRYPTO_LIST.data.push({
+      CRYPTO: 'Etherum'
+    });
+    this.CRYPTO_LIST.data.push({
+      CRYPTO: 'LiteCoin'
+    });
+    this.CRYPTO_LIST.data.push({
+      CRYPTO: 'Zcash'
+    });
+    this.CRYPTO_LIST.data.push({
+      CRYPTO: 'Trukcoin'
+    });
+    this.LOADED_TABLE2 = true;
   }
 
 }
