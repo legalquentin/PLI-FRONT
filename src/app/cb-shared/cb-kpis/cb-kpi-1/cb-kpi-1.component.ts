@@ -36,11 +36,15 @@ export class CbKpi1Component implements OnInit {
   ngOnInit() {
     // this.bandColor = this.kpi.bandColor;
     // this.data[0] = this.kpi.data;
-    this.data[0] = {
-      name: this.kpi.currency,
-      value: this.kpi.free
-    };
-    this.imagepath += this.kpi.currency.toLowerCase() + '.svg';
+    if (typeof this.kpi !== 'undefined') {
+      this.data[0] = {
+        name: this.kpi.currency,
+        value: this.kpi.free
+      };
+      this.imagepath += this.kpi.currency.toLowerCase() + '.svg';
+    } else {
+      this.imagepath += 'btc.svg';
+    }
   }
 
   onSelect(event) {

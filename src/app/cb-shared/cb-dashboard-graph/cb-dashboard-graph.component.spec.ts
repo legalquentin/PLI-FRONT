@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CbWidgetTableComponent } from './cb-widget-table.component';
+import { CbDashboardGraphComponent } from './cb-dashboard-graph.component';
 
-describe('CbWidgetTableComponent', () => {
-  let component: CbWidgetTableComponent;
-  let fixture: ComponentFixture<CbWidgetTableComponent>;
+describe('CbDashboardGraphComponent', () => {
+  let component: CbDashboardGraphComponent;
+  let fixture: ComponentFixture<CbDashboardGraphComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CbWidgetTableComponent ]
+      declarations: [ CbDashboardGraphComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CbWidgetTableComponent);
+    fixture = TestBed.createComponent(CbDashboardGraphComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

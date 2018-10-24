@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 15px;
+  padding: 10px;
 }
 
 h3 {
@@ -7,7 +7,8 @@ h3 {
 }
 
 .tile {
-  margin: 10px;
+  /* margin: 10px; */
+  margin: 0px 10px 0px 10px;
   background-color: rgb(238, 238, 238);
 }
 
@@ -21,6 +22,10 @@ h3 {
 .widget {
   padding: 10px;
   height: 340px;
+}
+
+.bottom {
+  margin-top: 10px;
 }
 
 #chart-container {
