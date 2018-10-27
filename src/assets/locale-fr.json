@@ -74,7 +74,7 @@
   "GRID.CELL.RIGHTS.TOOLTIP.WITHDRAW": "Retrait",
   "GRID.HEADER.ORDER_TYPE": "Ordre",
   "GRID.HEADER.PRICE": "Prie",
-  "GRID.HEADER.CRYPTO": "Cripto-monais utiliser",
+  "GRID.HEADER.CRYPTO": "Cripto-monais",
   "GRID.HEADER.NUMBER": "Quantiter",
 
   "MODAL.KEYS.TITLE": "Bienvenue sur Cryptobo4rd !",
@@ -89,6 +89,10 @@
   "CRYPTOBOT.TAB.GRAPH":"Graphique des échanges",
   "CRYPTOBOT.TAB.STATISTIC":"Statistique",
   "CRYPTOBOT.TAB.TOTAL_HAVE":"Total crypto valleur",
+  "CRYPTOBOT.TAB.CGU": "Législation",
+  "CRYPTOBOT.TAB.CGU.INFO": "Contrat génerale d'utilisation",
+  "CRYPTOBOT.TAB.STRATEGY": "Strategie",
+  "CRYPTOBOT.TAB.STRATEGY.INFO": "Modigier la stratégie de vente du bot",
 
   "GLOBAL.CELL.ICON.CANCEL":"Annulée",
   "GLOBAL.CELL.ICON.WARNING":"Erreur",
