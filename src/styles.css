@@ -1,4 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto'), url('assets/fonts/roboto.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Roboto-light';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto-light'), local('Roboto-light'), url('assets/fonts/roboto-light.woff2') format('woff2');
+}
+
 body {
   margin: 0px;
 }
