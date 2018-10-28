@@ -88,6 +88,10 @@
   "CRYPTOBOT.TAB.GRAPH":"Exchange graphic",
   "CRYPTOBOT.TAB.STATISTIC":"Statistic",
   "CRYPTOBOT.TAB.TOTAL_HAVE":"Total Crypto coint",
+  "CRYPTOBOT.TAB.CGU": "Information",
+  "CRYPTOBOT.TAB.CGU.INFO": "Contrat génerale d'utilisation",
+  "CRYPTOBOT.TAB.STRATEGY": "Strategy",
+  "CRYPTOBOT.TAB.STRATEGY.INFO": "Change the bot strategy",
 
   "GLOBAL.CELL.ICON.CANCEL":"Cancel",
   "GLOBAL.CELL.ICON.WARNING":"Warning",

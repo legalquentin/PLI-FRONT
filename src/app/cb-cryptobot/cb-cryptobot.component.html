@@ -1,31 +1,45 @@
 <div class="cryptobot-wrapper" fxLayout="row">
   <div class="cryptobot-left" fxFlex>
     <div class="tile" fxFlex fxLayout="row">
-      <app-cb-data-table *ngIf="LOADED" [CONFIG]="TRANSACTIONS"></app-cb-data-table>
+      <app-cb-data-table *ngIf="LOADED" [CONFIG]="TRANSACTIONS" style="width: 100%;"></app-cb-data-table>
     </div>
   </div>
   <div class="cryptobot-right" fxLayout="column" fxFlex>
     <div class="tile" fxFlex>
         <mat-tab-group>
             <mat-tab label="{{ 'CRYPTOBOT.TAB.GRAPH' | translate: lang }}">
-              cette page représente un grapgique des écahnge en € réalisée par le bot
-              graphique ici
-
+                <ngx-charts-line-chart
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="graph_line_single"
+                [legend]="graph_line_legend"
+                [xAxis]="graph_line_xAxis"
+                [yAxis]="graph_line_yAxis"
+              >
+              </ngx-charts-line-chart>
             </mat-tab>
             <mat-tab label="{{ 'CRYPTOBOT.TAB.VALUE_EXCHANGE' | translate: lang }}">
                 <app-cb-data-table *ngIf="LOADED_TABLE2" [CONFIG]="CRYPTO_LIST"></app-cb-data-table>
               Lisye des valleur que le bot a le droit d'acherée / vendre
-              graphique ici 3
-              coucou
-
             </mat-tab>
             <mat-tab label="{{ 'CRYPTOBOT.TAB.STATISTIC' | translate: lang }}">
-              Opérations dans la derniére heur.<br>
-              Opérations dans les dernére 24 heurs.<br>
+                <ngx-charts-bar-vertical
+                [view]="view"
+                [scheme]="colorScheme"
+                [results]="graph_bar_single"
+                [gradient]="graph_bar_gradient"
+                [xAxis]="graph_bar_showXAxis"
+                [yAxis]="graph_bar_showYAxis"
+                [legend]="graph_bar_showLegend"
+                [showXAxisLabel]="graph_bar_showXAxisLabel"
+                [showYAxisLabel]="graph_bar_showYAxisLabel"
+                [xAxisLabel]="graph_bar_xAxisLabel"
+                [yAxisLabel]="graph_bar_yAxisLabel"
+                (select)="onSelect($event)">
+              </ngx-charts-bar-vertical>
+              <br>
               Opérations total du bot.<br>
               Recap des action du bot (opétation dans les derniére heurs etc.)
-              graphique ici 2
-
             </mat-tab>
 
           </mat-tab-group>
@@ -33,17 +47,22 @@
 
     </div>
     <div class="tile" fxFlex>
-        <div>
-            <button mat-raised-button>Bot off</button>
-            <span>Info ici mais egalement des description </span>
+        <div class="btnOptionCryptobot">
+            <mat-slide-toggle
+            [checked]=true
+            color="primary">
+          On / Off
+        </mat-slide-toggle>
         </div>
-        <div>
-            <button mat-raised-button>Modal ?</button>
-          <span>Choix de la tratégie de vente</span>
+        <div class="btnOptionCryptobot">
+            <button mat-raised-button disabled aria-label="read" [matTooltip]="'CRYPTOBOT.TAB.STRATEGY.INFO' | translate: lang">
+                {{ 'CRYPTOBOT.TAB.STRATEGY' | translate: lang }}
+            </button>
         </div>
-        <div>
-          <button mat-raised-button>Information</button>
-          <span>Mention légale et législation</span>
+        <div class="btnOptionCryptobot">
+          <button mat-raised-button disabled  aria-label="read" [matTooltip]="'CRYPTOBOT.TAB.CGU.INFO' | translate: lang">
+            {{ 'CRYPTOBOT.TAB.CGU' | translate: lang }}
+          </button>
         </div>
     </div>
   </div>
@@ -76,4 +95,24 @@
       <mat-icon *ngIf="row[col] == 2" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.CANCEL' | translate: lang">cancel</mat-icon>
       <mat-icon *ngIf="row[col] == 3" color="primary" aria-label="read" class="icons-cell" [matTooltip]="'GLOBAL.CELL.ICON.WARNING' | translate: lang">warning</mat-icon>
     </div>
+</ng-template>
+
+  <!-- Graph line bar Template -->
+<ng-template #graphbarline>
+  <ngx-charts-line-chart
+    [view]="view"
+    [scheme]="colorScheme"
+    [results]="multi"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [autoScale]="autoScale"
+    [timeline]="timeline"
+    (select)="onSelect($event)">
+  </ngx-charts-line-chart>
 </ng-template>

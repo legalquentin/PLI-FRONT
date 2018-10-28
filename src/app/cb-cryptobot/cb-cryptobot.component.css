@@ -12,3 +12,17 @@
   margin-right: 15px;
   background-color: rgb(238, 238, 238);
 }
+
+.btnOptionCryptobot {
+  text-align: center;
+  margin: 10px;
+}
+
+.btnOptionCryptobot button {
+  width: 25%;
+  padding: 0px!important;
+}
+
+.allW {
+  width: 100%;
+}
