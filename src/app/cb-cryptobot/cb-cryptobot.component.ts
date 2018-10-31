@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild, TemplateRef, NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslationService, LocaleService, Language } from 'angular-l10n';
+import { CbConstants } from '../cb-shared/cb-constants';
+import { CbApiService } from '../cb-services/cb-api.service';
+// import { CbGetData } from './cb-getdata';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @Component({
@@ -14,6 +17,7 @@ export class CbCryptobotComponent implements OnInit {
     private router: Router,
     private translation: TranslationService,
     private locale: LocaleService,
+    private _CbApiService: CbApiService,
   ) { }
   @Language()
   lang: string;
@@ -166,14 +170,12 @@ export class CbCryptobotComponent implements OnInit {
   graph_line_legend = true;
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#f9ca24', '#535c68', '#6ab04c', '#e056fd', '#f0932b', '#30336b']
   };
-
 
   onSelect(event) {
     console.log(event);
   }
-
 
   ngOnInit() {
     this.GRAPHLINEBAR.gradient = Boolean(false);
@@ -282,5 +284,57 @@ export class CbCryptobotComponent implements OnInit {
     this.LOADED_TABLE2 = true;
   }
 
+  getVolume(amount, crypto_type) {
+    /*const payload = {
+      URL_PARAM: [amount, crypto_type]
+    };
+    this._CbApiService
+      .genericRequest(CbGetData.REQUESTS.VOLUME, payload)
+      .subscribe(
+        result => {
+          console.log('ADD_PROVIDERS on ' + amount + ' : ' + crypto_type + ' SUCCESS', result);
+        },
+        error => {
+          console.error('Failed to ADD_PROVIDERS', error);
+        }
+      );*/
+  }
+  getDataList() {}
+  getEchange() {
+    /*const payload = {
+      URL_PARAM: [exchange],
+      value: '', // this.publicKey,
+      sign: '' // this.privateKey
+    };
+    this._CbApiService
+      .genericRequest(CbGetData.REQUESTS.ADD_PROVIDERS, payload)
+      .subscribe(
+        result => {
+          console.log('ADD_PROVIDERS on ' + exchange + ' SUCCESS', result);
+        },
+        error => {
+          console.error('Failed to ADD_PROVIDERS', error);
+        }
+      );*/
+  }
+  getStats() {}
+  gatUseValue() {}
+/*
+  createAccount(exchange: string): void {
+    const payload = {
+      URL_PARAM: [exchange],
+      value: '', // this.publicKey,
+      sign: '' // this.privateKey
+    };
+    this._CbApiService
+      .genericRequest(CbConstants.REQUESTS.ADD_PROVIDERS, payload)
+      .subscribe(
+        result => {
+          console.log('ADD_PROVIDERS on ' + exchange + ' SUCCESS', result);
+        },
+        error => {
+          console.error('Failed to ADD_PROVIDERS', error);
+        }
+      );
+  }*/
 }
-
