@@ -18,6 +18,7 @@ export class CbDataTableComponent implements OnInit {
 
   public COLUMNS: Array<any>;
   public DISPLAYED_COLUMNS = [];
+  public PAGINATION = false;
   public DATASOURCE: MatTableDataSource<any> = new MatTableDataSource([]);
   public LENGHT: number;
   public SELECTION: SelectionModel<any>;
@@ -40,6 +41,12 @@ export class CbDataTableComponent implements OnInit {
     this.LENGHT = this.CONFIG.data.length;
     this.COLUMNS = this.CONFIG.columns;
     this.DISPLAYED_COLUMNS = this.COLUMNS.map(obj => obj.KEY);
+    if (this.CONFIG.expand) {
+      this.DISPLAYED_COLUMNS.push('expand');
+    }
+    if (this.CONFIG.menu) {
+      this.DISPLAYED_COLUMNS.push('menu');
+    }
     // this.DISPLAYED_COLUMNS.push('menu');
     this.DATASOURCE = new MatTableDataSource(this.CONFIG.data);
     // this.SELECTION.select(this.DATASOURCE.data[1]); /account/account-id

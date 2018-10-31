@@ -26,7 +26,13 @@ export class CbDashboardComponent implements OnInit {
     LOADED: false,
     DATA: []
   };
-  public ready = false;
+  public TABLE_CONFIG = {};
+
+  public READY = {
+    TABLE: false,
+    PIE: false,
+    GRAPH: false
+  };
 
   public ACCOUNTS = [];
   public ACTIVE_ACCOUNT = 0;
@@ -74,7 +80,7 @@ export class CbDashboardComponent implements OnInit {
       for (let i = 0; i !== 50; i++) {
         this.GRAPH_CONFIG.DATA[0].series.push({
           'name': year + '/' + i % 12 + 1,
-          'value': Math.random() * 50
+          'value': Math.random() * 50 + 20
         });
         this.GRAPH_CONFIG.DATA[1].series.push({
           'name': year + '/' + i % 12 + 1,
@@ -140,7 +146,7 @@ export class CbDashboardComponent implements OnInit {
   }
 
   setUpDashboard() {
-    this.ready = true;
+    this.READY.GRAPH = true;
   }
 
   onSelect($event) {

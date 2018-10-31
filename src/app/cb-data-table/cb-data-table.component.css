@@ -3,10 +3,15 @@ table {
 }
 
 .mat-table-sticky:last-child {
-  border-left: 1px solid #e0e0e0;
+  /* border-left: 1px solid #e0e0e0; */
 }
 
 td.mat-column-menu {
   width: 20px;
   padding-right: 0px !important;
+}
+
+td.mat-column-expand {
+  width: 20px;
+  padding-right: 1px !important;
 }

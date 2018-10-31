@@ -37,7 +37,7 @@ import { CbMessageTemplateComponent } from './cb-message-template/cb-message-tem
 import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
-import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MAT_DIALOG_DEFAULT_OPTIONS, MatDatepicker, MatNativeDateModule } from '@angular/material';
 import { CbConfirmModalComponent } from './cb-modals/cb-confirm-modal/cb-confirm-modal.component';
 import { CbSocialComponent } from './cb-social/cb-social.component';
 import { CbDashboardPieComponent } from './cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
@@ -119,7 +119,9 @@ export function initL10n(l10nLoader: L10nLoader): Function {
       provide: MAT_DIALOG_DEFAULT_OPTIONS,
       useValue: {hasBackdrop: true}
     },
-    CbAuthgardService
+    CbAuthgardService,
+    MatNativeDateModule,
+    MatDatepicker
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -1,3 +1,43 @@
-<p>
-  cb-dashboard-table works!
-</p>
+<div class="widget-wrapper" fxLayout="column">
+  <div class="toolbar" fxLayout="row">
+    <div fxFlex>
+      <span>Latests transactions</span>
+    </div>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+  </div>
+  <app-cb-data-table *ngIf="LOADED" [CONFIG]="TABLE_CONFIG"></app-cb-data-table>
+</div>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>dialpad</mat-icon>
+    <span>Redial</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>voicemail</mat-icon>
+    <span>Check voicemail</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>notifications_off</mat-icon>
+    <span>Disable alerts</span>
+  </button>
+</mat-menu>
+
+
+<ng-template #textTemplate let-row="row" let-col="col">
+  <div class="defaultCell">
+    {{ row[col] }}
+  </div>
+</ng-template>
+
+<ng-template #statusTemplate let-row="row" let-col="col">
+  <div class="statusCell">
+    <div [ngClass]="{'closed': row[col] === 1, 'cancelled': row[col] === 0}">
+      <span>{{ ('GRID.CELL.LABEL_STATUS.' + LABEL_STATUS[row[col]]) | translate: lang }}</span>
+    </div>
+  </div>
+</ng-template>
