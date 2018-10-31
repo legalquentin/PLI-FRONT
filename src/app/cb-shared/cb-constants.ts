@@ -55,6 +55,18 @@ export class CbConstants {
     GET_CURRENCIES_DETAILS: {
       PATH: '/account-currency/details',
       METHOD: 'GET'
+    },
+    GET_VOLUME_VALUE: {
+      PATH: '/volume',
+      METHOD: 'GET'
+    },
+    GET_MARKET_INFO: {
+      PATH: '/market',
+      METHOD: 'GET'
+    },
+    GET_PAIR: {
+      PATH: '/market',
+      METHOD: 'GET'
     }
   };
 }
