@@ -150,9 +150,11 @@ export class CbExchangeAccountsComponent implements OnInit {
     console.log(this.addFormGroup.get('exchangeSelection'), this.addFormGroup.get('exchangeSelection').value.name);
     const payload = {
       URL_PARAM: [this.addFormGroup.get('exchangeSelection').value.name],
-      name: this.addFormGroup.get('accountName').value, // this.accountName,
-      value: this.addFormGroup.get('publicKey').value, // this.publicKey,
-      sign: this.addFormGroup.get('privateKey').value // this.privateKey
+      body: [{
+        name: this.addFormGroup.get('accountName').value, // this.accountName,
+        value: this.addFormGroup.get('publicKey').value, // this.publicKey,
+        sign: this.addFormGroup.get('privateKey').value // this.privateKey
+      }]
     };
     this._CbApiService
       .genericRequest(CbConstants.REQUESTS.ADD_PROVIDERS, payload)
