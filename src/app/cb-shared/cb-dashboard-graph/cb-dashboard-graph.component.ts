@@ -36,12 +36,12 @@ export class CbDashboardGraphComponent implements OnInit {
   }
 
   formatValue($event) {
-    console.log('format', $event);
+    // console.log('format', $event);
     return $event + '$';
   }
 
   yFormat($event) {
-    console.log('YFORMAT', $event);
+    // console.log('YFORMAT', $event);
     return $event;
   }
 }

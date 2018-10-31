@@ -28,7 +28,11 @@ export class CbDashboardComponent implements OnInit {
   };
   public TABLE_CONFIG = {};
 
-  public ready = false;
+  public READY = {
+    TABLE: false,
+    PIE: false,
+    GRAPH: false
+  };
 
   public ACCOUNTS = [];
   public ACTIVE_ACCOUNT = 0;
@@ -142,7 +146,7 @@ export class CbDashboardComponent implements OnInit {
   }
 
   setUpDashboard() {
-    this.ready = true;
+    this.READY.GRAPH = true;
   }
 
   onSelect($event) {

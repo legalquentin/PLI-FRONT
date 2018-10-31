@@ -22,7 +22,7 @@ export class CbDashboardPieComponent implements OnInit {
   }
 
   formatValue($event) {
-    console.log('format', $event);
+    // console.log('format', $event);
     return $event + '$';
   }
 }
