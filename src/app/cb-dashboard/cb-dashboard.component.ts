@@ -18,56 +18,20 @@ export class CbDashboardComponent implements OnInit {
   @Language() lang: string;
 
   public chart: any;
-  public kpiData = [];
-  public ready = false;
-  public configWidget1 = {
-    name: '100 Latest trades ETH-USDT',
-    key: 'ETHUSDT',
-    value: 'ETH',
-    colors: ['#5AA454']
+  public PIE_CONFIG = {
+    LOADED: false,
+    DATA: []
   };
-  public configWidget2 = {
-    columns: ['test', 'again', 'hello', 'world'],
-    data: [
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'qqq', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'BTCdqs', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'BddddddTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'BTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'to', again: 132, hello: 0.132, world: '08/12/1995 08:12:34' },
-      { test: 'BTzfsdC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'qd', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'BdsqdsqTC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' },
-      { test: 'BTdC', again: 0.2, hello: 0.2, world: '08/12/1995 08:11:34' }
-    ]
+  public GRAPH_CONFIG = {
+    LOADED: false,
+    DATA: []
   };
-  public configKpi1 = {
-    data: {
-      name: 'BTC',
-      value: 6266,
-    },
-    bandColor: '#5AA454'
-  };
-  public configKpi2 = {
-    data: {
-      name: 'ETH',
-      value: 191,
-    },
-    bandColor: '#C7B42C'
-  };
-  public configKpi3 = {
-    data: {
-      name: 'TRN',
-      value: 124,
-    },
-    bandColor: '#A10A28'
-  };
-  public configKpi4 = {
-    data: {
-      name: 'MNR',
-      value: 380,
-    },
-    bandColor: '#AAAAAA'
+  public TABLE_CONFIG = {};
+
+  public READY = {
+    TABLE: false,
+    PIE: false,
+    GRAPH: false
   };
 
   public ACCOUNTS = [];
@@ -85,14 +49,72 @@ export class CbDashboardComponent implements OnInit {
     private dialog: MatDialog,
     private _CbStorageService: CbStorageService,
     private _CbApiService: CbApiService
-  ) {}
+  ) { }
 
   ngOnInit() {
-    $('#navigate').click(this.navigate('exchange'));
-    this.firstConnection();
-    this.ACCOUNTS = this._CbStorageService.getAccounts();
-    this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
-    this.loadCurrencies();
+    // $('#navigate').click(this.navigate('exchange'));
+    if (this._CbStorageService.firstConnection()) {
+      this.firstConnection();
+    } else {
+      this.ACCOUNTS = this._CbStorageService.getAccounts();
+      this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
+      this.loadCurrencies();
+      this.setUpDashboard();
+      this.GRAPH_CONFIG = {
+        LOADED: true,
+        DATA: [
+          {
+            'name': 'BTC',
+            'series': []
+          },
+        ​
+          {
+            'name': 'ETH',
+            'series': []
+          }
+        ]
+      };
+
+      let year = 2010;
+
+      for (let i = 0; i !== 50; i++) {
+        this.GRAPH_CONFIG.DATA[0].series.push({
+          'name': year + '/' + i % 12 + 1,
+          'value': Math.random() * 50 + 20
+        });
+        this.GRAPH_CONFIG.DATA[1].series.push({
+          'name': year + '/' + i % 12 + 1,
+          'value': Math.random() * 50
+        });
+        if (i % 12 === 0) {
+          year++;
+        }
+      }
+      this.PIE_CONFIG = {
+        LOADED: true,
+        DATA: [
+          {
+            'name': 'BTC',
+            'value': 89
+          },
+          {
+            'name': 'ETH',
+            'value': 500
+          },
+          {
+            'name': 'TRN',
+            'value': 20
+          },
+          {
+            'name': 'OTHER',
+            'value': 340
+          },
+        ]
+      };
+      this.READY.GRAPH = true;
+      this.READY.PIE = true;
+      this.READY.TABLE = true;
+    }
   }
 
   navigate(path: string) {
@@ -101,30 +123,34 @@ export class CbDashboardComponent implements OnInit {
   }
 
   firstConnection() {
-    if (this._CbStorageService.firstConnection()) {
-      setTimeout(() => {
-        const dialogRef = this.dialog.open(CbKeysModalComponent, {
-          width: '600px',
-          height: '400px',
-          panelClass: 'customDialogContainer',
-          disableClose: true,
-          data: {name: this._CbStorageService.getUserEmail()}
-        });
-        dialogRef.afterClosed().subscribe(result => {
-          console.log('The dialog was closed', result);
-        });
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(CbKeysModalComponent, {
+        width: '600px',
+        height: '400px',
+        panelClass: 'customDialogContainer',
+        disableClose: true,
+        data: { name: this._CbStorageService.getUserEmail() }
       });
-    }
+      dialogRef.afterClosed().subscribe(result => {
+        console.log('The dialog was closed', result);
+      });
+    });
   }
 
   loadCurrencies(): void {
-      this.NO_EXCHANGE = false;
-      this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES_DETAILS, [
-        this.ACTIVE_ACCOUNT
-      ]).subscribe(result => {
-        console.log('GET_CURRENCIES SUCCESS', result);
-      }, error => {
-        console.log('GET_CURRENCIES ERROR', error);
-      });
-    }
+    this.NO_EXCHANGE = false;
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES_DETAILS, [
+      this.ACTIVE_ACCOUNT
+    ]).subscribe(result => {
+      console.log('GET_CURRENCIES SUCCESS', result);
+    }, error => {
+      console.log('GET_CURRENCIES ERROR', error);
+    });
+  }
+
+  setUpDashboard() {}
+
+  onSelect($event) {
+    console.log('ON SELECT', $event);
+  }
 }

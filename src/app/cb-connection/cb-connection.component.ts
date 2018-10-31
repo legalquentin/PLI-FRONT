@@ -129,6 +129,7 @@ export class CbConnectionComponent implements OnInit {
 
   // REGISTER PROCEDURE
   doRegister(): void {
+    this.registerFormGroup.disable();
     this.loading = true;
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = {
@@ -136,7 +137,6 @@ export class CbConnectionComponent implements OnInit {
       login: this.registerFormGroup.get('login').value,
       password: this.registerFormGroup.get('password').value,
     };
-    this.registerFormGroup.disable();
     if (PAYLOAD) {
       const _sub = this._CbApiService.genericRequest(PATH.REGISTER, PAYLOAD);
       _sub.subscribe(result =>
@@ -156,13 +156,13 @@ export class CbConnectionComponent implements OnInit {
 
   // LOGIN PROCEDURE
   doLogin(): void {
+    this.loginFormGroup.disable();
     this.loading = true;
     const PATH = CbConstants.REQUESTS;
     const PAYLOAD = {
       login: this.loginFormGroup.get('login').value,
       password: this.loginFormGroup.get('password').value,
     };
-    this.loginFormGroup.disable();
     const _subLogin = this._CbApiService.genericRequest(PATH.LOGIN, PAYLOAD);
 
     _subLogin.subscribe(
@@ -231,6 +231,8 @@ export class CbConnectionComponent implements OnInit {
   // DISPLAY ERROR, STOP LOADING, AND CAN CLEAR SESSION
   displayError(msg, clear: boolean = false) {
     this.loading = false;
+    this.registerFormGroup.enable();
+    this.loginFormGroup.enable();
     this.ERROR_MESSAGE = this.translation.translate('CONNECTION.ERROR.' + msg);
     if (clear) {
       this._CbStorageService.clearSession();

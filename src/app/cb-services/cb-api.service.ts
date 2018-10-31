@@ -88,10 +88,19 @@ export class CbApiService {
     }
   }
 
-  private GET(_ENDPOINT: string, _PARAMETERS?: Array<any>): Observable<any> {
-    if (_PARAMETERS) {
+  private GET(_ENDPOINT: string, _PARAMETERS?: any): Observable<any> {
+    if (Array.isArray(_PARAMETERS)) {
       for (const param of _PARAMETERS) {
         _ENDPOINT += '/' + param;
+      }
+    } else {
+      let flag = true;
+      for (const property in _PARAMETERS) {
+        if (_PARAMETERS.hasOwnProperty(property)) {
+          _ENDPOINT += ((flag === false) ? '&' : '?');
+          _ENDPOINT += property + '=' + _PARAMETERS[property];
+          flag = false;
+        }
       }
     }
     return this.http.get<any>(
