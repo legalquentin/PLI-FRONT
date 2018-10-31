@@ -111,6 +111,9 @@ export class CbDashboardComponent implements OnInit {
           },
         ]
       };
+      this.READY.GRAPH = true;
+      this.READY.PIE = true;
+      this.READY.TABLE = true;
     }
   }
 
@@ -145,9 +148,7 @@ export class CbDashboardComponent implements OnInit {
     });
   }
 
-  setUpDashboard() {
-    this.READY.GRAPH = true;
-  }
+  setUpDashboard() {}
 
   onSelect($event) {
     console.log('ON SELECT', $event);

@@ -10,7 +10,7 @@ export class CbDashboardGraphComponent implements OnInit {
 
   public DATA: Array<any>;
   public LOADED = false;
-  public VIEW = [600, 315];
+  public VIEW = [600, 280];
   public GRID_CONFIG = {
     showXAxis: false,
     showYAxis: true,
