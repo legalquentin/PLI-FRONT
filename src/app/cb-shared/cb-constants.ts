@@ -67,7 +67,7 @@ export class CbConstants {
       METHOD: 'GET'
     },
     GET_PAIR: {
-      PATH: '/market',
+      PATH: '/pairs',
       METHOD: 'GET'
     }
   };
