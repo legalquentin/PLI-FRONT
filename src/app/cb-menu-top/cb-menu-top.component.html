@@ -6,13 +6,13 @@
     <mat-form-field class="genericWhiteFormField accountSelector" [@fade]="_CbEventService.ANIMATIONS.language.state">
       <mat-select placeholder="{{'MENU_TOP.SELECTOR.PLACEHOLDER' | translate: lang}}" [disabled]="_CbSharedService.ACCOUNTS.length === 0"
         [value]="selectedAccount" matTooltip="{{'MENU_TOP.SELECTOR.TOOLTIP' | translate: lang}}" [matTooltipDisabled]="_CbSharedService.ACCOUNTS.length !== 0">
-        <mat-option *ngIf="_CbSharedService.ACCOUNTS.length > 1" [value]="selectGlobal">
+        <mat-option *ngIf="_CbSharedService.ACCOUNTS.length > 1" [value]="selectGlobal" (click)="setAccount(0)">
           {{ 'MENU_TOP.SELECTOR.SELECT_ALL' | translate: lang }}
         </mat-option>
-        <mat-option *ngIf="_CbSharedService.ACCOUNTS.length === 0" [value]="selectNone">
+        <mat-option *ngIf="_CbSharedService.ACCOUNTS.length === 0" [value]="selectNone" (click)="setAccount(-1)">
           {{ 'MENU_TOP.SELECTOR.NOT_SET' | translate: lang }}
         </mat-option>
-        <mat-option *ngFor="let account of _CbSharedService.ACCOUNTS" [value]="account">
+        <mat-option *ngFor="let account of _CbSharedService.ACCOUNTS" [value]="account" (click)="setAccount(account)">
           {{ account.name }}
         </mat-option>
       </mat-select>

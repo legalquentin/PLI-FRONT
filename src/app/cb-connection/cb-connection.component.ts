@@ -43,11 +43,11 @@ export class CbConnectionComponent implements OnInit {
   public loginFormGroup = new FormGroup({
     login: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+      Validators.pattern('.{3,20}$')
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+      Validators.pattern('.{3,20}$')
     ])
   });
 
@@ -59,15 +59,15 @@ export class CbConnectionComponent implements OnInit {
     ]),
     login: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]{3,20}$')
+      Validators.pattern('.{3,20}$')
     ]),
     password: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]{3,20}$'),
+      Validators.pattern('.{3,20}$'),
     ]),
     confirmPassword: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]{3,20}$'),
+      Validators.pattern('.{3,20}$'),
     ])
   }, [ this.checkPasswords ]);
 

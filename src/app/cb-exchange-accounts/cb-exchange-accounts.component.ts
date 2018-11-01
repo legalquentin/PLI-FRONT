@@ -62,11 +62,11 @@ export class CbExchangeAccountsComponent implements OnInit {
     ]),
     publicKey: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]*')
+      Validators.pattern('.*')
     ]),
     privateKey: new FormControl('', [
       Validators.required,
-      Validators.pattern('[a-zA-Z0-9]*')
+      Validators.pattern('.*')
     ])
   });
 
