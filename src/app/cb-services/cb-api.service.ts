@@ -116,6 +116,9 @@ export class CbApiService {
       }
       delete _PAYLOAD['URL_PARAM'];
     }
+    if ('body' in _PAYLOAD) {
+      _PAYLOAD = _PAYLOAD.body;
+    }
     return this.http.post<any>(
       this.config.apiUrl + _ENDPOINT,
       _PAYLOAD,

@@ -33,7 +33,6 @@ import { CbCryptowatchComponent } from './cb-shared/cb-cryptowatch/cb-cryptowatc
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CbFundsComponent } from './cb-funds/cb-funds.component';
 import { CbTransactionComponent } from './cb-transaction/cb-transaction.component';
-import { CbMessageTemplateComponent } from './cb-message-template/cb-message-template.component';
 import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
@@ -86,7 +85,6 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbCryptowatchComponent,
     CbFundsComponent,
     CbTransactionComponent,
-    CbMessageTemplateComponent,
     CbSafeHtml,
     CbExchangeAccountsComponent,
     CbKeysModalComponent,
