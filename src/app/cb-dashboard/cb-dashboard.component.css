@@ -11,9 +11,21 @@ app-cb-dashboard-table {
 }
 
 .tile {
-  /* margin: 10px; */
-  margin: 0px 10px 0px 10px;
+  margin: 10px;
+  margin-right: 15px;
   background-color: rgb(238, 238, 238);
+  padding: 20px;
+}
+
+.disclaimer {
+  margin: 5px;
+  font-weight: lighter;
+  color: var(--primary-color);
+}
+
+.btn {
+  cursor: pointer;
+  font-weight: 600;
 }
 
 .kpi {

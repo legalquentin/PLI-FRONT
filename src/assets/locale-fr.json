@@ -40,7 +40,8 @@
   "MENU_TOP.RIGHT.LOG_OUT": "Quitter",
 
   "MESSAGE.EMPTY.HEADER": "Aucun compte initialisé",
-  "MESSAGE.EMPTY.BODY": "Vous pouvez ajouter vos clées dans <a href=\"/cryptobo4rd/exchanges\">Comptes</a>",
+  "MESSAGE.EMPTY.BODY": "Vous pouvez creer un nouveau compte ",
+  "MESSAGE.EMPTY.HERE": "Ici",
 
   "ACCOUNT.INPUT.LOGIN": "Pseudo",
   "ACCOUNT.INPUT.LOGIN_DISABLED_TOOLTIP": "Contactez un administrateur pour changer ce paramètre",

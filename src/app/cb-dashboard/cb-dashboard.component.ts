@@ -52,68 +52,17 @@ export class CbDashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // $('#navigate').click(this.navigate('exchange'));
+    this.ACCOUNTS = this._CbStorageService.getAccounts();
+
     if (this._CbStorageService.firstConnection()) {
+      // First connection
       this.firstConnection();
+    } else if (this.ACCOUNTS.length === 0) {
+      // No accounts to read from
+      this.noAccounts();
     } else {
-      this.ACCOUNTS = this._CbStorageService.getAccounts();
-      this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
-      this.loadCurrencies();
+      // load dashboard
       this.setUpDashboard();
-      this.GRAPH_CONFIG = {
-        LOADED: true,
-        DATA: [
-          {
-            'name': 'BTC',
-            'series': []
-          },
-        ​
-          {
-            'name': 'ETH',
-            'series': []
-          }
-        ]
-      };
-
-      let year = 2010;
-
-      for (let i = 0; i !== 50; i++) {
-        this.GRAPH_CONFIG.DATA[0].series.push({
-          'name': year + '/' + i % 12 + 1,
-          'value': Math.random() * 50 + 20
-        });
-        this.GRAPH_CONFIG.DATA[1].series.push({
-          'name': year + '/' + i % 12 + 1,
-          'value': Math.random() * 50
-        });
-        if (i % 12 === 0) {
-          year++;
-        }
-      }
-      this.PIE_CONFIG = {
-        LOADED: true,
-        DATA: [
-          {
-            'name': 'BTC',
-            'value': 89
-          },
-          {
-            'name': 'ETH',
-            'value': 500
-          },
-          {
-            'name': 'TRN',
-            'value': 20
-          },
-          {
-            'name': 'OTHER',
-            'value': 340
-          },
-        ]
-      };
-      this.READY.GRAPH = true;
-      this.READY.PIE = true;
-      this.READY.TABLE = true;
     }
   }
 
@@ -137,18 +86,75 @@ export class CbDashboardComponent implements OnInit {
     });
   }
 
-  loadCurrencies(): void {
-    this.NO_EXCHANGE = false;
-    this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_CURRENCIES_DETAILS, [
-      this.ACTIVE_ACCOUNT
-    ]).subscribe(result => {
-      console.log('GET_CURRENCIES SUCCESS', result);
-    }, error => {
-      console.log('GET_CURRENCIES ERROR', error);
-    });
+  noAccounts() {
+
   }
 
-  setUpDashboard() {}
+  setUpDashboard() {
+    this.ACCOUNTS = this._CbStorageService.getAccounts();
+    this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
+    if (this.ACCOUNTS.length !== 0) {
+      this.NO_EXCHANGE = false;
+    }
+    this.loadCurrencies();
+    this.GRAPH_CONFIG = {
+      LOADED: true,
+      DATA: [
+        {
+          'name': 'BTC',
+          'series': []
+        },
+      ​
+        {
+          'name': 'ETH',
+          'series': []
+        }
+      ]
+    };
+
+    let year = 2010;
+
+    for (let i = 0; i !== 50; i++) {
+      this.GRAPH_CONFIG.DATA[0].series.push({
+        'name': year + '/' + i % 12 + 1,
+        'value': Math.random() * 50 + 20
+      });
+      this.GRAPH_CONFIG.DATA[1].series.push({
+        'name': year + '/' + i % 12 + 1,
+        'value': Math.random() * 50
+      });
+      if (i % 12 === 0) {
+        year++;
+      }
+    }
+    this.PIE_CONFIG = {
+      LOADED: true,
+      DATA: [
+        {
+          'name': 'BTC',
+          'value': 89
+        },
+        {
+          'name': 'ETH',
+          'value': 500
+        },
+        {
+          'name': 'TRN',
+          'value': 20
+        },
+        {
+          'name': 'OTHER',
+          'value': 340
+        },
+      ]
+    };
+    this.READY.GRAPH = true;
+    this.READY.PIE = true;
+    this.READY.TABLE = true;
+  }
+
+  loadCurrencies(): void {
+  }
 
   onSelect($event) {
     console.log('ON SELECT', $event);

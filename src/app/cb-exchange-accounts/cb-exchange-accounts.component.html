@@ -9,7 +9,7 @@
     <div fxLayout="row">
       <div class="tile" fxFlex>
         <mat-accordion>
-          <mat-expansion-panel>
+          <mat-expansion-panel [expanded]="ACCOUNTS.data.length === 0">
             <mat-expansion-panel-header>
               <mat-panel-title class="title">
                 {{ 'EXCHANGES.ADD.TITLE' | translate: lang }}
@@ -60,7 +60,7 @@
               <button mat-flat-button (click)="createAccount('test')" [disabled]="!addFormGroup.valid">Save</button>
             </mat-action-row>
           </mat-expansion-panel>
-          <mat-expansion-panel [expanded]="true">
+          <mat-expansion-panel [expanded]="ACCOUNTS.data.length > 0">
             <mat-expansion-panel-header>
               <mat-panel-title class="title">
                 {{ 'EXCHANGES.EDIT.TITLE' | translate: lang }}

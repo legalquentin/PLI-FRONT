@@ -1,9 +1,15 @@
 <div class="wrapper">
-  <app-cb-message-template *ngIf="NO_EXCHANGE" [MESSAGE]="EMPTY"></app-cb-message-template>
+  <div *ngIf="NO_EXCHANGE" class="tile" fxLayout="grow row" style="vertical-align: middle;">
+    <mat-icon style="margin-right: 5px; margin-top: 3px; color:var(--primary-color)">warning</mat-icon>
+    <h4 class="disclaimer">
+      {{'MESSAGE.EMPTY.HEADER' | translate : lang }}, {{'MESSAGE.EMPTY.BODY' | translate : lang }} <a class="btn" (click)="navigate('exchanges')"> {{ 'MESSAGE.EMPTY.HERE' | translate : lang }} </a>
+    </h4>
+    <!-- <span>{{'MESSAGE.EMPTY.BODY' | translate : lang }}</span><a (click)="navigate('exchanges')">Link</a> -->
+  </div>
   <div fxLayout="column">
     <div class="top" fxLayout="row">
       <app-cb-dashboard-pie fxFlex [CONFIG]="PIE_CONFIG" *ngIf="READY.PIE"></app-cb-dashboard-pie>
-      <div class="tile" fxFlex></div>
+      <div class="tile" fxFlex *ngIf="READY.PIE"></div>
     </div>
     <div class="bottom" fxLayout="row">
       <app-cb-dashboard-graph fxFlex [CONFIG]="GRAPH_CONFIG" *ngIf="READY.GRAPH"></app-cb-dashboard-graph>
