@@ -28,7 +28,8 @@
   "MENU_LEFT.FUNDS": "Portefeuille",
   "MENU_LEFT.SOCIAL": "Communauté",
   "MENU_LEFT.SETTINGS": "Paramètres",
-  "MENU_LEFT.TRANSACTION": "Transaction",
+  "MENU_LEFT.TRANSFER": "Virement",
+  "MENU_LEFT.TRADE": "Transaction",
 
   "MENU_TOP.TITLE": "",
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Selecteur de compte",

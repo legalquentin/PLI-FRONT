@@ -39,7 +39,7 @@ export class CbCryptobotComponent implements OnInit {
     columns: [],
     data: []
   };
-  public TRANSACTIONS = {
+  public TRANSFERS = {
     columns: [],
     data: []
   };
@@ -180,35 +180,35 @@ export class CbCryptobotComponent implements OnInit {
   ngOnInit() {
     this.GRAPHLINEBAR.gradient = Boolean(false);
 
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'EXCHANGE',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'DATE',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'ORDER_TYPE',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'CRYPTO',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'NUMBER',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'PRICE',
       VIEW: this.textTemplate
     });
-    this.TRANSACTIONS.columns.push({
+    this.TRANSFERS.columns.push({
       KEY: 'ACTIVE',
       VIEW: this.iconStatTemplate
     });
-    this.TRANSACTIONS.data.push({
+    this.TRANSFERS.data.push({
       EXCHANGE: 'Binance',
       DATE: '21/10/2018 18h56',
       ORDER_TYPE: 'Buy',
@@ -217,7 +217,7 @@ export class CbCryptobotComponent implements OnInit {
       NUMBER: '0.002',
       ACTIVE: 1
     });
-    this.TRANSACTIONS.data.push({
+    this.TRANSFERS.data.push({
       EXCHANGE: 'salut',
       DATE: '24/10/2018 12h15',
       ORDER_TYPE: 'Sell',
@@ -226,7 +226,7 @@ export class CbCryptobotComponent implements OnInit {
       NUMBER: '0.002',
       ACTIVE: 2
     });
-    this.TRANSACTIONS.data.push({
+    this.TRANSFERS.data.push({
       EXCHANGE: 'salut',
       DATE: '27/10/2018 9h11',
       ORDER_TYPE: 'Buy',

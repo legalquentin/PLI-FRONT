@@ -27,7 +27,8 @@
   "MENU_LEFT.FUNDS": "Funds",
   "MENU_LEFT.SOCIAL": "Social",
   "MENU_LEFT.SETTINGS": "Settings",
-  "MENU_LEFT.TRANSACTION": "Transaction",
+  "MENU_LEFT.TRANSFER": "Transfer",
+  "MENU_LEFT.TRADE": "Trade",
 
   "MENU_TOP.TITLE": "",
   "MENU_TOP.SELECTOR.PLACEHOLDER": "Account Selector",

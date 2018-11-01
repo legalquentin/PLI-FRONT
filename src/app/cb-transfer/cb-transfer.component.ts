@@ -3,11 +3,11 @@ import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 
 @Component({
-  selector: 'app-cb-transaction',
-  templateUrl: './cb-transaction.component.html',
-  styleUrls: ['./cb-transaction.component.css']
+  selector: 'app-cb-transfer',
+  templateUrl: './cb-transfer.component.html',
+  styleUrls: ['./cb-transfer.component.css']
 })
-export class CbTransactionComponent implements OnInit {
+export class CbTransferComponent implements OnInit {
 
   public AVAILABLE_CURRENCIES = [];
 

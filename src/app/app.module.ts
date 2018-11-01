@@ -32,7 +32,7 @@ import { CbDataTableComponent } from './cb-data-table/cb-data-table.component';
 import { CbCryptowatchComponent } from './cb-shared/cb-cryptowatch/cb-cryptowatch.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CbFundsComponent } from './cb-funds/cb-funds.component';
-import { CbTransactionComponent } from './cb-transaction/cb-transaction.component';
+import { CbTransferComponent } from './cb-transfer/cb-transfer.component';
 import { CbSafeHtml } from './cb-shared/cb-pipes/cb-safehtml.pipe';
 import { CbExchangeAccountsComponent } from './cb-exchange-accounts/cb-exchange-accounts.component';
 import { CbKeysModalComponent } from './cb-modals/cb-keys-modal/cb-keys-modal.component';
@@ -42,6 +42,7 @@ import { CbSocialComponent } from './cb-social/cb-social.component';
 import { CbDashboardPieComponent } from './cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
 import { CbDashboardGraphComponent } from './cb-shared/cb-dashboard-graph/cb-dashboard-graph.component';
 import { CbDashboardTableComponent } from './cb-shared/cb-dashboard-table/cb-dashboard-table.component';
+import { CbTradeComponent } from './cb-trade/cb-trade.component';
 
 const l10nConfig: L10nConfig = {
   locale: {
@@ -84,7 +85,7 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbDataTableComponent,
     CbCryptowatchComponent,
     CbFundsComponent,
-    CbTransactionComponent,
+    CbTransferComponent,
     CbSafeHtml,
     CbExchangeAccountsComponent,
     CbKeysModalComponent,
@@ -92,7 +93,8 @@ export function initL10n(l10nLoader: L10nLoader): Function {
     CbSocialComponent,
     CbDashboardPieComponent,
     CbDashboardGraphComponent,
-    CbDashboardTableComponent
+    CbDashboardTableComponent,
+    CbTradeComponent
   ],
   imports: [
     BrowserModule,
