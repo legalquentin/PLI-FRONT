@@ -77,8 +77,9 @@ export class CbSharedService implements OnInit {
             for (const v of values) {
               if (!(v in volumes)) {
                 volumes[v] = result.SubAccounts[v];
+              } else {
+                volumes[v]['Amount'] += result.SubAccounts[v]['Amount'];
               }
-              volumes[v]['Amount'] += result.SubAccounts[v]['Amount'];
             }
             for (const v of values) {
               flags.push(true);

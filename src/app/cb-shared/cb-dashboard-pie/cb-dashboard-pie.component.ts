@@ -11,7 +11,18 @@ export class CbDashboardPieComponent implements OnInit {
   public DATA: Array<any>;
   public LOADED = false;
   public VIEW = [600, 200];
-
+  public otherCurrency = {
+    label: '',
+    sign: ''
+  };
+  private _euro = {
+    label: 'EUR',
+    sign: '€'
+  };
+  private _dollar = {
+    label: 'USD',
+    sign: '$'
+  };
   constructor(
     private cdr: ChangeDetectorRef
   ) {}
@@ -30,5 +41,9 @@ export class CbDashboardPieComponent implements OnInit {
   updateValue(DATA: any) {
     console.log('UPDATE', DATA);
     this.DATA = DATA;
+  }
+
+  switchCurrency() {
+    this.otherCurrency = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
   }
 }

@@ -61,6 +61,7 @@ export class CbDashboardComponent implements OnInit {
   ngOnInit() {
     this.volumeSubscription = this._CbSharedService.CURRENT_VOLUMES.subscribe(
       (item) => {
+        this.NO_EXCHANGE = false;
         if (item !== null) {
           console.log('update');
           this.PIE_CONFIG = this.formatVolumes(item);
