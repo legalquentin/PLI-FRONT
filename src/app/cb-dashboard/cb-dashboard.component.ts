@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Language, TranslationService, LocaleService } from 'angular-l10n';
 import { Router } from '@angular/router';
 import { CbStorageService } from '../cb-services/cb-storage.service';
@@ -8,6 +8,9 @@ import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 // import { cryptowatch } from '../../../node_modules/cryptowatch-embed/src/main.js'
 import CryptowatchEmbed from 'cryptowatch-embed';
+import { CbSharedService } from '../cb-services/cb-shared.service';
+import { Subscription } from 'rxjs';
+import { CbDashboardPieComponent } from '../cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
 declare var $: any;
 @Component({
   selector: 'app-cb-dashboard',
@@ -16,12 +19,13 @@ declare var $: any;
 })
 export class CbDashboardComponent implements OnInit {
   @Language() lang: string;
+  @ViewChild('refPie')
+  refPie: CbDashboardPieComponent;
 
   public chart: any;
-  public PIE_CONFIG = {
-    LOADED: false,
-    DATA: []
-  };
+  public volumeSubscription: Subscription;
+
+  public PIE_CONFIG = [];
   public GRAPH_CONFIG = {
     LOADED: false,
     DATA: []
@@ -35,7 +39,8 @@ export class CbDashboardComponent implements OnInit {
   };
 
   public ACCOUNTS = [];
-  public ACTIVE_ACCOUNT = 0;
+  public ACTIVE_ACCOUNT = {};
+  public VOLUMES = {};
   public NO_EXCHANGE = true;
   public EMPTY = {
     HEADER: '<h3>' + this.translation.translate('MESSAGE.EMPTY.HEADER') + '</h3>',
@@ -48,10 +53,24 @@ export class CbDashboardComponent implements OnInit {
     private locale: LocaleService,
     private dialog: MatDialog,
     private _CbStorageService: CbStorageService,
-    private _CbApiService: CbApiService
-  ) { }
+    private _CbApiService: CbApiService,
+    public _CbSharedService: CbSharedService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
+    this.volumeSubscription = this._CbSharedService.CURRENT_VOLUMES.subscribe(
+      (item) => {
+        if (item !== null) {
+          console.log('update');
+          this.PIE_CONFIG = this.formatVolumes(item);
+          if (this.READY.PIE) {
+            this.refPie.updateValue(this.PIE_CONFIG);
+          }
+          this.READY.PIE = true;
+        }
+    });
+
     this.ACCOUNTS = this._CbStorageService.getAccounts();
 
     if (this._CbStorageService.firstConnection()) {
@@ -91,8 +110,10 @@ export class CbDashboardComponent implements OnInit {
   }
 
   setUpDashboard() {
-    this.ACCOUNTS = this._CbStorageService.getAccounts();
-    this.ACTIVE_ACCOUNT = this._CbStorageService.getActiveAccount();
+    this.ACCOUNTS = this._CbSharedService.ACCOUNTS;
+    this.ACTIVE_ACCOUNT = this._CbSharedService.CURRENT_ACCOUNT;
+    //   this.READY.PIE = true;
+    // });
     if (this.ACCOUNTS.length !== 0) {
       this.NO_EXCHANGE = false;
     }
@@ -127,29 +148,7 @@ export class CbDashboardComponent implements OnInit {
         year++;
       }
     }
-    this.PIE_CONFIG = {
-      LOADED: true,
-      DATA: [
-        {
-          'name': 'BTC',
-          'value': 89
-        },
-        {
-          'name': 'ETH',
-          'value': 500
-        },
-        {
-          'name': 'TRN',
-          'value': 20
-        },
-        {
-          'name': 'OTHER',
-          'value': 340
-        },
-      ]
-    };
     this.READY.GRAPH = true;
-    this.READY.PIE = true;
     this.READY.TABLE = true;
   }
 
@@ -158,5 +157,16 @@ export class CbDashboardComponent implements OnInit {
 
   onSelect($event) {
     console.log('ON SELECT', $event);
+  }
+
+  formatVolumes(volumes: any) {
+    const dataSet = [];
+    for (const key of Object.keys(volumes)) {
+      dataSet.push({
+        name: key,
+        value: volumes[key].Value.EUR,
+      });
+    }
+    return dataSet;
   }
 }

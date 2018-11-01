@@ -51,7 +51,7 @@ export class CbConstants {
     },
     // EXCHANGES ACCOUNT
     GET_CURRENCIES: {
-      PATH: '/account-currency',
+      PATH: '/account',
       METHOD: 'GET'
     },
     GET_CURRENCIES_DETAILS: {
@@ -67,7 +67,7 @@ export class CbConstants {
       METHOD: 'GET'
     },
     GET_PAIR: {
-      PATH: '/market',
+      PATH: '/pairs',
       METHOD: 'GET'
     }
   };

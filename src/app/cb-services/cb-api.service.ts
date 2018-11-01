@@ -75,7 +75,6 @@ export class CbApiService {
     _PAYLOAD?: any,
     _OPTIONS?: any
   ): Observable<any> {
-    console.log(_REQUEST, _PAYLOAD);
     switch (_REQUEST.METHOD) {
       case 'GET':
         return this.GET(_REQUEST.PATH, _PAYLOAD);

@@ -8,7 +8,7 @@
   </div>
   <div fxLayout="column">
     <div class="top" fxLayout="row">
-      <app-cb-dashboard-pie fxFlex [CONFIG]="PIE_CONFIG" *ngIf="READY.PIE"></app-cb-dashboard-pie>
+      <app-cb-dashboard-pie fxFlex #refPie [CONFIG]="PIE_CONFIG" *ngIf="READY.PIE"></app-cb-dashboard-pie>
       <div class="tile" fxFlex *ngIf="READY.PIE"></div>
     </div>
     <div class="bottom" fxLayout="row">

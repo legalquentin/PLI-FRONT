@@ -37,10 +37,7 @@ export class CbMenuTopComponent implements OnInit {
     this.selectedAccount = this.selectNone;
   }
 
-  ngOnInit() {
-    this.getAccounts();
-    // this.accountIdentifier = this._CbStorageService.getUserFullName();
-  }
+  ngOnInit() {}
 
   logout() {
     this._CbStorageService.clearSession();
@@ -55,25 +52,14 @@ export class CbMenuTopComponent implements OnInit {
     this.router.navigate(['/cryptobo4rd/exchanges']);
   }
 
-  getAccounts() {
-    this._CbSharedService.getAccounts(() => {
-      console.log(this._CbSharedService.ACCOUNTS);
-      if (this._CbSharedService.ACCOUNTS.length === 1) {
-        this.selectedAccount = this._CbSharedService.ACCOUNTS[0].id;
-        this._CbStorageService.setActiveAccount(this.selectedAccount);
-      } else if (this._CbSharedService.ACCOUNTS.length === 0) {
-        this.selectedAccount = 0;
-        this._CbStorageService.setActiveAccount(0);
-      } else {
-        console.log(this._CbStorageService.getActiveAccount());
-        this.selectedAccount = this._CbSharedService.ACCOUNTS.map((item) => {
-           return item.id;
-        }).indexOf(this._CbStorageService.getActiveAccount());
+  setAccount(account) {
+    console.log(account);
+    this._CbSharedService.CURRENT_ACCOUNT = account;
+    this._CbSharedService.getAccount((err) => {
+      if (!err) {
+        console.log(this._CbSharedService.CURRENT_VOLUMES);
       }
     });
-  }
-
-  setAccount(account) {
     this._CbStorageService.setActiveAccount(account.id);
   }
 }

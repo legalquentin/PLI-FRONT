@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CbEventService } from '../cb-services/cb-event.service';
+import { CbSharedService } from '../cb-services/cb-shared.service';
 
 @Component({
   selector: 'app-cb-cryptobo4rd',
@@ -9,8 +10,11 @@ import { CbEventService } from '../cb-services/cb-event.service';
 export class CbCryptobo4rdComponent implements OnInit {
 
   constructor(
-    public _CbEventService: CbEventService
-  ) { }
+    public _CbEventService: CbEventService,
+    public _cbSharedServcice: CbSharedService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._cbSharedServcice.init();
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-cb-dashboard-pie',
@@ -12,17 +12,23 @@ export class CbDashboardPieComponent implements OnInit {
   public LOADED = false;
   public VIEW = [600, 200];
 
-  constructor() {
-
-  }
+  constructor(
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit() {
-    this.DATA = this.CONFIG.DATA;
-    this.LOADED = this.CONFIG.LOADED;
+    this.DATA = this.CONFIG;
+    this.LOADED = true;
+    console.log(this.CONFIG);
   }
 
   formatValue($event) {
     // console.log('format', $event);
     return $event + '$';
+  }
+
+  updateValue(DATA: any) {
+    console.log('UPDATE', DATA);
+    this.DATA = DATA;
   }
 }
