@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { Language, TranslationService } from 'angular-l10n';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatTable } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
@@ -15,6 +15,8 @@ export class CbDataTableComponent implements OnInit {
   CONFIG: any;
   @ViewChild(MatPaginator)
   PAGINATOR: MatPaginator;
+  @ViewChild('TABLE')
+  TABLE: MatTable<any>;
 
   public COLUMNS: Array<any>;
   public DISPLAYED_COLUMNS = [];
@@ -71,7 +73,7 @@ export class CbDataTableComponent implements OnInit {
       : this.DATASOURCE.data.forEach(row => this.SELECTION.select(row));
   }
 
-  reload() {
-    this.initDataTable();
+  reload(data) {
+    this.DATASOURCE = new MatTableDataSource(data);
   }
 }

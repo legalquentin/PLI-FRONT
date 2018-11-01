@@ -5,6 +5,7 @@ import { FormGroup } from '@angular/forms';
 import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
 import { fadeAnimation } from '../cb-shared/cb-animations';
+import { CbSharedService } from '../cb-services/cb-shared.service';
 
 @Component({
   selector: 'app-cb-menu-top',
@@ -29,7 +30,8 @@ export class CbMenuTopComponent implements OnInit {
     private translation: TranslationService,
     private locale: LocaleService,
     public _CbStorageService: CbStorageService,
-    public _CbEventService: CbEventService
+    public _CbEventService: CbEventService,
+    public _CbSharedService: CbSharedService
   ) {
     this.selectLang = false;
     this.selectedAccount = this.selectNone;
@@ -54,14 +56,15 @@ export class CbMenuTopComponent implements OnInit {
   }
 
   getAccounts() {
-    this.ACCOUNTS = this._CbStorageService.getAccounts();
-    this.selectedAccount = this._CbStorageService.getActiveAccount();
-    if (this.ACCOUNTS.length === 1) {
-      this.selectedAccount = this.ACCOUNTS[0];
-      this._CbStorageService.setActiveAccount(this.selectedAccount);
-    } else if (this.ACCOUNTS.length === 0) {
-      this.selectedAccount = 0;
-      this._CbStorageService.setActiveAccount(0);
-    }
+    this._CbSharedService.getAccounts(() => {
+      this.selectedAccount = this._CbStorageService.getActiveAccount();
+      if (this._CbSharedService.ACCOUNTS.length === 1) {
+        this.selectedAccount = this._CbSharedService.ACCOUNTS[0];
+        this._CbStorageService.setActiveAccount(this.selectedAccount);
+      } else if (this._CbSharedService.ACCOUNTS.length === 0) {
+        this.selectedAccount = 0;
+        this._CbStorageService.setActiveAccount(0);
+      }
+    });
   }
 }

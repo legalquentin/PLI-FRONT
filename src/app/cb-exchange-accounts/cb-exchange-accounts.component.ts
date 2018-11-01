@@ -8,6 +8,8 @@ import { CbStorageService } from '../cb-services/cb-storage.service';
 import { Observable } from 'rxjs';
 import { FormControl, FormGroupDirective, NgForm, Validators, FormGroup } from '@angular/forms';
 import { ValidSelection } from '../cb-shared/cb-match-form';
+import { CbDataTableComponent } from '../cb-data-table/cb-data-table.component';
+import { CbSharedService } from '../cb-services/cb-shared.service';
 
 interface ConfirmDialogData {
   title: string;
@@ -23,8 +25,12 @@ interface ConfirmDialogData {
 export class CbExchangeAccountsComponent implements OnInit {
   @Language()
   lang: string;
+  @ViewChild('topPanel')
+  topPanel: any;
+  @ViewChild('botPanel')
+  botPanel: any;
   @ViewChild('dataTable')
-  dataTable: TemplateRef<any>;
+  dataTable: CbDataTableComponent;
   @ViewChild('textTemplate')
   textTemplate: TemplateRef<any>;
   @ViewChild('buttonTemplate')
@@ -68,12 +74,40 @@ export class CbExchangeAccountsComponent implements OnInit {
     private translationService: TranslationService,
     private dialog: MatDialog,
     private _CbApiService: CbApiService,
-    private _CbStorageService: CbStorageService
+    private _CbStorageService: CbStorageService,
+    private _CbSharedService: CbSharedService
   ) {
     this.loadAccounts();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.ACCOUNTS.columns = [
+      {
+        KEY: 'NAME',
+        VIEW: this.textTemplate
+      },
+      {
+        KEY: 'RIGHTS',
+        VIEW: this.iconRightsTemplate
+      },
+      {
+        KEY: 'EXCHANGE',
+        VIEW: this.textTemplate
+      },
+      {
+        KEY: 'ACTIVE',
+        VIEW: this.sliderTemplate
+      },
+      {
+        KEY: 'DATE',
+        VIEW: this.dateTextTemplate
+      },
+      {
+        KEY: 'DELETE',
+        VIEW: this.iconButtonTemplate
+      }
+    ];
+  }
 
   openDialog(
     width: number,
@@ -91,59 +125,31 @@ export class CbExchangeAccountsComponent implements OnInit {
   }
 
   loadAccounts(): void {
-
-    this._CbApiService
-      .genericRequest(CbConstants.REQUESTS.LIST_PROVIDERS)
-      .subscribe(
-        result => {
-          this.EXCHANGES = result.data;
-          console.log(result);
-          this.ACCOUNTS.columns.push({
-            KEY: 'NAME',
-            VIEW: this.textTemplate
+    this._CbSharedService.getAccounts((err, accounts) => {
+      if (!err) {
+        this.EXCHANGES = this._CbSharedService.EXCHANGES;
+        const data = [];
+        for (const account of accounts) {
+          data.push({
+            ID: account.id,
+            NAME: account.name,
+            EXCHANGE: account.exchange,
+            ACTIVE: account.active,
+            DATE: account.dateOfCreation,
+            RIGHTS: account.rights,
+            DELETE: null
           });
-          this.ACCOUNTS.columns.push({
-            KEY: 'RIGHTS',
-            VIEW: this.iconRightsTemplate
-          });
-          this.ACCOUNTS.columns.push({
-            KEY: 'EXCHANGE',
-            VIEW: this.textTemplate
-          });
-          this.ACCOUNTS.columns.push({
-            KEY: 'ACTIVE',
-            VIEW: this.sliderTemplate
-          });
-          this.ACCOUNTS.columns.push({
-            KEY: 'DATE',
-            VIEW: this.dateTextTemplate
-          });
-          this.ACCOUNTS.columns.push({
-            KEY: 'DELETE',
-            VIEW: this.iconButtonTemplate
-          });
-          for (const exchange of this.EXCHANGES) {
-            if (exchange.accounts.length > 0) {
-              for (const account of exchange.accounts) {
-                this.ACCOUNTS.data.push({
-                  ID: account.id,
-                  NAME: account.name,
-                  EXCHANGE: exchange.name,
-                  ACTIVE: account.active,
-                  DATE: account.dateOfCreation,
-                  RIGHTS: account.rights,
-                  DELETE: null
-                });
-              }
-            }
-          }
-          this.LOADED = true;
-          console.log(this.ACCOUNTS);
-        },
-        error => {
-          console.error('Failed to LIST_PROVIDERS', error);
         }
-      );
+        this.ACCOUNTS = {
+          columns: this.ACCOUNTS.columns,
+          data: data
+        };
+        if (this.dataTable) {
+          this.dataTable.reload(data);
+        }
+        this.LOADED = true;
+      }
+    });
   }
 
   createAccount(exchange: string): void {
@@ -161,6 +167,10 @@ export class CbExchangeAccountsComponent implements OnInit {
       .subscribe(
         result => {
           console.log('ADD_PROVIDERS on ' + exchange + ' SUCCESS', result);
+          this.topPanel.close();
+          this.botPanel.open();
+          this.loadAccounts();
+          this.addFormGroup.reset();
         },
         error => {
           console.error('Failed to ADD_PROVIDERS', error);
@@ -183,8 +193,6 @@ export class CbExchangeAccountsComponent implements OnInit {
           CbConstants.REQUESTS.DELETE_PROVIDER_ACCOUNT,
           [row.ID]).subscribe(res => {
           console.log('DELETE_PROVIDER SUCCESS', res);
-          this.ACCOUNTS.columns = [];
-          this.ACCOUNTS.data = [];
           this.loadAccounts();
         }, error => {
           console.log('DELETE_PROVIDER ERROR', error);

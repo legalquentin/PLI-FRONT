@@ -8,6 +8,7 @@ import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidSelection } from '../cb-shared/cb-match-form';
+import { CbSharedService } from '../cb-services/cb-shared.service';
 
 declare let $: any;
 
@@ -76,7 +77,8 @@ export class CbConnectionComponent implements OnInit {
     private locale: LocaleService,
     private _CbApiService: CbApiService,
     private _CbStorageService: CbStorageService,
-    public _CbEventService: CbEventService
+    private _CbSharedService: CbSharedService,
+    public _CbEventService: CbEventService,
   ) {}
 
   ngOnInit() {
@@ -169,7 +171,15 @@ export class CbConnectionComponent implements OnInit {
       result => {
         this.getProfile(result.data, (ok) => {
           if (ok) {
-            this.getProviders();
+            this._CbSharedService.getProviders((err, accounts) => {
+              if (err) {
+                this.displayError(err, true);
+              } else {
+                this.SESSION.ACCOUNTS = accounts;
+                this._CbStorageService.updateSessionData(this.SESSION);
+                this.router.navigate(['cryptobo4rd/dashboard']);
+              }
+            });
           } else {
             this.displayError('ERROR', true);
           }
@@ -200,30 +210,6 @@ export class CbConnectionComponent implements OnInit {
       err => {
         this.displayError(err, true);
         callback(false);
-      }
-    );
-  }
-
-  // RECOVER USER PROVIDERS
-  getProviders() {
-    const PATH = CbConstants.REQUESTS;
-    const _subPrv = this._CbApiService.genericRequest(PATH.LIST_PROVIDERS);
-
-    _subPrv.subscribe(
-      result => {
-        const accounts = [];
-        for (const exchange of result.data) {
-          for (const account of exchange.accounts) {
-            account.exchange = exchange.name;
-            accounts.push(account);
-          }
-        }
-        this.SESSION.ACCOUNTS = accounts;
-        this._CbStorageService.updateSessionData(this.SESSION);
-        this.router.navigate(['cryptobo4rd/dashboard']);
-      },
-      error => {
-        this.displayError(error, true);
       }
     );
   }
