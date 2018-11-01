@@ -13,21 +13,25 @@ export class CbDashboardPieComponent implements OnInit {
   public VIEW = [600, 200];
   public otherCurrency = {
     label: '',
-    sign: ''
+    sign: '',
+    symbol: ''
   };
   private _euro = {
     label: 'EUR',
-    sign: '€'
+    sign: '€',
+    symbol: 'euro_symbol'
   };
   private _dollar = {
     label: 'USD',
-    sign: '$'
+    sign: '$',
+    symbol: 'attach_money'
   };
   constructor(
     private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
+    this.otherCurrency = this._dollar;
     this.DATA = this.CONFIG;
     this.LOADED = true;
     console.log(this.CONFIG);

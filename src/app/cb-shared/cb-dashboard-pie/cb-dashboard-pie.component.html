@@ -15,8 +15,8 @@
 
 <mat-menu #menu="matMenu">
     <button mat-menu-item>
-      <mat-icon>dialpad</mat-icon>
-      <span>Redial</span>
+      <mat-icon>{{ otherCurrency.symbol }}</mat-icon>
+      <span>{{ otherCurrency.label }}</span>
     </button>
     <button mat-menu-item disabled>
       <mat-icon>voicemail</mat-icon>
