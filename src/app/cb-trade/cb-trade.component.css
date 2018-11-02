@@ -18,3 +18,8 @@
 .allW {
   width: 100%;
 }
+
+.splitCard {
+  display: inline-block;
+  margin: 5px;
+}
