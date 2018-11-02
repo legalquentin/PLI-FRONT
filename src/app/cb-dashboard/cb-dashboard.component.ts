@@ -63,7 +63,7 @@ export class CbDashboardComponent implements OnInit {
       (item) => {
         this.NO_EXCHANGE = false;
         if (item !== null) {
-          console.log('update');
+          console.log('update', item);
           this.PIE_CONFIG = this.formatVolumes(item);
           if (this.READY.PIE) {
             this.refPie.updateValue(this.PIE_CONFIG);

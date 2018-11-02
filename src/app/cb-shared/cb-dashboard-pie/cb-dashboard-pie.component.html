@@ -9,7 +9,7 @@
       </button>
     </div>
   </div>
-  <ngx-charts-advanced-pie-chart *ngIf="LOADED" [results]="DATA" [valueFormatting]="formatValue" [view]="VIEW">
+  <ngx-charts-advanced-pie-chart #chart *ngIf="LOADED" [results]="DATA" [valueFormatting]="formatValue" [view]="VIEW">
   </ngx-charts-advanced-pie-chart>
 </div>
 

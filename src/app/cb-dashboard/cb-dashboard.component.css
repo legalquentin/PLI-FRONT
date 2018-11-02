@@ -17,6 +17,11 @@ app-cb-dashboard-table {
   padding: 20px;
 }
 
+.sub  {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 .disclaimer {
   margin: 5px;
   font-weight: lighter;

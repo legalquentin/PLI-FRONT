@@ -9,7 +9,7 @@
   <div fxLayout="column">
     <div class="top" fxLayout="row">
       <app-cb-dashboard-pie fxFlex #refPie [CONFIG]="PIE_CONFIG" *ngIf="READY.PIE"></app-cb-dashboard-pie>
-      <div class="tile" fxFlex *ngIf="READY.PIE"></div>
+      <div class="tile sub" fxFlex *ngIf="READY.PIE"></div>
     </div>
     <div class="bottom" fxLayout="row">
       <app-cb-dashboard-graph fxFlex [CONFIG]="GRAPH_CONFIG" *ngIf="READY.GRAPH"></app-cb-dashboard-graph>

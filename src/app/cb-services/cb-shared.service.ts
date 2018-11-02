@@ -25,7 +25,7 @@ export class CbSharedService implements OnInit {
   init() {
     this.getAccounts(() => {
       if (this.ACCOUNTS.length > 0) {
-        this.CURRENT_ACCOUNT = this.ACCOUNTS[0];
+        this.CURRENT_ACCOUNT = 0;
       }
       this.getAccount(() => { });
     });

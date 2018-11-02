@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectorRef, SimpleChanges, OnChanges, ViewChild } from '@angular/core';
+
 
 @Component({
   selector: 'app-cb-dashboard-pie',
@@ -12,6 +13,11 @@ export class CbDashboardPieComponent implements OnInit {
   public LOADED = false;
   public VIEW = [600, 200];
   public otherCurrency = {
+    label: '',
+    sign: '',
+    symbol: ''
+  };
+  public currentCurrency = {
     label: '',
     sign: '',
     symbol: ''
@@ -31,32 +37,40 @@ export class CbDashboardPieComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.currentCurrency = this._euro;
     this.otherCurrency = this._dollar;
     for (const set of this.CONFIG) {
-      set.value = set[this.otherCurrency.label.toLowerCase()];
+      set.value = set[this.currentCurrency.label.toLowerCase()];
     }
     this.DATA = this.CONFIG;
     this.LOADED = true;
     console.log(this.CONFIG);
   }
 
-  formatValue($event) {
-    return $event;
+  formatValue = ($event) => {
+    return $event + this.currentCurrency.sign;
   }
 
   updateValue(DATA: any) {
     console.log('UPDATE', DATA);
     for (const set of DATA) {
-      set.value = set[this.otherCurrency.label.toLowerCase()];
+      set.value = set[this.currentCurrency.label.toLowerCase()];
     }
     this.DATA = DATA;
   }
 
   switchCurrency() {
     console.log('SWITCH VALUE');
-    this.otherCurrency = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
-    for (const set of this.DATA) {
-      set.value = set[ this.otherCurrency.label.toLowerCase()];
+    if (this.currentCurrency.label === 'EUR') {
+      this.currentCurrency = this._dollar;
+      this.otherCurrency = this._euro;
+    } else {
+      this.currentCurrency = this._euro;
+      this.otherCurrency = this._dollar;
     }
+    for (const set of this.DATA) {
+      set.value = set[ this.currentCurrency.label.toLowerCase()];
+    }
+    this.DATA = Object.assign([], this.DATA);
   }
 }
