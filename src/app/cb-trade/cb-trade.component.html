@@ -1,3 +1,15 @@
-<p>
-  cb-trade works!
-</p>
+<div class="wrapper" fxLayout="column">
+  <div fxLayout="row">
+    <div class="tile" fxFlex>
+      <mat-nav-list role="list" fxFlex>
+        <a mat-list-item (click)="do('stuff')" *ngFor="let pair of availablePair">
+          {{ pair.value }}
+        </a>
+      </mat-nav-list>
+    </div>
+    <div class="tile" fxFlex>
+    </div>
+  </div>
+  <div class="tile" fxFlex>
+  </div>
+</div>

@@ -41,23 +41,22 @@ export class CbDashboardPieComponent implements OnInit {
   }
 
   formatValue($event) {
-    // console.log('format', $event);
-    return $event + (this.otherCurrency.sign);
+    return $event;
   }
 
   updateValue(DATA: any) {
     console.log('UPDATE', DATA);
+    for (const set of DATA) {
+      set.value = set[this.otherCurrency.label.toLowerCase()];
+    }
     this.DATA = DATA;
   }
 
   switchCurrency() {
     console.log('SWITCH VALUE');
-    const curr = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
+    this.otherCurrency = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
     for (const set of this.DATA) {
-      set.value = set[curr.label.toLowerCase()];
+      set.value = set[ this.otherCurrency.label.toLowerCase()];
     }
-    setTimeout(() => {
-      this.otherCurrency = curr;
-    }, 300);
   }
 }

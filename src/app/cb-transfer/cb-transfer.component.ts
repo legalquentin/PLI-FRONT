@@ -18,11 +18,6 @@ export class CbTransferComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._cbApiService.genericRequest(CbConstants.REQUESTS.GET_PAIR, ['BINANCE']).subscribe(result => {
-      console.log('GET_PAIR', result);
-    }, error => {
-      console.error('GET_PAIR', error);
-    });
     this._cbApiService.genericRequest(CbConstants.REQUESTS.GET_MARKET_INFO, ['BINANCE']).subscribe(result => {
       console.log('GET_MARKET_INFO', result);
     }, error => {
