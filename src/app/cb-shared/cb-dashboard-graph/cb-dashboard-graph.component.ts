@@ -44,4 +44,8 @@ export class CbDashboardGraphComponent implements OnInit {
     // console.log('YFORMAT', $event);
     return $event;
   }
+
+  updateValue(GRAPH_CONFIG): any {
+    this.DATA = GRAPH_CONFIG;
+  }
 }

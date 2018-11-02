@@ -11,6 +11,7 @@ import CryptowatchEmbed from 'cryptowatch-embed';
 import { CbSharedService } from '../cb-services/cb-shared.service';
 import { Subscription } from 'rxjs';
 import { CbDashboardPieComponent } from '../cb-shared/cb-dashboard-pie/cb-dashboard-pie.component';
+import { CbDashboardGraphComponent } from '../cb-shared/cb-dashboard-graph/cb-dashboard-graph.component';
 declare var $: any;
 @Component({
   selector: 'app-cb-dashboard',
@@ -21,7 +22,8 @@ export class CbDashboardComponent implements OnInit {
   @Language() lang: string;
   @ViewChild('refPie')
   refPie: CbDashboardPieComponent;
-
+  @ViewChild('refGraph')
+  refGraph: CbDashboardGraphComponent;
   public chart: any;
   public volumeSubscription: Subscription;
   public historySubscription: Subscription;
@@ -75,11 +77,10 @@ export class CbDashboardComponent implements OnInit {
         if (item !== null) {
           console.log('GRAPH_CONFIG', item);
           this.GRAPH_CONFIG = item;
+          if (this.READY.GRAPH && typeof this.refGraph !== 'undefined') {
+            this.refGraph.updateValue(this.GRAPH_CONFIG);
+          }
           this.READY.GRAPH = true;
-          // if (this.READY.PIE && typeof this.refPie !== 'undefined') {
-          //   this.refPie.updateValue(this.PIE_CONFIG);
-          // }
-          // this.READY.PIE = true;
         }
     });
 
@@ -130,16 +131,6 @@ export class CbDashboardComponent implements OnInit {
       this.NO_EXCHANGE = false;
     }
     this.loadCurrencies();
-    this.GRAPH_CONFIG = [{
-          'name': 'BTC',
-          'series': []
-        },
-      ​
-        {
-          'name': 'ETH',
-          'series': []
-        }
-      ];
 
     // let year = 2010;
 

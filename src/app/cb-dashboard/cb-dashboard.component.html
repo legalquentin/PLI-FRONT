@@ -12,7 +12,7 @@
       <div class="tile sub" fxFlex *ngIf="READY.PIE"></div>
     </div>
     <div class="bottom" fxLayout="row">
-      <app-cb-dashboard-graph fxFlex [CONFIG]="GRAPH_CONFIG" *ngIf="READY.GRAPH"></app-cb-dashboard-graph>
+      <app-cb-dashboard-graph #refGraph fxFlex [CONFIG]="GRAPH_CONFIG" *ngIf="READY.GRAPH"></app-cb-dashboard-graph>
       <app-cb-dashboard-table fxFlex [CONFIG]="TABLE_CONFIG" *ngIf="READY.TABLE"></app-cb-dashboard-table>
       <!-- <div id="chart-container-2"></div> -->
     </div>
