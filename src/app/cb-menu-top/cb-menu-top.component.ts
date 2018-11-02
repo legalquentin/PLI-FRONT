@@ -6,6 +6,7 @@ import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbEventService } from '../cb-services/cb-event.service';
 import { fadeAnimation } from '../cb-shared/cb-animations';
 import { CbSharedService } from '../cb-services/cb-shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-cb-menu-top',
@@ -25,6 +26,8 @@ export class CbMenuTopComponent implements OnInit {
   public selectNone = -1;
   public accountIdentifier = '';
 
+  public volumeSubscription: Subscription;
+
   constructor(
     private router: Router,
     private translation: TranslationService,
@@ -34,7 +37,7 @@ export class CbMenuTopComponent implements OnInit {
     public _CbSharedService: CbSharedService
   ) {
     this.selectLang = false;
-    this.selectedAccount = this.selectNone;
+    this.selectedAccount = 0;
   }
 
   ngOnInit() {}
