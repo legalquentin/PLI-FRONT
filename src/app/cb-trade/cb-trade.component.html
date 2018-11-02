@@ -1,15 +1,44 @@
 <div class="wrapper" fxLayout="column">
-  <div fxLayout="row">
+  <!-- <div fxLayout="row">
     <div class="tile" fxFlex>
       <mat-nav-list role="list" fxFlex>
-        <a mat-list-item (click)="do('stuff')" *ngFor="let pair of availablePair">
-          {{ pair.value }}
+        <a mat-list-item (click)="do('stuff')" [ngClass]="{'active': crypto.value === selected }" *ngFor="let crypto of availableCrypto">
+          {{ crypto.value }}
         </a>
       </mat-nav-list>
     </div>
     <div class="tile" fxFlex>
+      <mat-nav-list role="list" fxFlex>
+        <a mat-list-item (click)="do('stuff')" [ngClass]="{'active': crypto.value === selected }" *ngFor="let crypto of availableCrypto">
+          {{ crypto.value }}
+        </a>
+      </mat-nav-list>
     </div>
-  </div>
+    <div class="tile" fxFlex>
+      test
+    </div>
+  </div> -->
   <div class="tile" fxFlex>
+    <form fxLayout="column" class="add-account-form" [formGroup]="tradeFormGroup">
+      <mat-form-field color="primary">
+        <mat-select placeholder="trade mode" required formControlName="mode">
+          <mat-option *ngFor="let opt of TRADE_OPT" [value]="0" required>
+            <span>{{ opt }}</span>
+          </mat-option>
+        </mat-select>
+        <!-- <mat-hint>Errors appear instantly!</mat-hint> -->
+        <!-- <mat-error *ngIf="tradeFormGroup.get('exchangeSelection').hasError('required')">You must select an exchange</mat-error> -->
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [placeholder]="'price'" name="price" autocomplete="new-password" required formControlName="price">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [placeholder]="'amount'" name="amount" autocomplete="new-password" required formControlName="amount">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [placeholder]="'key'" name="key" autocomplete="new-password" required formControlName="key">
+      </mat-form-field>
+      <button mat-flat-button (click)="trade()" [disabled]="!tradeFormGroup.valid">Place order</button>
+    </form>
   </div>
 </div>

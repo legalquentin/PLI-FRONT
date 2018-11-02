@@ -115,6 +115,15 @@ export class CbApiService {
       }
       delete _PAYLOAD['URL_PARAM'];
     }
+    if ('URL_KEY' in _PAYLOAD) {
+      let flag = true;
+      for (const param of _PAYLOAD.URL_KEY) {
+        _ENDPOINT += ((flag === false) ? '&' : '?');
+        _ENDPOINT += param[0] + '=' + param[1];
+        flag = false;
+      }
+      delete _PAYLOAD['URL_KEY'];
+    }
     if ('body' in _PAYLOAD) {
       _PAYLOAD = _PAYLOAD.body;
     }

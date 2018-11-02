@@ -5,6 +5,7 @@ import { CbStorageService } from '../cb-services/cb-storage.service';
 import { CbApiService } from '../cb-services/cb-api.service';
 import { CbConstants } from '../cb-shared/cb-constants';
 import { CbEventService } from '../cb-services/cb-event.service';
+import { CbLocaleService } from '../cb-services/cb-locale.service';
 
 @Component({
   selector: 'app-cb-account',
@@ -32,7 +33,8 @@ export class CbAccountComponent implements OnInit {
     private translationService: TranslationService,
     private _CbStorageService: CbStorageService,
     private _CbApiService: CbApiService,
-    public _CbEventService: CbEventService
+    public _CbEventService: CbEventService,
+    private _CbLocaleService: CbLocaleService
   ) {
     this.buildAccount();
   }
@@ -114,5 +116,9 @@ export class CbAccountComponent implements OnInit {
     setTimeout(() => {
       this.ERROR_MESSAGE = '';
     }, 2000);
+  }
+
+  selectLocale(language: string, country: string, currency: string) {
+    this._CbLocaleService.selectLocale(language, country, currency, true);
   }
 }

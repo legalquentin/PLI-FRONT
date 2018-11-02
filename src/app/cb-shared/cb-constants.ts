@@ -66,5 +66,17 @@ export class CbConstants {
       PATH: '/market',
       METHOD: 'GET'
     },
+    GET_CRYPTOS: {
+      PATH: '/crypto',
+      METHOD: 'GET'
+    },
+    GET_HISTORY: {
+      PATH: '/ticker_account',
+      METHOD: 'GET'
+    },
+    PLACE_ORDER: {
+      PATH: '/order',
+      METHOD: 'POST'
+    },
   };
 }

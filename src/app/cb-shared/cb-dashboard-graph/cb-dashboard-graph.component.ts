@@ -31,13 +31,13 @@ export class CbDashboardGraphComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.DATA = this.CONFIG.DATA;
-    this.LOADED = this.CONFIG.LOADED;
+    this.DATA = this.CONFIG;
+    this.LOADED = true;
   }
 
   formatValue($event) {
     // console.log('format', $event);
-    return $event + '$';
+    return $event + '€';
   }
 
   yFormat($event) {

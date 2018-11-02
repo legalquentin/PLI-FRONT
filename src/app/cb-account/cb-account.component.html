@@ -61,8 +61,8 @@
         </div>
       </div>
       <div fxFlex class="account-top-footer">
-        <button mat-flat-button (click)="save()">Save</button>
-        <button id="cancel" mat-flat-button (click)="cancel()">Cancel</button>
+        <button mat-flat-button (click)="save()">{{ 'GENERIC.BUTTON.SAVE' | translate: lang }}</button>
+        <button id="cancel" mat-flat-button (click)="cancel()">{{ 'GENERIC.BUTTON.CANCEL' | translate: lang }}</button>
       </div>
     </div>
   </div>
@@ -75,8 +75,45 @@
       </div>
       -->
       <div fxFlex>
-        <h3>- WIP -</h3>
-        <span>Additionals options..</span>
+        <h3>- SETTINGS -</h3>
+        <div class="settings-application-content">
+            <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="lang">
+              <mat-button-toggle value="lang" disabled>
+                Language
+                <!-- <mat-icon>translate</mat-icon> -->
+              </mat-button-toggle>
+              <mat-button-toggle value="en" (click)="selectLocale('en', 'en_US', 'USD')">
+                EN
+              </mat-button-toggle>
+              <mat-button-toggle value="fr" (click)="selectLocale('fr', 'fr_FR', 'EUR')">
+                FR
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="false">
+              <mat-button-toggle value="lang" disabled>
+                Remember me
+                <!-- <mat-icon>translate</mat-icon> -->
+              </mat-button-toggle>
+              <mat-button-toggle [value]="true" >
+                Yes
+              </mat-button-toggle>
+              <mat-button-toggle [value]="false" >
+                No
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+            <mat-button-toggle-group #group="matButtonToggleGroup" class="lang-select" [value]="false">
+                <mat-button-toggle value="lang" disabled>
+                  Newsletter
+                  <!-- <mat-icon>translate</mat-icon> -->
+                </mat-button-toggle>
+                <mat-button-toggle [value]="true" >
+                  Yes
+                </mat-button-toggle>
+                <mat-button-toggle [value]="false" >
+                  No
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+          </div>
       </div>
     </div>
   </div>

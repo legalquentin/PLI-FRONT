@@ -14,11 +14,14 @@ export class CbSharedService implements OnInit {
   private _CURRENT_VOLUMES = new BehaviorSubject<any>(null);
   public CURRENT_VOLUMES = this._CURRENT_VOLUMES.asObservable();
 
+  private _VOLUMES_HISTORY = new BehaviorSubject<any>(null);
+  public VOLUMES_HISTORY = this._VOLUMES_HISTORY.asObservable();
+
   public VOLUMES_LOADED = false;
 
   constructor(
     private _CbApiService: CbApiService
-  ) { }
+  ) {}
 
   ngOnInit() { }
 
@@ -27,7 +30,8 @@ export class CbSharedService implements OnInit {
       if (this.ACCOUNTS.length > 0) {
         this.CURRENT_ACCOUNT = 0;
       }
-      this.getAccount(() => { });
+      this.getAccount(() => {});
+      this.getHistory(() => {});
     });
   }
 
@@ -124,6 +128,11 @@ export class CbSharedService implements OnInit {
     this._CURRENT_VOLUMES.next(volume);
   }
 
+  changeHistory(history) {
+    console.log(history);
+    this._VOLUMES_HISTORY.next(history);
+  }
+
   getAccountValues(accountId: number, callback) {
     this._CbApiService.genericRequest(
       CbConstants.REQUESTS.GET_CURRENCIES, [accountId]).subscribe(result => {
@@ -140,6 +149,43 @@ export class CbSharedService implements OnInit {
     }).subscribe(value => {
       crypto['Value'] = value;
       callback();
+    });
+  }
+
+  getHistory(callback) {
+    this._CbApiService.genericRequest(CbConstants.REQUESTS.GET_HISTORY, [12]).subscribe(result => {
+      if (result.data && result.data.length > 0) {
+        const data = result.data;
+        const formated = [];
+        let flag = false;
+        for (const row of data) {
+          const cryptos = JSON.parse(row.account_registry);
+          const values = Object.keys(cryptos.SubAccounts).filter(
+            key => cryptos.SubAccounts[key].Amount !== 0);
+          if (!flag) {
+            for (const val of values) {
+              formated.push({
+                name: val,
+                series: []
+              });
+              // cryptos.SubAccounts[val];
+            }
+            flag = true;
+          } else {
+            for (const val of values) {
+              const idx = formated.findIndex(p => p.name === val);
+              const serie = {
+                name: row.register_time,
+                value: cryptos.SubAccounts[val].Value.EUR
+              };
+              // formated[idx].series.push(cryptos.SubAccounts[val]);
+              formated[idx].series.push(serie);
+            }
+          }
+        }
+        this.changeHistory(formated);
+      }
+      console.log(result);
     });
   }
 }

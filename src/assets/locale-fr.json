@@ -101,5 +101,8 @@
   "GLOBAL.CELL.ICON.CANCEL":"Annulée",
   "GLOBAL.CELL.ICON.WARNING":"Erreur",
   "GLOBAL.CELL.ICON.CHECK":"Validée",
-  "GLOBAL.CELL.ICON.TIME":"En attente"
+  "GLOBAL.CELL.ICON.TIME":"En attente",
+
+  "GENERIC.BUTTON.SAVE": "Enregistrer",
+  "GENERIC.BUTTON.CANCEL": "Annuler"
 }

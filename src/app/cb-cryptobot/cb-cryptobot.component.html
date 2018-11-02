@@ -1,10 +1,10 @@
 <div class="cryptobot-wrapper" fxLayout="row">
-  <div class="cryptobot-left" fxFlex>
+  <div class="cryptobot-left" fxFlex="50">
     <div class="tile" fxFlex fxLayout="row">
       <app-cb-data-table *ngIf="LOADED" [CONFIG]="TRANSFERS" style="width: 100%;"></app-cb-data-table>
     </div>
   </div>
-  <div class="cryptobot-right" fxLayout="column" fxFlex>
+  <div class="cryptobot-right" fxLayout="column" fxFlex="50">
     <div class="tile" fxFlex>
         <mat-tab-group>
             <mat-tab label="{{ 'CRYPTOBOT.TAB.GRAPH' | translate: lang }}">

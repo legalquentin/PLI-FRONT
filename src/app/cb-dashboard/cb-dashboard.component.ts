@@ -24,12 +24,10 @@ export class CbDashboardComponent implements OnInit {
 
   public chart: any;
   public volumeSubscription: Subscription;
+  public historySubscription: Subscription;
 
   public PIE_CONFIG = [];
-  public GRAPH_CONFIG = {
-    LOADED: false,
-    DATA: []
-  };
+  public GRAPH_CONFIG = [];
   public TABLE_CONFIG = {};
 
   public READY = {
@@ -65,10 +63,23 @@ export class CbDashboardComponent implements OnInit {
         if (item !== null) {
           console.log('update', item);
           this.PIE_CONFIG = this.formatVolumes(item);
-          if (this.READY.PIE) {
+          if (this.READY.PIE && typeof this.refPie !== 'undefined') {
             this.refPie.updateValue(this.PIE_CONFIG);
           }
           this.READY.PIE = true;
+        }
+    });
+    this.historySubscription = this._CbSharedService.VOLUMES_HISTORY.subscribe(
+      (item) => {
+        // this.NO_EXCHANGE = false;
+        if (item !== null) {
+          console.log('GRAPH_CONFIG', item);
+          this.GRAPH_CONFIG = item;
+          this.READY.GRAPH = true;
+          // if (this.READY.PIE && typeof this.refPie !== 'undefined') {
+          //   this.refPie.updateValue(this.PIE_CONFIG);
+          // }
+          // this.READY.PIE = true;
         }
     });
 
@@ -119,10 +130,7 @@ export class CbDashboardComponent implements OnInit {
       this.NO_EXCHANGE = false;
     }
     this.loadCurrencies();
-    this.GRAPH_CONFIG = {
-      LOADED: true,
-      DATA: [
-        {
+    this.GRAPH_CONFIG = [{
           'name': 'BTC',
           'series': []
         },
@@ -131,25 +139,25 @@ export class CbDashboardComponent implements OnInit {
           'name': 'ETH',
           'series': []
         }
-      ]
-    };
+      ];
 
-    let year = 2010;
+    // let year = 2010;
 
-    for (let i = 0; i !== 50; i++) {
-      this.GRAPH_CONFIG.DATA[0].series.push({
-        'name': year + '/' + i % 12 + 1,
-        'value': Math.random() * 50 + 20
-      });
-      this.GRAPH_CONFIG.DATA[1].series.push({
-        'name': year + '/' + i % 12 + 1,
-        'value': Math.random() * 50
-      });
-      if (i % 12 === 0) {
-        year++;
-      }
-    }
-    this.READY.GRAPH = true;
+    // for (let i = 0; i !== 50; i++) {
+    //   this.GRAPH_CONFIG.DATA[0].series.push({
+    //     'name': year + '/' + i % 12 + 1,
+    //     'value': Math.random() * 50 + 20
+    //   });
+    //   this.GRAPH_CONFIG.DATA[1].series.push({
+    //     'name': year + '/' + i % 12 + 1,
+    //     'value': Math.random() * 50
+    //   });
+    //   if (i % 12 === 0) {
+    //     year++;
+    //   }
+    // }
+
+    // this.READY.GRAPH = true;
     this.READY.TABLE = true;
   }
 

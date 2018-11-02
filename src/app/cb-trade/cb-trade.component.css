@@ -8,3 +8,12 @@
   background-color: rgb(238, 238, 238);
   padding: 20px;
 }
+
+.mat-nav-list .mat-list-item {
+  background-color: rgb(255, 255, 255);
+}
+
+.mat-nav-list .mat-list-item .active {
+  color: rgb(255, 255, 255);
+  background-color: var(--primary-color);
+}
