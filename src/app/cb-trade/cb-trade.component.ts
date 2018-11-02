@@ -62,8 +62,15 @@ export class CbTradeComponent implements OnInit {
       .genericRequest(url)
       .subscribe(
         result => {
-          this.CRYPTOAVALABLES = result;
-          console.log('ADD_PROVIDERS on ' + params + ' SUCCESS', result);
+          const array_result = [];
+          result.forEach(element => {
+            const part = element.split('_');
+            if (part.length === 2) {
+              array_result.push({image1: part[0].toLowerCase(), image2: part[1].toLowerCase()});
+            }
+          });
+          this.CRYPTOAVALABLES = array_result;
+          console.log(this.CRYPTOAVALABLES);
         },
         error => {
           console.error('Failed to ADD_PROVIDERS', error);
