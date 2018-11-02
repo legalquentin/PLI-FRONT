@@ -165,7 +165,11 @@ export class CbDashboardComponent implements OnInit {
     for (const key of Object.keys(volumes)) {
       dataSet.push({
         name: key,
-        value: volumes[key].Value.EUR,
+        amount: volumes[key].Amount,
+        usd: volumes[key].Value.USD,
+        eur: volumes[key].Value.EUR,
+        value: 0
+        // value: volumes[key].Value.EUR,
       });
     }
     return dataSet;

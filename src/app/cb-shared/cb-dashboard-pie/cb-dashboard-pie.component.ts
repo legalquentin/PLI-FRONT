@@ -32,6 +32,9 @@ export class CbDashboardPieComponent implements OnInit {
 
   ngOnInit() {
     this.otherCurrency = this._dollar;
+    for (const set of this.CONFIG) {
+      set.value = set[this.otherCurrency.label.toLowerCase()];
+    }
     this.DATA = this.CONFIG;
     this.LOADED = true;
     console.log(this.CONFIG);
@@ -39,7 +42,7 @@ export class CbDashboardPieComponent implements OnInit {
 
   formatValue($event) {
     // console.log('format', $event);
-    return $event + '$';
+    return $event + (this.otherCurrency.sign);
   }
 
   updateValue(DATA: any) {
@@ -48,6 +51,13 @@ export class CbDashboardPieComponent implements OnInit {
   }
 
   switchCurrency() {
-    this.otherCurrency = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
+    console.log('SWITCH VALUE');
+    const curr = (this.otherCurrency.label === 'EUR') ? this._dollar : this._euro;
+    for (const set of this.DATA) {
+      set.value = set[curr.label.toLowerCase()];
+    }
+    setTimeout(() => {
+      this.otherCurrency = curr;
+    }, 300);
   }
 }
